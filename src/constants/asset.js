@@ -1,0 +1,1 @@
+const src = "/assets/images/";
