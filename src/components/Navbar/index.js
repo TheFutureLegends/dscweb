@@ -41,4 +41,8 @@ Navbar.Link = function NavbarLink({ to, children, ...restProps }) {
 	);
 };
 
+Navbar.IconButton = function NavbarIconButton({ icon, ...restProps }) {
+	return <Style.IconButton {...restProps} icon={icon} />;
+};
+
 export default Navbar;

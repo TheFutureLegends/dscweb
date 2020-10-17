@@ -13,7 +13,6 @@ export const Container = styled(AppBar)`
 		height: 65px;
 		padding: 0px 20px;
 		background-color: ${({ theme: { context } }) => context.dark};
-		box-shadow: 1px 1px 10px black;
 	}
 `;
 
@@ -73,9 +72,11 @@ export const Link = styled(ReactRouterLink)`
 	color: white;
 	font-weight: 700;
 	font-family: "Poppins", sans-serif;
-	margin: 0px 15px;
+	margin: 0px 20px;
 	&:hover {
 		color: ${({ theme: { colors } }) => colors.primary};
 		border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
 	}
 `;
+
+export const IconButton = styled(Icon)``;
