@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import useBreakPoint from "../hooks/useBreakPoint.js";
 // Components
 import { Navbar, FlexBox, IconLinkButton } from "../components/index";
-import MediaQuery from "react-responsive";
 // MUI components
 import {
 	faSearch,
@@ -13,6 +12,7 @@ import {
 	faBars,
 	faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from "@material-ui/core";
 // Constants
 import * as ASSETS from "../constants/asset";
 import * as ROUTES from "../constants/route";
@@ -24,16 +24,15 @@ function NavbarDesktop() {
 
 	return (
 		<Navbar>
-			<FlexBox style={{}}>
+			<FlexBox>
 				<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />
 				<Navbar.Header>
-					<MediaQuery maxDeviceWidth={1050}>RMIT DSC</MediaQuery>
-					<MediaQuery minDeviceWidth={1050}>
-						RMIT DEVELOPER STUDENT CLUB
-					</MediaQuery>
+					{useMediaQuery("(max-width:1050px)")
+						? "RMIT DSC"
+						: "RMIT DEVELOPER STUDENT CLUB"}
 				</Navbar.Header>
 				<FlexBox.FlexBasis width="30px" />
-				<MediaQuery minDeviceWidth={BREAK.tablet_xs}>
+				{useMediaQuery(`(min-width:${BREAK.tablet_xs}px)`) && (
 					<Navbar.SearchBar>
 						<Navbar.Input
 							onFocus={() => setActive(true)}
@@ -43,46 +42,61 @@ function NavbarDesktop() {
 						/>
 						<Navbar.Icon icon={faSearch} className="__search" />
 					</Navbar.SearchBar>
-				</MediaQuery>
+				)}
 			</FlexBox>
 			<FlexBox>
-				<MediaQuery minDeviceWidth={BREAK.tablet_xs}>
-					<MediaQuery maxDeviceWidth={BREAK.tablet_md}>
-						<IconLinkButton src={faHome} route={ROUTES.HOME} title={"Home"} />
+				{useMediaQuery(`(min-width: ${BREAK.tablet_xs}px)`) ? (
+					<Fragment>
+						{breakPoint <= BREAK.tablet_md ? (
+							<Fragment>
+								<IconLinkButton
+									src={faHome}
+									route={ROUTES.HOME}
+									title={"Home"}
+								/>
+								<IconLinkButton
+									src={faCalendarAlt}
+									route={ROUTES.EVENT}
+									title={"Event"}
+								/>
+								<IconLinkButton
+									src={faBook}
+									route={ROUTES.GUIDE}
+									title={"Guide"}
+								/>
+								<IconLinkButton
+									src={faUsers}
+									route={ROUTES.ABOUT}
+									title={"About"}
+								/>
+							</Fragment>
+						) : (
+							<Fragment>
+								<Navbar.Link to={ROUTES.HOME}>Home</Navbar.Link>
+								<Navbar.Link to={ROUTES.EVENT}>Event</Navbar.Link>
+								<Navbar.Link to={ROUTES.GUIDE}>Guide</Navbar.Link>
+								<Navbar.Link to={ROUTES.ABOUT}>About</Navbar.Link>
+							</Fragment>
+						)}
+
+						<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
+					</Fragment>
+				) : (
+					<Fragment>
 						<IconLinkButton
-							src={faCalendarAlt}
-							route={ROUTES.EVENT}
-							title={"Event"}
+							src={faSignInAlt}
+							style={{ margin: "0px 15px 0px 10px" }}
+							route={ROUTES.LOG_IN}
+							title={"Log In"}
 						/>
-						<IconLinkButton src={faBook} route={ROUTES.GUIDE} title={"Guide"} />
 						<IconLinkButton
-							src={faUsers}
-							route={ROUTES.ABOUT}
-							title={"About"}
+							src={faBars}
+							style={{ margin: "0px 10px 0px 5px" }}
+							route="#"
+							title={"Menu"}
 						/>
-					</MediaQuery>
-					<MediaQuery minDeviceWidth={BREAK.tablet_md}>
-						<Navbar.Link to={ROUTES.HOME}>Home</Navbar.Link>
-						<Navbar.Link to={ROUTES.EVENT}>Event</Navbar.Link>
-						<Navbar.Link to={ROUTES.GUIDE}>Guide</Navbar.Link>
-						<Navbar.Link to={ROUTES.ABOUT}>About</Navbar.Link>
-					</MediaQuery>
-					<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
-				</MediaQuery>
-				<MediaQuery maxDeviceWidth={BREAK.tablet_xs}>
-					<IconLinkButton
-						src={faSignInAlt}
-						style={{ margin: "0px 15px 0px 10px" }}
-						route={ROUTES.LOG_IN}
-						title={"Log In"}
-					/>
-					<IconLinkButton
-						src={faBars}
-						style={{ margin: "0px 10px 0px 5px" }}
-						route="#"
-						title={"Menu"}
-					/>
-				</MediaQuery>
+					</Fragment>
+				)}
 			</FlexBox>
 		</Navbar>
 	);

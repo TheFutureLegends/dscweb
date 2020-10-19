@@ -10,7 +10,7 @@ export const Container = styled(AppBar)`
 	}
 	&& {
 		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
-		height: 65px;
+		height: 75px;
 		padding: 0px 20px;
 		background-color: ${({ theme: { context } }) => context.dark};
 	}
