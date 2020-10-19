@@ -20,9 +20,9 @@ export const Item = styled.div`
 
 export const Container = styled(FlexBox)`
 	height: fit-content;
-	padding: 20px 20px;
+	padding: 20px 10px;
 	overflow: auto;
-	width: fit-content;
+	width: 100%;
 	margin: 0px auto;
 	background-color: white;
 	-ms-overflow-style: none;
