@@ -9,7 +9,7 @@ export const Item = styled.div`
 	background-color: ${({ theme: { context } }) => context.light_gray};
 	color: white;
 	padding: 5px 10px;
-	margin: 0px 5px;
+	margin: 5px 5px;
 	font-size: 14px;
 	cursor: pointer;
 	&:hover {
@@ -22,7 +22,9 @@ export const Container = styled(FlexBox)`
 	height: fit-content;
 	padding: 20px 10px;
 	overflow: auto;
-	width: 100%;
+	flex-wrap: wrap;
+	width: fit-content;
+	justify-content: center;
 	margin: 0px auto;
 	background-color: white;
 	-ms-overflow-style: none;

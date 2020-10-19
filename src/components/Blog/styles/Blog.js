@@ -60,7 +60,7 @@ export const Container = styled.div`
 		margin-top: 10px;
 	}
 	${Picture} {
-		height: 100%;
+		width: 100%;
 	}
 `;
 
