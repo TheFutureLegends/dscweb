@@ -4,14 +4,16 @@ import { AppBar, Typography, InputBase } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-export const Container = styled(FlexBox)`
+export const Container = styled(AppBar)`
 	* {
 		user-select: none;
 	}
-	box-shadow: unset;
-	height: 65px;
-	padding: 0px 20px;
-	background-color: ${({ theme: { context } }) => context.dark};
+	&& {
+		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
+		height: 65px;
+		padding: 0px 20px;
+		background-color: ${({ theme: { context } }) => context.dark};
+	}
 `;
 
 export const Inner = styled(FlexBox)`

@@ -2,15 +2,16 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRouter from "./Router";
 import Theme from "./Theme";
-import { NavbarContainer } from "./containers";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
 	return (
 		<Theme>
-			<Router>
-				<NavbarContainer />
-				<AppRouter />
-			</Router>
+			<AnimatePresence exitBeforeEnter>
+				<Router>
+					<AppRouter />
+				</Router>
+			</AnimatePresence>
 		</Theme>
 	);
 }
