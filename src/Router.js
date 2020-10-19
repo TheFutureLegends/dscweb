@@ -14,7 +14,7 @@ function Router() {
 				<Route path={ROUTES.EVENT} component={PAGE.EventPage} />
 				<Route path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
 				<Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} />
-				<Route path={ROUTES.GUIDE} component={PAGE.GuidePage} />
+				<Route path={ROUTES.BLOG} component={PAGE.GuidePage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>
 		</Fragment>

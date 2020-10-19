@@ -13,7 +13,7 @@ export const blogSection = {
 	main: {
 		height: "fit-content",
 		backgroundColor: "white",
-		padding: "20px 50px",
+		padding: "20px 30px",
 		maxWidth: "1800px",
 		margin: "10px auto",
 	},

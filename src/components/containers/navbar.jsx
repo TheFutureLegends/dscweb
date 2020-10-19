@@ -61,8 +61,8 @@ function NavbarDesktop() {
 								/>
 								<IconLinkButton
 									src={faBook}
-									route={ROUTES.GUIDE}
-									title={"Guide"}
+									route={ROUTES.BLOG}
+									title={"Blog"}
 								/>
 								<IconLinkButton
 									src={faUsers}
@@ -74,7 +74,7 @@ function NavbarDesktop() {
 							<Fragment>
 								<Navbar.Link to={ROUTES.HOME}>Home</Navbar.Link>
 								<Navbar.Link to={ROUTES.EVENT}>Event</Navbar.Link>
-								<Navbar.Link to={ROUTES.GUIDE}>Guide</Navbar.Link>
+								<Navbar.Link to={ROUTES.BLOG}>Blog</Navbar.Link>
 								<Navbar.Link to={ROUTES.ABOUT}>About</Navbar.Link>
 							</Fragment>
 						)}

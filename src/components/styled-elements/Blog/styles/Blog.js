@@ -59,6 +59,9 @@ export const SubHeader = styled(Typography)`
 `;
 
 export const SmallContainer = styled(Grid)`
+	&& {
+		margin-bottom: 10px;
+	}
 	${PictureWrapper} {
 		overflow: hidden;
 		object-fit: cover;

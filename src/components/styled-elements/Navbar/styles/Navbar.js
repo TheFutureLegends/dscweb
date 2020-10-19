@@ -9,6 +9,7 @@ export const Container = styled(AppBar)`
 		user-select: none;
 	}
 	&& {
+		position: sticky;
 		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
 		height: 75px;
 		padding: 0px 20px;
