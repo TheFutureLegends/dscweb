@@ -1,5 +1,6 @@
 import React from "react";
-import { Blog, FlexBox } from "../../components";
+import { Blog, FlexBox } from "../../styled-elements";
+import { Grid } from "@material-ui/core";
 
 function SmallBlogContainer({
 	src,
@@ -13,15 +14,18 @@ function SmallBlogContainer({
 	...restProps
 }) {
 	return (
-		<Blog {...restProps} direction="column">
-			<Blog.Picture src={src} />
-			<Blog.Meta src={avatar} author={author} category={category} />
-			<Blog.Header variant="h2">{title}</Blog.Header>
-			<Blog.SubHeader variant="p" text={body} />
-			<FlexBox justify="space-between" style={{ marginTop: "50px" }}>
-				<Blog.Text>Lastest Update: {date}</Blog.Text>
-				<Blog.Link to={to}>Read More</Blog.Link>
-			</FlexBox>
+		<Blog {...restProps} container spacing={2} size="small">
+			<Grid item={true} xs={8}>
+				<Blog.Meta src={avatar} author={author} category={category} />
+				<Blog.Header variant="h2">{title}</Blog.Header>
+				<FlexBox justify="space-between" style={{ marginTop: "10px" }}>
+					<Blog.Text>{date}</Blog.Text>
+					<Blog.Link to={to}>Read More</Blog.Link>
+				</FlexBox>
+			</Grid>
+			<Grid item={true} xs={4}>
+				<Blog.Picture src={src} className="__small_blog_picture" />
+			</Grid>
 		</Blog>
 	);
 }

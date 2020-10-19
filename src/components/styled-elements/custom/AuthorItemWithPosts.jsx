@@ -7,19 +7,19 @@ function AuthorItemWithPosts({ src, name, role, posts, ...restProps }) {
 	return (
 		<FlexBox
 			{...restProps}
-			style={CSS.eventSection.item}
+			style={CSS.blogSection.item}
 			justify="space-between"
 		>
 			<FlexBox>
-				<img src={src} alt="Avatar" style={CSS.eventSection.item.picture} />
+				<img src={src} alt="Avatar" style={CSS.blogSection.item.picture} />
 				<FlexBox direction="column">
-					<Typography variant="h5" style={CSS.eventSection.item.header}>
+					<Typography variant="h5" style={CSS.blogSection.item.header}>
 						{name}
 					</Typography>
-					<span style={CSS.eventSection.item.role}>{role}</span>
+					<span style={CSS.blogSection.item.role}>{role}</span>
 				</FlexBox>
 			</FlexBox>
-			<div style={CSS.eventSection.item.stat}>
+			<div style={CSS.blogSection.item.stat}>
 				<span>{posts}</span>
 			</div>
 		</FlexBox>

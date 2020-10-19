@@ -5,10 +5,11 @@ const general = {
 		boxShadow: "unset",
 		marginTop: "10px",
 		width: "100%",
+		borderRadius: "0",
 	},
 };
 
-export const eventSection = {
+export const blogSection = {
 	main: {
 		height: "fit-content",
 		backgroundColor: "white",
@@ -22,10 +23,11 @@ export const eventSection = {
 			height: "fit-content",
 			padding: "30px 20px 10px 20px",
 			overflow: "auto",
+			border: `0.5px solid rgb(206, 206, 206)`,
 		},
 		blog: {
 			...general.paper,
-			padding: "30px 10px 10px 10px",
+			padding: "20px 10px 10px 10px",
 		},
 	},
 	header: {

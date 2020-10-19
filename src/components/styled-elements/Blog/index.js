@@ -42,10 +42,15 @@ Blog.Meta = function BlogMeta({
 	);
 };
 
-Blog.SubHeader = function BlogSubHeader({ text, children, ...restProps }) {
+Blog.SubHeader = function BlogSubHeader({
+	text,
+	limit,
+	children,
+	...restProps
+}) {
 	return (
 		<Style.SubHeader {...restProps}>
-			{text.length > 100 ? `${text.substring(0, 100)}....` : text}
+			{text.length > limit ? `${text.substring(0, limit)}....` : text}
 		</Style.SubHeader>
 	);
 };

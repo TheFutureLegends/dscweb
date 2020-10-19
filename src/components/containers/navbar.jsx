@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import useBreakPoint from "../hooks/useBreakPoint.js";
+import useBreakPoint from "../logics/useBreakPoint.js";
 // Components
 import { Navbar, FlexBox, IconLinkButton } from "../styled-elements";
 // MUI components

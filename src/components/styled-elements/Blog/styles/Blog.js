@@ -1,11 +1,19 @@
 import styled from "styled-components";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FlexBox } from "../..";
 
-export const Picture = styled.img``;
+export const Picture = styled.img`
+	height: 100%;
+`;
 
 export const PictureWrapper = styled(FlexBox)`
+	&.__small_blog_picture {
+		&& {
+			width: 100%;
+			height: 100%;
+		}
+	}
 	&.__meta_picture {
 		&& {
 			height: 100%;
@@ -42,9 +50,31 @@ export const Meta = styled(FlexBox)`
 	}
 `;
 
-export const SmallContainer = styled.div`
-	background-color: red;
-	width: 100%;
+export const SubHeader = styled(Typography)`
+	&& {
+		font-weight: normal;
+		font-family: "Raleway", sans-serif;
+		font-size: 14px;
+	}
+`;
+
+export const SmallContainer = styled(Grid)`
+	${PictureWrapper} {
+		overflow: hidden;
+		object-fit: cover;
+	}
+	${Header} {
+		font-weight: bold;
+		font-size: 12px;
+		font-family: "Poppins", sans-serif;
+		margin-top: 10px;
+	}
+	${Picture} {
+		height: 100%;
+	}
+	${Meta} {
+		font-size: 10px;
+	}
 `;
 
 export const Container = styled.div`
@@ -60,15 +90,7 @@ export const Container = styled.div`
 		margin-top: 10px;
 	}
 	${Picture} {
-		width: 100%;
-	}
-`;
-
-export const SubHeader = styled(Header)`
-	&& {
-		font-weight: normal;
-		font-family: "Raleway", sans-serif;
-		font-size: 14px;
+		height: 100%;
 	}
 `;
 
