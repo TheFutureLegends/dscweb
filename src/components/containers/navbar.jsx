@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import useBreakPoint from "../hooks/useBreakPoint.js";
 // Components
-import { Navbar, FlexBox, IconLinkButton } from "../components/index";
+import { Navbar, FlexBox, IconLinkButton } from "../styled-elements";
 // MUI components
 import {
 	faSearch,
@@ -14,9 +14,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@material-ui/core";
 // Constants
-import * as ASSETS from "../constants/asset";
-import * as ROUTES from "../constants/route";
-import * as BREAK from "../constants/breakpoint";
+import * as ASSETS from "../../constants/asset";
+import * as ROUTES from "../../constants/route";
+import * as BREAK from "../../constants/breakpoint";
 
 function NavbarDesktop() {
 	const [active, setActive] = useState(false);

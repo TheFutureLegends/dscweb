@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Banner } from "../components";
-import * as HOME from "../containers/home";
+import { Banner } from "../../styled-elements";
+import * as HOME from "../../containers/home";
 
 function Home() {
 	return (

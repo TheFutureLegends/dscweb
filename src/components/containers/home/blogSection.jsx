@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid, Paper, Typography, useMediaQuery } from "@material-ui/core";
-import { FlexBox, Blog } from "../../components";
-import { AuthorItemWithPosts } from "../../components";
+import { FlexBox, Blog } from "../../styled-elements";
+import { AuthorItemWithPosts } from "../../styled-elements";
 import DefaultBlogContainer from "../blog/default";
-import * as CSS from "../../styles/home.style.js";
-import * as BREAK from "../../constants/breakpoint";
-import * as ASSETS from "../../constants/asset";
+import * as CSS from "../../pages/Home/styles/home.style.js";
+import * as BREAK from "../../../constants/breakpoint";
+import * as ASSETS from "../../../constants/asset";
 
 function EventContainer() {
 	return (
@@ -18,7 +18,7 @@ function EventContainer() {
 						</Typography>
 						<Paper style={CSS.eventSection.paper.blog}>
 							<Grid container spacing={4}>
-								<Grid item={true} xs={12} sm={8} md={8} lg={4}>
+								<Grid item={true} xs={12} sm={6} md={7} lg={4}>
 									<DefaultBlogContainer
 										author="Tin Quan Chung"
 										category="Web Development"
@@ -51,7 +51,7 @@ function EventContainer() {
 									</Grid>
 								)}
 
-								<Grid item={true} xs={4}>
+								<Grid item={true} xs={12} md={5} sm={6} lg={4}>
 									<FlexBox direction="column" style={{ height: "100%" }}>
 										<Blog size="small">Hi</Blog>
 									</FlexBox>

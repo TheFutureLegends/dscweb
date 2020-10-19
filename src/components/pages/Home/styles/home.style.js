@@ -1,4 +1,4 @@
-import { theme } from "../styles/global-theme";
+import { theme } from "../../../../global-theme";
 
 const general = {
 	paper: {

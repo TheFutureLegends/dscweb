@@ -1,5 +1,5 @@
 import React from "react";
-import * as CSS from "../../styles/home.style.js";
+import * as CSS from "../../pages/Home/styles/home.style.js";
 import { FlexBox } from "../index";
 import { Typography } from "@material-ui/core";
 

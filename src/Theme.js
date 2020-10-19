@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./styles/global-theme";
+import { theme } from "./global-theme";
 
 function Theme({ children }) {
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

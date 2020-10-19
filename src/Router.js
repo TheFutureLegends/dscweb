@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import * as ROUTES from "./constants/route";
-import * as PAGE from "./pages";
-import { NavbarContainer } from "./containers";
+import * as PAGE from "./components/pages";
+import { NavbarContainer } from "./components/containers";
 
 function Router() {
 	const location = useLocation();
 	return (
-		<>
+		<Fragment>
 			<NavbarContainer />
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />
@@ -17,7 +17,7 @@ function Router() {
 				<Route path={ROUTES.GUIDE} component={PAGE.GuidePage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>
-		</>
+		</Fragment>
 	);
 }
 

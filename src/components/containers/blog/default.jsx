@@ -1,5 +1,5 @@
 import React from "react";
-import { Blog, FlexBox } from "../../components";
+import { Blog, FlexBox } from "../../styled-elements";
 
 function DefaultBlogContainer({
 	src,

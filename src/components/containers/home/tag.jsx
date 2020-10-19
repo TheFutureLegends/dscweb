@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag } from "../../components";
+import { Tag } from "../../styled-elements";
 
 function TagContainer() {
 	return (
