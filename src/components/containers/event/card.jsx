@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardHeader, IconButton, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import * as ASSETS from "../../../constants/asset.js";
 import * as CSS from "../../pages/Home/styles/home.style";
 
 function EventCard({ header, date, src, ...restProps }) {
