@@ -1,13 +1,15 @@
-import React, { Fragment } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
 import { NavbarContainer } from "./components/containers";
+import { HistoryContext } from "./contexts/HistoryContext";
 
 function Router() {
 	const location = useLocation();
+	const history = useHistory();
 	return (
-		<Fragment>
+		<HistoryContext.Provider value={{ history }}>
 			<NavbarContainer />
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />
@@ -17,7 +19,7 @@ function Router() {
 				<Route path={ROUTES.BLOG} component={PAGE.GuidePage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>
-		</Fragment>
+		</HistoryContext.Provider>
 	);
 }
 

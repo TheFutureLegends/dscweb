@@ -4,10 +4,11 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { FlexBox } from "../..";
 
 export const Picture = styled.img`
-	height: 100%;
+	width: 100%;
 `;
 
 export const PictureWrapper = styled(FlexBox)`
+	object-fit: contain;
 	&.__small_blog_picture {
 		&& {
 			width: 100%;
@@ -60,6 +61,7 @@ export const SubHeader = styled(Typography)`
 
 export const SmallContainer = styled(Grid)`
 	&& {
+		cursor: pointer;
 		margin-bottom: 10px;
 	}
 	${PictureWrapper} {
@@ -81,6 +83,7 @@ export const SmallContainer = styled(Grid)`
 `;
 
 export const Container = styled.div`
+	cursor: pointer;
 	${PictureWrapper} {
 		height: 290px;
 		overflow: hidden;
