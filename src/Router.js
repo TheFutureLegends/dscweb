@@ -1,15 +1,17 @@
 import React from "react";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import useBreakPoint from "./components/logics/useBreakPoint";
 import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
 import { NavbarContainer } from "./components/containers";
-import { HistoryContext } from "./contexts/HistoryContext";
+import { UtilityContext } from "./contexts/UtilityContext";
 
 function Router() {
 	const location = useLocation();
 	const history = useHistory();
+	const breakPoint = useBreakPoint();
 	return (
-		<HistoryContext.Provider value={{ history }}>
+		<UtilityContext.Provider value={{ history, breakPoint }}>
 			<NavbarContainer />
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />
@@ -19,7 +21,7 @@ function Router() {
 				<Route path={ROUTES.BLOG} component={PAGE.GuidePage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>
-		</HistoryContext.Provider>
+		</UtilityContext.Provider>
 	);
 }
 

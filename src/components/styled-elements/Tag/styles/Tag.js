@@ -20,7 +20,6 @@ export const Item = styled.div`
 
 export const Container = styled(FlexBox)`
 	height: fit-content;
-	padding: 20px 10px;
 	overflow: auto;
 	flex-wrap: wrap;
 	width: fit-content;

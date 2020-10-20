@@ -1,32 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Grid, Paper, Typography, useMediaQuery } from "@material-ui/core";
 import { FlexBox } from "../../styled-elements";
-import { AuthorItemWithPosts } from "../../styled-elements";
+// import { AuthorItemWithPosts } from "../../styled-elements";
 import DefaultBlogContainer from "../blog/default";
 import SmallBlogContainer from "../blog/small";
 import * as CSS from "../../pages/Home/styles/home.style.js";
 import * as BREAK from "../../../constants/breakpoint";
-import * as ASSETS from "../../../constants/asset";
 import { mock_data } from "../../../constants/mockData";
-import { HistoryContext } from "../../../contexts/HistoryContext";
+import { UtilityContext } from "../../../contexts/UtilityContext";
 
 function BlogContainer() {
-	const { history } = useContext(HistoryContext);
+	const { history, breakPoint } = useContext(UtilityContext);
 	//TODO Open ranking section (Considered)
-	const [openRanking, setOpenRanking] = useState(false);
+	// const [openRanking, setOpenRanking] = useState(false);
 	const handlePostClick = (src) => {
 		history.push(src);
 	};
 
 	return (
-		<section style={CSS.blogSection.main}>
+		<section
+			style={
+				CSS.blogSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px").main
+			}
+		>
 			<Grid container spacing={3}>
-				<Grid item={true} lg={!openRanking ? 12 : 9} xs={12} md={12} sm={12}>
+				<Grid item={true} lg={12} xs={12} md={12} sm={12}>
 					<FlexBox direction="column">
-						<Typography variant="h2" style={CSS.blogSection.header}>
+						<Typography variant="h2" style={CSS.blogSection().header}>
 							Lastest Blog Post
 						</Typography>
-						<Paper style={CSS.blogSection.paper.blog}>
+						<Paper style={CSS.blogSection().paper.blog}>
 							<Grid container spacing={4}>
 								<Grid item={true} xs={12} sm={6} md={7} lg={4}>
 									<DefaultBlogContainer
@@ -68,7 +71,6 @@ function BlogContainer() {
 												author={post.author}
 												category={post.category}
 												title={post.title}
-												body={post.body}
 												date={post.date}
 												src={post.src}
 												avatar={post.avatar}
@@ -92,10 +94,10 @@ function BlogContainer() {
 					style={{ margin: "0px auto" }}
 				>
 					<FlexBox direction="column">
-						<Typography variant="h2" style={CSS.blogSection.header}>
+						<Typography variant="h2" style={CSS.blogSection().header}>
 							Top Authors
 						</Typography>
-						<Paper style={CSS.blogSection.paper.ranking}>
+						<Paper style={CSS.blogSection().paper.ranking}>
 							<FlexBox direction="column">
 								<AuthorItemWithPosts
 									src={ASSETS.AVATAR}

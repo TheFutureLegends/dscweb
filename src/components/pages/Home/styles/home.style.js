@@ -9,11 +9,11 @@ const general = {
 	},
 };
 
-export const blogSection = {
+export const blogSection = (pad) => ({
 	main: {
 		height: "fit-content",
 		backgroundColor: "white",
-		padding: "20px 30px",
+		padding: `20px ${pad}`,
 		maxWidth: "1800px",
 		margin: "10px auto",
 	},
@@ -65,4 +65,4 @@ export const blogSection = {
 			borderRadius: "50%",
 		},
 	},
-};
+});

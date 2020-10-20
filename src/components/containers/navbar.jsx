@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from "react";
-import useBreakPoint from "../logics/useBreakPoint.js";
+import React, { useState, Fragment, useContext } from "react";
+import { UtilityContext } from "../../contexts/UtilityContext";
 // Components
 import { Navbar, FlexBox, IconLinkButton } from "../styled-elements";
 // MUI components
@@ -20,7 +20,7 @@ import * as BREAK from "../../constants/breakpoint";
 
 function NavbarDesktop() {
 	const [active, setActive] = useState(false);
-	const breakPoint = useBreakPoint();
+	const { breakPoint } = useContext(UtilityContext);
 
 	return (
 		<Navbar>

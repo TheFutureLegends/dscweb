@@ -9,3 +9,7 @@ export const AVATAR_2 = `${src}avatars/avatar_2.jpg`;
 
 export const BLOG_PICTURE = `${src}blog/test.jpg`;
 export const BLOG_PICTURE_2 = `${src}blog/test_2.jpg`;
+export const BLOG_PICTURE_3 = `${src}blog/test_3.png`;
+export const BLOG_PICTURE_4 = `${src}blog/test_4.png`;
+export const BLOG_PICTURE_5 = `${src}blog/test_5.jpeg`;
+export const BLOG_PICTURE_6 = `${src}blog/test_6.png`;

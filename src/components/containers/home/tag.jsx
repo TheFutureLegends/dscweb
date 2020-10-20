@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tag } from "../../styled-elements";
+import { UtilityContext } from "../../../contexts/UtilityContext";
+import * as BREAK from "../../../constants/breakpoint";
 
 function TagContainer() {
+	const { breakPoint } = useContext(UtilityContext);
 	return (
-		<Tag justify="flex-start">
+		<Tag
+			justify="flex-start"
+			style={{
+				padding: `20px ${breakPoint >= BREAK.desktop_md ? "100px" : "10px"}`,
+			}}
+		>
 			<Tag.Item>Course Roadmap</Tag.Item>
 			<Tag.Item>Design Pattern</Tag.Item>
 			<Tag.Item>Machine Learning</Tag.Item>
