@@ -14,8 +14,10 @@ export const blogSection = (pad) => ({
 		height: "fit-content",
 		backgroundColor: "white",
 		padding: `20px ${pad}`,
+		width: "100%",
 		maxWidth: "1800px",
 		margin: "10px auto",
+		boxShadow: theme.colors.dark.__elevation_low,
 	},
 	paper: {
 		ranking: {
@@ -63,6 +65,34 @@ export const blogSection = (pad) => ({
 			width: "45px",
 			marginRight: "10px",
 			borderRadius: "50%",
+		},
+	},
+});
+
+export const eventSection = (src) => ({
+	header: {
+		...blogSection().header,
+	},
+	card: {
+		cursor: "pointer",
+		boxShadow: ` 2px 2px 10px ${theme.colors.dark.__elevation_high}`,
+		header: {
+			fontSize: "21px",
+			fontWeight: "700",
+			color: theme.colors.dark,
+			fontFamily: "Raleway, sans-serif",
+		},
+		meta: {
+			fontSize: "15px",
+			fontWeight: "600",
+			color: theme.colors.primary,
+			marginTop: "2px",
+		},
+		picture: {
+			backgroundImage: `url(${src})`,
+			backgroundSize: "cover",
+			width: "100%",
+			height: "250px",
 		},
 	},
 });

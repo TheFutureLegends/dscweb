@@ -1,5 +1,6 @@
 import * as ASSETS from "./asset";
 
+//FIXME this is for blog only
 export const mock_data = [
 	{
 		author: "Tin Quan Chung",
@@ -66,5 +67,26 @@ export const mock_data = [
 		src: ASSETS.BLOG_PICTURE_6,
 		avatar: ASSETS.AVATAR,
 		to: "#",
+	},
+];
+
+export const event_mock_data = [
+	{
+		header: "RMIT Club Day Sem B",
+		date: "20th September 2020",
+		to: "#",
+		picture: ASSETS.EVENT_PICTURE_1,
+	},
+	{
+		header: "Artificial Intelligence Seminar",
+		date: "20th September 2020",
+		to: "#",
+		picture: ASSETS.EVENT_PICTURE_2,
+	},
+	{
+		header: "Club Bonding",
+		date: "20th September 2020",
+		to: "#",
+		picture: ASSETS.EVENT_PICTURE_3,
 	},
 ];
