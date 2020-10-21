@@ -7,7 +7,7 @@ import { NavbarContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
 
 function Router() {
-	const location = useLocationp();
+	const location = useLocation();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
 

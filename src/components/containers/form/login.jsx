@@ -2,6 +2,13 @@ import React from "react";
 import axios from "axios";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
+import { validRuleSet } from "../../../core/validation/loginForm";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+	email: validRuleSet.email,
+	password: validRuleSet.password,
+});
 
 const LoginContainer = () => {
 	const handleCurrentUser = () => {
@@ -34,6 +41,9 @@ const LoginContainer = () => {
 
 				setSubmitting = false;
 			}}
+			validateOnBlur={false}
+			validateOnChange={false}
+			validationSchema={validationSchema}
 		>
 			{({ values, errors, handleSubmit, isSubmitting }) => (
 				<Form width="400px" height="600px" direction="column">
@@ -44,7 +54,7 @@ const LoginContainer = () => {
 							<Field
 								id="outlined-search"
 								label="Địa chỉ email"
-								type="search"
+								type="input"
 								variant="outlined"
 								size="medium"
 								name="email"
@@ -56,7 +66,6 @@ const LoginContainer = () => {
 							<Field
 								id="outlined-search"
 								label="Mật khẩu"
-								type="search"
 								variant="outlined"
 								size="medium"
 								name="password"
@@ -73,7 +82,7 @@ const LoginContainer = () => {
 							disableElevation
 							size="large"
 							type="submit"
-							isabled={isSubmitting === true}
+							disabled={isSubmitting === true}
 						>
 							Đăng nhập
 						</Form.Button>
