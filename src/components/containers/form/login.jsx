@@ -8,7 +8,7 @@ const LoginContainer = () => {
   const handleCurrentUser = () => {
     console.log("Button Click");
     axios
-      .get("http://localhost:5000/api/auth/current")
+      .get("https://club-platform-api.herokuapp.com/api/auth/current")
       .then((res) => {
         console.log(res);
       })
@@ -23,7 +23,10 @@ const LoginContainer = () => {
         setSubmitting = true;
 
         axios
-          .post("http://localhost:5000/api/auth/login", values)
+          .post(
+            "https://club-platform-api.herokuapp.com/api/auth/login",
+            values
+          )
           .then((res) => {
             console.log(res);
           })
