@@ -12,7 +12,7 @@ function Router() {
 	const breakPoint = useBreakPoint();
 	console.log(location.pathname === "/login");
 	return (
-		<UtilityContext.Provider value={{ history, breakPoint }}>
+		<UtilityContext.Provider value={{ history, breakPoint, location }}>
 			<NavbarContainer
 				style={
 					location.pathname === "/login"
