@@ -23,21 +23,19 @@ const LoginContainer = () => {
 	};
 	return (
 		<Formik
-			initialValues={{ email: "Hey", password: "" }}
-			onSubmit={(values, { setSubmitting }) => {
+			initialValues={{ email: "", password: "" }}
+			onSubmit={async (values, { setSubmitting }) => {
 				setSubmitting = true;
 
-				axios
-					.post(
+				try {
+					let res = await axios.post(
 						"https://club-platform-api.herokuapp.com/api/auth/login",
 						values
-					)
-					.then((res) => {
-						console.log(res);
-					})
-					.catch((err) => {
-						console.log(err);
-					});
+					);
+					console.log(res);
+				} catch (error) {
+					console.log(error);
+				}
 
 				setSubmitting = false;
 			}}
