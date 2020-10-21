@@ -96,3 +96,11 @@ export const eventSection = (src) => ({
 		},
 	},
 });
+
+export const aboutSection = (src) => ({
+	marginTop: "10px",
+	jumbotron: {
+		height: "600px",
+		width: "100%",
+	},
+});

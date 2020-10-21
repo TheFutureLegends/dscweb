@@ -9,6 +9,7 @@ function Home() {
 			<HOME.TagContainer />
 			<HOME.BlogSectionContainer />
 			<HOME.EventSectionContainer />
+			<HOME.AboutContainer />
 		</Fragment>
 	);
 }
