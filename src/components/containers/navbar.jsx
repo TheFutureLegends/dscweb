@@ -18,12 +18,12 @@ import * as ASSETS from "../../constants/asset";
 import * as ROUTES from "../../constants/route";
 import * as BREAK from "../../constants/breakpoint";
 
-function NavbarDesktop() {
+function NavbarDesktop({ ...restProps }) {
 	const [active, setActive] = useState(false);
 	const { breakPoint } = useContext(UtilityContext);
 
 	return (
-		<Navbar>
+		<Navbar {...restProps}>
 			<FlexBox>
 				<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />
 				<Navbar.Header>

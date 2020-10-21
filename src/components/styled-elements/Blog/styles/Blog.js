@@ -27,6 +27,7 @@ export const PictureWrapper = styled(FlexBox)`
 `;
 
 export const Header = styled(Typography)`
+	transition: 0.2s linear;
 	margin-bottom: 10px;
 `;
 
@@ -63,6 +64,12 @@ export const SmallContainer = styled(Grid)`
 	&& {
 		cursor: pointer;
 		margin-bottom: 10px;
+		&:hover {
+			${Header} {
+				transition: 0.2s linear;
+				color: ${({ theme: { colors } }) => colors.secondary};
+			}
+		}
 	}
 	${PictureWrapper} {
 		overflow: hidden;
@@ -84,6 +91,12 @@ export const SmallContainer = styled(Grid)`
 
 export const Container = styled.div`
 	cursor: pointer;
+	&:hover {
+		${Header} {
+			transition: 0.2s linear;
+			color: ${({ theme: { colors } }) => colors.secondary};
+		}
+	}
 	${PictureWrapper} {
 		height: 290px;
 		overflow: hidden;

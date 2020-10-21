@@ -76,6 +76,10 @@ export const eventSection = (src) => ({
 	card: {
 		cursor: "pointer",
 		boxShadow: ` 2px 2px 10px ${theme.colors.dark.__elevation_high}`,
+		"&:hover": {
+			display: "none",
+			transform: "scale(1.1)",
+		},
 		header: {
 			fontSize: "21px",
 			fontWeight: "700",
@@ -102,5 +106,25 @@ export const aboutSection = (src) => ({
 	jumbotron: {
 		height: "600px",
 		width: "100%",
+	},
+	subheader: {
+		...blogSection().header,
+		fontSize: "30px",
+	},
+	bigText: {
+		color: theme.colors.accent,
+		textTransform: "uppercase",
+		fontSize: "49px",
+	},
+	text: {
+		marginTop: "30px",
+		textAlign: "center",
+	},
+	picture: {
+		backgroundImage: `url(${src})`,
+		height: "100%",
+		width: "100%",
+		backgroundRepeat: "no-repeat",
+		backgroundSize: "cover",
 	},
 });

@@ -10,9 +10,16 @@ function Router() {
 	const location = useLocation();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
+	console.log(location.pathname === "/login");
 	return (
 		<UtilityContext.Provider value={{ history, breakPoint }}>
-			<NavbarContainer />
+			<NavbarContainer
+				style={
+					location.pathname === "/login"
+						? { position: "relative" }
+						: { position: "fixed" }
+				}
+			/>
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 				<Route path={ROUTES.EVENT} component={PAGE.EventPage} />
