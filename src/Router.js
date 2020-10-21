@@ -7,10 +7,10 @@ import { NavbarContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
 
 function Router() {
-	const location = useLocation();
+	const location = useLocationp();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
-	// console.log(location.pathname === "/login");
+
 	return (
 		<UtilityContext.Provider value={{ history, breakPoint, location }}>
 			<NavbarContainer
