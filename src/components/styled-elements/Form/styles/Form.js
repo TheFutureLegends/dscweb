@@ -2,9 +2,14 @@ import styled from "styled-components";
 import FlexBox from "../../FlexBox";
 import { TextField, Button as MUIButton } from "@material-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
+import * as ASSETS from "../../../../constants/asset";
 
 export const Container = styled(FlexBox)`
-	height: 100vh;
+	height: calc(100vh - 75px);
+	background-color: ${({ theme: { context } }) => context.dark};
+	background-image: url(${ASSETS.RMIT_WALLPAPER});
+	background-size: cover;
+	background-position: center;
 `;
 
 export const Inner = styled(FlexBox)`
@@ -41,11 +46,11 @@ export const InputField = styled(TextField)`
 export const Button = styled(MUIButton)`
 	&& {
 		margin-top: 30px;
-		background-color: #ffb545;
+		background-color: ${({ theme: { colors } }) => colors.primary};
 		color: white;
 		font-weight: bold;
 		&:hover {
-			background-color: rgb(85, 184, 237);
+			background-color: ${({ theme: { colors } }) => colors.secondary};
 		}
 	}
 `;
@@ -55,8 +60,9 @@ export const Text = styled.p`
 `;
 
 export const Link = styled(ReactRouterLink)`
-	color: rgb(71, 178, 239);
+	color: ${({ theme: { colors } }) => colors.secondary};
 	text-decoration: none;
+	font-weight: bold;
 	&:hover {
 		text-decoration: underline;
 	}

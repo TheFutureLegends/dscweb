@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation/loginForm";
 import * as Yup from "yup";
+import * as BREAK from "../../../constants/breakpoint";
+import { UtilityContext } from "../../../contexts/UtilityContext.js";
 
 const validationSchema = Yup.object({
 	email: validRuleSet.email,
@@ -11,16 +13,7 @@ const validationSchema = Yup.object({
 });
 
 const LoginContainer = () => {
-	const handleCurrentUser = () => {
-		axios
-			.get("https://club-platform-api.herokuapp.com/api/auth/current")
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	const { breakPoint } = useContext(UtilityContext);
 	return (
 		<Formik
 			initialValues={{ email: "", password: "" }}
@@ -44,14 +37,22 @@ const LoginContainer = () => {
 			validationSchema={validationSchema}
 		>
 			{({ values, errors, handleSubmit, isSubmitting }) => (
-				<Form width="400px" height="600px" direction="column">
-					<Form.Header>Chào mừng bạn!</Form.Header>
-					<Form.Body>Chúng tôi rất vui vì sự có mặt của bạn ở đây</Form.Body>
+				<Form
+					width={breakPoint > BREAK.smartphone_md ? "400px" : "100vw"}
+					height={
+						breakPoint > BREAK.smartphone_md ? "500px" : "calc(100vh - 75px)"
+					}
+					direction="column"
+				>
+					<Form.Header>Welcome to the club!</Form.Header>
+					<Form.Body>
+						Join our developer community by filling out the form below
+					</Form.Body>
 					<Form.Base onSubmit={handleSubmit}>
 						<FlexBox direction="column">
 							<Field
 								id="outlined-search"
-								label="Địa chỉ email"
+								label="Email Address"
 								type="input"
 								variant="outlined"
 								size="medium"
@@ -63,7 +64,7 @@ const LoginContainer = () => {
 							/>
 							<Field
 								id="outlined-search"
-								label="Mật khẩu"
+								label="Password"
 								variant="outlined"
 								size="medium"
 								name="password"
@@ -82,23 +83,11 @@ const LoginContainer = () => {
 							type="submit"
 							disabled={isSubmitting === true}
 						>
-							Đăng nhập
-						</Form.Button>
-
-						<Form.Button
-							variant="contained"
-							fullWidth
-							disableElevation
-							size="large"
-							onClick={() => {
-								handleCurrentUser();
-							}}
-							disabled={isSubmitting === true}
-						>
-							Test current user
+							Login
 						</Form.Button>
 						<Form.Text>
-							Đã có tài khoản?<Form.Link to="#">&nbsp;Đăng nhập ngay</Form.Link>
+							Does not have any account?
+							<Form.Link to="#">&nbsp;Sign up here</Form.Link>
 						</Form.Text>
 					</Form.Base>
 				</Form>

@@ -17,7 +17,7 @@ function Router() {
 				style={
 					location.pathname === "/login"
 						? { position: "relative" }
-						: { position: "fixed" }
+						: { position: "sticky" }
 				}
 			/>
 			<Switch location={location} key={location.pathname}>

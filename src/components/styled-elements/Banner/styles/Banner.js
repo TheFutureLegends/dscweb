@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	height: 600px;
+	height: 500px;
 	overflow: hidden;
-	${"" /* object-fit: fill; */}
 	background-image: url("/assets/images/jumbotron/netcom.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
