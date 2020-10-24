@@ -3,6 +3,7 @@ export const theme = {
 		light: "white",
 		dark: "#2F3136",
 		light_gray: "#36393F",
+		dark_gray: "#202225",
 	},
 	colors: {
 		primary: "#F79444",
@@ -19,6 +20,8 @@ export const theme = {
 				"0 1px 0 rgba(4,4,5,0.2),0 1.5px 0 rgba(6,6,7,0.05),0 2px 0 rgba(4,4,5,0.05)",
 			__elevation_medium: " 0 4px 4px rgba(0,0,0,0.16)",
 			__elevation_high: " 0 8px 16px rgba(0,0,0,0.24)",
+			__interactive_normal: "#b9bbbe",
+			__header_primary: "#fff",
 		},
 	},
 };

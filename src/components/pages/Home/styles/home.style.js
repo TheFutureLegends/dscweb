@@ -131,6 +131,6 @@ export const aboutSection = (src) => ({
 
 export const lastSection = (pad) => ({
 	...blogSection(pad).main,
-	marginBottom: "20px",
-	borderBottom: "unset",
+	marginBottom: "0px",
+	borderBottom: "1px solid",
 });

@@ -1,8 +1,43 @@
 import React from "react";
-import * as Style from "./styles/Footer";
+import {
+	Container,
+	Row,
+	Column,
+	Link,
+	Title,
+	Text,
+	Break,
+	Inner,
+} from "./styles/Footer";
 
-function Footer({ children, ...restProps }) {
-	return <Style.Container {...restProps}>{children}</Style.Container>;
+export default function Footer({ children, ...restProps }) {
+	return (
+		<Container {...restProps}>
+			<Inner>{children}</Inner>
+		</Container>
+	);
 }
 
-export default Footer;
+Footer.Row = function FooterRow({ children, ...restProps }) {
+	return <Row {...restProps}>{children}</Row>;
+};
+
+Footer.Column = function FooterColumn({ children, ...restProps }) {
+	return <Column {...restProps}>{children}</Column>;
+};
+
+Footer.Link = function FooterLink({ children, ...restProps }) {
+	return <Link {...restProps}>{children}</Link>;
+};
+
+Footer.Title = function FooterTitle({ children, ...restProps }) {
+	return <Title {...restProps}>{children}</Title>;
+};
+
+Footer.Text = function FooterText({ children, ...restProps }) {
+	return <Text {...restProps}>{children}</Text>;
+};
+
+Footer.Break = function FooterBreak({ children, ...restProps }) {
+	return <Break {...restProps} />;
+};
