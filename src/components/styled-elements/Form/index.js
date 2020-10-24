@@ -1,7 +1,6 @@
 import React from "react";
 import * as Style from "./styles/Form";
 function Form({ src, height, children, ...restProps }) {
-	console.log(src);
 	return (
 		<Style.Container src={src} height={height} {...restProps}>
 			{children}

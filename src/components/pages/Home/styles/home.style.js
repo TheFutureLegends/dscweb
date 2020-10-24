@@ -128,3 +128,9 @@ export const aboutSection = (src) => ({
 		backgroundSize: "cover",
 	},
 });
+
+export const lastSection = (pad) => ({
+	...blogSection(pad).main,
+	marginBottom: "20px",
+	borderBottom: "unset",
+});

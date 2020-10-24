@@ -1,37 +1,44 @@
 import React, { useContext } from "react";
 import { Grid, Paper, Typography, useMediaQuery } from "@material-ui/core";
 import { FlexBox } from "../../styled-elements";
-// import { AuthorItemWithPosts } from "../../styled-elements";
 import DefaultBlogContainer from "../blog/default";
 import SmallBlogContainer from "../blog/small";
 import * as CSS from "../../pages/Home/styles/home.style.js";
 import * as BREAK from "../../../constants/breakpoint";
 import { mock_data } from "../../../constants/mockData";
 import { UtilityContext } from "../../../contexts/UtilityContext";
+import faker from "faker";
 
-function BlogContainer() {
+//TODO Open ranking section (Considered)
+//FIXME Each child in a list should have a unique "key" prop.
+function BlogContainer({ ...restProps }) {
 	const { history, breakPoint } = useContext(UtilityContext);
-	//TODO Open ranking section (Considered)
-	// const [openRanking, setOpenRanking] = useState(false);
 	const handlePostClick = (src) => {
 		history.push(src);
 	};
-
 	return (
 		<section
 			style={
 				CSS.blogSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px").main
 			}
+			{...restProps}
 		>
 			<Grid container spacing={3}>
-				<Grid item={true} lg={12} xs={12} md={12} sm={12}>
+				<Grid item={true} lg={12} xs={12} md={12} sm={12} key="blog_big">
 					<FlexBox direction="column">
 						<Typography variant="h2" style={CSS.blogSection().header}>
 							Lastest Blog Post
 						</Typography>
 						<Paper style={CSS.blogSection().paper.blog}>
 							<Grid container spacing={4}>
-								<Grid item={true} xs={12} sm={6} md={7} lg={4}>
+								<Grid
+									item={true}
+									xs={12}
+									sm={6}
+									md={7}
+									lg={4}
+									key={faker.random.uuid()}
+								>
 									<DefaultBlogContainer
 										author={mock_data[0].author}
 										category={mock_data[0].category}
@@ -45,7 +52,7 @@ function BlogContainer() {
 									/>
 								</Grid>
 								{useMediaQuery(`(min-width:${BREAK.desktop_sm + 100}px)`) && (
-									<Grid item={true} xs={4}>
+									<Grid item={true} xs={4} key={faker.random.uuid()}>
 										<DefaultBlogContainer
 											author={mock_data[1].author}
 											category={mock_data[1].category}
@@ -60,7 +67,7 @@ function BlogContainer() {
 									</Grid>
 								)}
 
-								<Grid item={true} xs={12} md={5} sm={6} lg={4}>
+								<Grid item={true} xs={12} md={5} sm={6} lg={4} key="blog_small">
 									<FlexBox
 										direction="column"
 										justify="space-between"
@@ -99,48 +106,6 @@ function BlogContainer() {
 						</Typography>
 						<Paper style={CSS.blogSection().paper.ranking}>
 							<FlexBox direction="column">
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
 								<AuthorItemWithPosts
 									src={ASSETS.AVATAR}
 									name={"Tin Quan Chung"}

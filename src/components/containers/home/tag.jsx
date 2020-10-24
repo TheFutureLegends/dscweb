@@ -3,7 +3,7 @@ import { Tag } from "../../styled-elements";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import * as BREAK from "../../../constants/breakpoint";
 
-function TagContainer() {
+function TagContainer({ ...restProps }) {
 	const { breakPoint } = useContext(UtilityContext);
 	return (
 		<Tag
@@ -11,6 +11,7 @@ function TagContainer() {
 			style={{
 				padding: `20px ${breakPoint >= BREAK.desktop_md ? "100px" : "10px"}`,
 			}}
+			{...restProps}
 		>
 			<Tag.Item>Course Roadmap</Tag.Item>
 			<Tag.Item>Design Pattern</Tag.Item>

@@ -3,7 +3,7 @@ import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import useBreakPoint from "./components/logics/useBreakPoint";
 import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
-import { NavbarContainer } from "./components/containers";
+import { NavbarContainer, FooterContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
 
 function Router() {
@@ -25,9 +25,10 @@ function Router() {
 				<Route path={ROUTES.EVENT} component={PAGE.EventPage} />
 				<Route path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
 				{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
-				<Route path={ROUTES.BLOG} component={PAGE.GuidePage} />
+				<Route path={ROUTES.BLOG} component={PAGE.BlogPage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>
+			<FooterContainer />
 		</UtilityContext.Provider>
 	);
 }

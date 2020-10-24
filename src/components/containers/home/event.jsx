@@ -6,14 +6,15 @@ import EventCard from "../event/card";
 import * as CSS from "../../pages/Home/styles/home.style";
 import * as BREAK from "../../../constants/breakpoint";
 import { event_mock_data } from "../../../constants/mockData";
+import faker from "faker";
 
-function EventSectionContainer() {
+function EventSectionContainer({ ...restProps }) {
 	const { breakPoint } = useContext(UtilityContext);
+	//FIXME Each child in a list should have a unique "key" prop.
 	return (
 		<section
-			style={
-				CSS.blogSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px").main
-			}
+			style={CSS.lastSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px")}
+			{...restProps}
 		>
 			<FlexBox direction="column">
 				<Typography variant="h2" style={CSS.eventSection().header}>
@@ -25,7 +26,7 @@ function EventSectionContainer() {
 					style={{ marginTop: "15px", marginBottom: "15px" }}
 				>
 					{event_mock_data.map((event) => (
-						<Grid item={true} xs={12} md={4}>
+						<Grid item={true} xs={12} md={4} key={faker.random.uuid()}>
 							<EventCard
 								header={event.header}
 								date={event.date}
