@@ -42,11 +42,9 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 	return (
 		<Navbar
 			{...restProps}
-			// exit="exit"
-			// initial="initial"
-			// animate="open"
-			// variants={animatedElement.Navbar}
-			style={{ display: navStatus.show ? "flex" : "none" }}
+			variants={animatedElement.Navbar}
+			animate={navStatus.show ? "hidden" : "show"}
+			// style={{ display: navStatus.show ? "flex" : "none" }}
 		>
 			<FlexBox>
 				<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />

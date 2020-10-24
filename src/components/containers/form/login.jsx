@@ -41,15 +41,13 @@ const LoginContainer = ({ animatedElement }) => {
 				<Form height="calc(100vh - 75px)" src={ASSETS.RMIT_WALLPAPER}>
 					<Form.Inner
 						width={breakPoint > BREAK.smartphone_md ? "400px" : "100vw"}
-						height={
-							breakPoint > BREAK.smartphone_md
-								? "fit-content"
-								: "calc(100vh - 75px)"
-						}
+						height={breakPoint > BREAK.smartphone_md ? "fit-content" : "100vh"}
 						direction="column"
+						variants={breakPoint > BREAK.smartphone_md && animatedElement.Inner}
 						exit="exit"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
+						initial="initial"
+						animate="open"
+						transition="transition"
 					>
 						<Form.Header>Welcome to the club!</Form.Header>
 						<Form.Body>

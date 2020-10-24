@@ -3,16 +3,16 @@ import React from "react";
 export default class NavbarAnimation extends React.Component {
 	state = {
 		Navbar: {
-			open: {
-				marginTop: "0px",
+			hidden: {
+				top: "-5px",
 			},
-			exit: {
-				marginTop: "-75px",
+			show: {
+				top: "-75px",
 			},
-			initial: {
-				marginTop: "-75px",
+			transition: {
+				type: "spring",
+				bounce: 0.1,
 			},
-			transition: {},
 		},
 	};
 	render() {

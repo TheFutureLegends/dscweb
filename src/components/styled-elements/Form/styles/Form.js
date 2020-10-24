@@ -12,7 +12,11 @@ export const Container = styled(FlexBox)`
 	background-position: center;
 `;
 
-export const Inner = styled(motion.custom(FlexBox))`
+export const Inner = styled(motion.div)`
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
 	padding: 50px 0px;
