@@ -15,12 +15,7 @@ function Router() {
 	return (
 		<UtilityContext.Provider value={{ history, breakPoint, location }}>
 			<NavbarAnimation
-				render={(ele) => (
-					<NavbarContainer
-						animatedElement={ele}
-						style={location.pathname === "/login" && { position: "relative" }}
-					/>
-				)}
+				render={(ele) => <NavbarContainer animatedElement={ele} />}
 			/>
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />

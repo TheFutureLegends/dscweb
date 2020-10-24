@@ -24,7 +24,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 		show: true,
 		scrollPos: 0,
 	});
-	const { breakPoint } = useContext(UtilityContext);
+	const { breakPoint, location } = useContext(UtilityContext);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -44,7 +44,6 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 			{...restProps}
 			variants={animatedElement.Navbar}
 			animate={navStatus.show ? "hidden" : "show"}
-			// style={{ display: navStatus.show ? "flex" : "none" }}
 		>
 			<FlexBox>
 				<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />
