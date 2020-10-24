@@ -1,7 +1,8 @@
 import React, { useState, Fragment, useContext, useEffect } from "react";
-import { UtilityContext } from "../../contexts/UtilityContext";
+import { UtilityContext } from "../../../contexts/UtilityContext";
+import { DrawerContext } from "../../../contexts/DrawerContext.js";
 // Components
-import { Navbar, FlexBox, IconLinkButton } from "../styled-elements";
+import { Navbar, FlexBox, IconLinkButton } from "../../styled-elements";
 // MUI components
 import {
 	faSearch,
@@ -12,12 +13,12 @@ import {
 	faBars,
 	faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery, Drawer } from "@material-ui/core";
-import { theme } from "../../global-theme";
+import { useMediaQuery } from "@material-ui/core";
+import DrawerContainer from "./drawer";
 // Constants
-import * as ASSETS from "../../constants/asset";
-import * as ROUTES from "../../constants/route";
-import * as BREAK from "../../constants/breakpoint";
+import * as ASSETS from "../../../constants/asset";
+import * as ROUTES from "../../../constants/route";
+import * as BREAK from "../../../constants/breakpoint";
 
 function NavbarDesktop({ animatedElement, ...restProps }) {
 	const [active, setActive] = useState(false);
@@ -124,22 +125,9 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 					)}
 				</FlexBox>
 			</Navbar>
-			<Drawer
-				anchor="right"
-				open={openMenu}
-				onClose={() => {
-					setOpenMenu(false);
-				}}
-			>
-				<FlexBox
-					style={{
-						backgroundColor: `${theme.context.dark_gray}`,
-						height: "100%",
-					}}
-				>
-					Hello
-				</FlexBox>
-			</Drawer>
+			<DrawerContext.Provider value={{ openMenu, setOpenMenu }}>
+				{breakPoint < BREAK.tablet_xs && <DrawerContainer />}
+			</DrawerContext.Provider>
 		</Fragment>
 	);
 }
