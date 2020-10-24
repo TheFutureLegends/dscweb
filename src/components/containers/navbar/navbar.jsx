@@ -4,15 +4,7 @@ import { DrawerContext } from "../../../contexts/DrawerContext.js";
 // Components
 import { Navbar, FlexBox, IconLinkButton } from "../../styled-elements";
 // MUI components
-import {
-	faSearch,
-	faHome,
-	faBook,
-	faCalendarAlt,
-	faUsers,
-	faBars,
-	faSignInAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@material-ui/core";
 import DrawerContainer from "./drawer";
 // Constants
@@ -57,7 +49,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 							: "RMIT DEVELOPER STUDENT CLUB"}
 					</Navbar.Header>
 					<FlexBox.FlexBasis width="30px" />
-					{useMediaQuery(`(min-width:${BREAK.tablet_xs}px)`) && (
+					{useMediaQuery(`(min-width:${BREAK.smartphone_xs}px)`) && (
 						<Navbar.SearchBar>
 							<Navbar.Input
 								onFocus={() => setActive(true)}
@@ -72,48 +64,22 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 				<FlexBox>
 					{useMediaQuery(`(min-width: ${BREAK.tablet_xs}px)`) ? (
 						<Fragment>
-							{breakPoint <= BREAK.tablet_md ? (
-								<Fragment>
-									<IconLinkButton
-										src={faHome}
-										route={ROUTES.HOME}
-										title={"Home"}
-									/>
-									<IconLinkButton
-										src={faCalendarAlt}
-										route={ROUTES.EVENT}
-										title={"Event"}
-									/>
-									<IconLinkButton
-										src={faBook}
-										route={ROUTES.BLOG}
-										title={"Blog"}
-									/>
-									<IconLinkButton
-										src={faUsers}
-										route={ROUTES.ABOUT}
-										title={"About"}
-									/>
-								</Fragment>
-							) : (
-								<Fragment>
-									<Navbar.Link to={ROUTES.HOME}>Home</Navbar.Link>
-									<Navbar.Link to={ROUTES.EVENT}>Event</Navbar.Link>
-									<Navbar.Link to={ROUTES.BLOG}>Blog</Navbar.Link>
-									<Navbar.Link to={ROUTES.ABOUT}>About</Navbar.Link>
-								</Fragment>
-							)}
+							{breakPoint <= BREAK.tablet_md
+								? ROUTES.listOfRoutes.map((item) => (
+										<IconLinkButton
+											src={item.icon}
+											route={item.route}
+											title={item.text}
+										/>
+								  ))
+								: ROUTES.listOfRoutes.map((item) => (
+										<Navbar.Link to={item.route}>{item.text}</Navbar.Link>
+								  ))}
 
 							<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
 						</Fragment>
 					) : (
 						<Fragment>
-							<IconLinkButton
-								src={faSignInAlt}
-								style={{ margin: "0px 15px 0px 10px" }}
-								route={ROUTES.LOG_IN}
-								title={"Log In"}
-							/>
 							<IconLinkButton
 								src={faBars}
 								onClick={() => setOpenMenu(true)}
