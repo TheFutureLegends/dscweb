@@ -5,7 +5,6 @@ import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation";
 import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
-import * as ROUTES from "../../../constants/route";
 import * as ASSETS from "../../../constants/asset.js";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 
@@ -14,7 +13,7 @@ const validationSchema = Yup.object({
 	password: validRuleSet.password,
 });
 
-const LoginContainer = () => {
+const LoginContainer = ({ animatedElement }) => {
 	const { breakPoint } = useContext(UtilityContext);
 	return (
 		<Formik
@@ -48,6 +47,9 @@ const LoginContainer = () => {
 								: "calc(100vh - 75px)"
 						}
 						direction="column"
+						exit="exit"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
 					>
 						<Form.Header>Welcome to the club!</Form.Header>
 						<Form.Body>

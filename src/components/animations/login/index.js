@@ -18,11 +18,6 @@ export default class LoginAnimation extends React.Component {
 				marginTop: "-50px",
 				scale: 1.05,
 			},
-			transition: {
-				duration: 0,
-				type: "spring",
-				stiffness: 500,
-			},
 		},
 	};
 	render() {

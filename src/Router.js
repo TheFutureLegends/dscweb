@@ -5,6 +5,7 @@ import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
 import { NavbarContainer, FooterContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
+import NavbarAnimation from "./components/animations/navbar";
 
 function Router() {
 	const location = useLocation();
@@ -13,12 +14,13 @@ function Router() {
 
 	return (
 		<UtilityContext.Provider value={{ history, breakPoint, location }}>
-			<NavbarContainer
-				style={
-					location.pathname === "/login"
-						? { position: "relative" }
-						: { position: "sticky" }
-				}
+			<NavbarAnimation
+				render={(ele) => (
+					<NavbarContainer
+						animatedElement={ele}
+						style={location.pathname === "/login" && { position: "relative" }}
+					/>
+				)}
 			/>
 			<Switch location={location} key={location.pathname}>
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />

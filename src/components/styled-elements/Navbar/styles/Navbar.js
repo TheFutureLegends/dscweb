@@ -3,19 +3,19 @@ import { FlexBox } from "../../index";
 import { AppBar, Typography, InputBase } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
-export const Container = styled(AppBar)`
+export const Container = motion.custom(styled(AppBar)`
 	* {
 		user-select: none;
 	}
 	&& {
-		position: sticky;
 		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
 		height: 75px;
 		padding: 0px 20px;
-		background-color: ${({ theme: { context } }) => context.dark};
+		background-color: ${({ theme: { context } }) => context.dark_gray};
 	}
-`;
+`);
 
 export const Inner = styled(FlexBox)`
 	width: 100%;
@@ -38,8 +38,7 @@ export const SearchBar = styled(FlexBox)`
 	padding: 1px 10px;
 	font-size: 14px;
 	border-radius: 4px;
-	background-color: ${({ theme: { colors } }) =>
-		colors.dark.__background_interactive_gray};
+	background-color: ${({ theme: { context } }) => context.dark};
 `;
 
 export const Input = styled(InputBase)`

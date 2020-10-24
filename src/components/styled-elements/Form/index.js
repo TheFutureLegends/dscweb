@@ -16,7 +16,12 @@ Form.Inner = function FormInner({
 	...restProps
 }) {
 	return (
-		<Style.Inner width={width} height={height} direction={direction}>
+		<Style.Inner
+			width={width}
+			height={height}
+			direction={direction}
+			{...restProps}
+		>
 			{children}
 		</Style.Inner>
 	);

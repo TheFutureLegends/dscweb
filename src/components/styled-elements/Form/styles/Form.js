@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FlexBox from "../../FlexBox";
 import { TextField, Button as MUIButton } from "@material-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const Container = styled(FlexBox)`
 	height: ${({ height }) => height};
@@ -11,7 +12,7 @@ export const Container = styled(FlexBox)`
 	background-position: center;
 `;
 
-export const Inner = styled(FlexBox)`
+export const Inner = styled(motion.custom(FlexBox))`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
 	padding: 50px 0px;

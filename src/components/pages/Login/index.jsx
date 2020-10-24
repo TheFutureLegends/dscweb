@@ -1,15 +1,16 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { LoginContainer } from "../../containers";
 // -- Animations --
 import { default as LoginAnimation } from "../../animations/login";
+import { AnimatePresence } from "framer-motion";
 
 function Login() {
 	return (
-		<Fragment>
+		<AnimatePresence exitBeforeEnter>
 			<LoginAnimation
 				render={(ele) => <LoginContainer animatedElement={ele} />}
 			/>
-		</Fragment>
+		</AnimatePresence>
 	);
 }
 

@@ -40,19 +40,20 @@ export default function FooterContainer() {
 					</Footer.Link>
 				</Footer.Column>
 				<Footer.Column>
-					<Footer.Link href="#">
+					<Footer.Link to="#">
 						<span> Account</span>
 					</Footer.Link>
-					<Footer.Link href="#">
+					<Footer.Link to="#">
 						<span>Ways to Watch</span>
 					</Footer.Link>
-					<Footer.Link href="#">
+					<Footer.Link to="#">
 						<span> Corporate Information</span>
 					</Footer.Link>
 				</Footer.Column>
 				<Footer.Column>
 					<img
 						src={ASSETS.LOGO_RMIT_VN_FULL}
+						alt="RMIT logo"
 						style={{
 							borderRadius: "10px",
 							width: breakPoint > 1000 ? "100%" : "150px",

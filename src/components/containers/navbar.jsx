@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, Fragment, useContext, useEffect } from "react";
 import { UtilityContext } from "../../contexts/UtilityContext";
 // Components
 import { Navbar, FlexBox, IconLinkButton } from "../styled-elements";
@@ -18,12 +18,36 @@ import * as ASSETS from "../../constants/asset";
 import * as ROUTES from "../../constants/route";
 import * as BREAK from "../../constants/breakpoint";
 
-function NavbarDesktop({ ...restProps }) {
+function NavbarDesktop({ animatedElement, ...restProps }) {
 	const [active, setActive] = useState(false);
+	const [navStatus, setNavStatus] = useState({
+		show: true,
+		scrollPos: 0,
+	});
 	const { breakPoint } = useContext(UtilityContext);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			setNavStatus({
+				scrollPos: document.body.getBoundingClientRect().top,
+				show: document.body.getBoundingClientRect().top > navStatus.scrollPos,
+			});
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	});
+
 	return (
-		<Navbar {...restProps}>
+		<Navbar
+			{...restProps}
+			// exit="exit"
+			// initial="initial"
+			// animate="open"
+			// variants={animatedElement.Navbar}
+			style={{ display: navStatus.show ? "flex" : "none" }}
+		>
 			<FlexBox>
 				<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />
 				<Navbar.Header>
