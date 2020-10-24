@@ -3,22 +3,24 @@ import axios from "axios";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation";
+import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
 import * as ROUTES from "../../../constants/route";
 import * as ASSETS from "../../../constants/asset.js";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
 
 const validationSchema = Yup.object({
 	email: validRuleSet.email,
 	password: validRuleSet.password,
+	confirmPassword: validRuleSet.confirmPassword,
+	name: validRuleSet.name,
 });
 
-const LoginContainer = () => {
+const SignupContainer = () => {
 	const { breakPoint } = useContext(UtilityContext);
 	return (
 		<Formik
-			initialValues={{ email: "", password: "" }}
+			initialValues={{ email: "", password: "", confirmPassword: "", name: "" }}
 			onSubmit={async (values, { setSubmitting }) => {
 				setSubmitting = true;
 
@@ -51,10 +53,22 @@ const LoginContainer = () => {
 					>
 						<Form.Header>Welcome to the club!</Form.Header>
 						<Form.Body>
-							Login to contribute to the developer community
+							Join our developer community by filling out the form below
 						</Form.Body>
 						<Form.Base onSubmit={handleSubmit}>
 							<FlexBox direction="column">
+								<Field
+									id="outlined-search"
+									label="Name"
+									type="input"
+									variant="outlined"
+									size="medium"
+									name="name"
+									fullWidth
+									error={errors.email ? true : false}
+									helperText={errors.email}
+									as={Form.InputField}
+								/>
 								<Field
 									id="outlined-search"
 									label="Email Address"
@@ -79,6 +93,18 @@ const LoginContainer = () => {
 									helperText={errors.password}
 									as={Form.InputField}
 								/>
+								<Field
+									id="outlined-search"
+									label="Confirm Password"
+									variant="outlined"
+									size="medium"
+									name="confirmPassword"
+									type="password"
+									fullWidth
+									error={errors.password ? true : false}
+									helperText={errors.password}
+									as={Form.InputField}
+								/>
 							</FlexBox>
 							<Form.Button
 								variant="contained"
@@ -87,18 +113,12 @@ const LoginContainer = () => {
 								size="large"
 								type="submit"
 								disabled={isSubmitting === true}
-								style={{ marginTop: "30px" }}
 							>
-								Login
+								Sign Up
 							</Form.Button>
 							<Form.Text>
-								Not a member yet?&nbsp;
-								<a
-									className="__custom_a"
-									href="https://l.facebook.com/l.php?u=https%3A%2F%2Fs3695656.typeform.com%2Fto%2FffdQm92r%3Ffbclid%3DIwAR1z2bCN-nXbYErEj-UHJsAf0Jz9t77w3aJBSr6F8UpqrNl0FXGf9qHKV5g&h=AT3t0S56lzuChK7rWq665uc0doIwY013piNjo80iTxn7nw-YOh5CxzrqMBPukldCvTBsVa8KqNvTY9elb7OdJViQKM0evY2lv3qx71glearZfOCmz8huzBvjukJ7kiI7whctuA"
-								>
-									Register here
-								</a>
+								Already a member?
+								<Form.Link to={ROUTES.LOG_IN}>&nbsp;Register here</Form.Link>
 							</Form.Text>
 						</Form.Base>
 					</Form.Inner>
@@ -108,4 +128,4 @@ const LoginContainer = () => {
 	);
 };
 
-export default LoginContainer;
+export default SignupContainer;

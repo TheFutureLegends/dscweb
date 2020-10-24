@@ -24,7 +24,7 @@ function Router() {
 				<Route path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 				<Route path={ROUTES.EVENT} component={PAGE.EventPage} />
 				<Route path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
-				<Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} />
+				{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 				<Route path={ROUTES.BLOG} component={PAGE.GuidePage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
 			</Switch>

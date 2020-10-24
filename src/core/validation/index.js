@@ -8,10 +8,13 @@ const validRuleSet = {
 	password: Yup.string()
 		.required("This field is required")
 		.min(4, "Password must be at least 4 characters"),
-	username: Yup.string()
+	name: Yup.string()
 		.required("This field is required")
-		.matches(/^[a-zA-Z]+$/, "Username must not contain any special characters")
-		.min(4, "Username must be at least 4 characters"),
+		.matches(
+			/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/,
+			"Username must not contain any special characters"
+		)
+		.min(4, "Name must be at least 4 characters"),
 	confirmPassword: Yup.string().oneOf(
 		[Yup.ref("password"), null],
 		"Password is not matched with confirm password"

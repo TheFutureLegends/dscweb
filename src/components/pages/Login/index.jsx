@@ -1,11 +1,14 @@
 import React, { Fragment } from "react";
-import { LoginContainer, HeaderContainer } from "../../containers";
+import { LoginContainer } from "../../containers";
+// -- Animations --
+import { default as LoginAnimation } from "../../animations/login";
 
 function Login() {
 	return (
 		<Fragment>
-			{/* <HeaderContainer /> */}
-			<LoginContainer />
+			<LoginAnimation
+				render={(ele) => <LoginContainer animatedElement={ele} />}
+			/>
 		</Fragment>
 	);
 }

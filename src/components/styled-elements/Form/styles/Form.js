@@ -2,12 +2,11 @@ import styled from "styled-components";
 import FlexBox from "../../FlexBox";
 import { TextField, Button as MUIButton } from "@material-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
-import * as ASSETS from "../../../../constants/asset";
 
 export const Container = styled(FlexBox)`
-	height: calc(100vh - 75px);
+	height: ${({ height }) => height};
 	background-color: ${({ theme: { context } }) => context.dark};
-	background-image: url(${ASSETS.RMIT_WALLPAPER});
+	background-image: url(${({ src }) => src});
 	background-size: cover;
 	background-position: center;
 `;
@@ -15,10 +14,11 @@ export const Container = styled(FlexBox)`
 export const Inner = styled(FlexBox)`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
+	padding: 50px 0px;
 	background-color: white;
 	z-index: 10;
 	border-radius: 6px;
-	box-shadow: 1px 1px 5px rgb(188, 188, 188);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
 `;
 
 export const Header = styled.h2`
@@ -29,11 +29,11 @@ export const Header = styled.h2`
 export const Body = styled.p`
 	width: 250px;
 	text-align: center;
+	margin-bottom: 10px;
 `;
 
 export const Base = styled.form`
 	width: 100%;
-	margin-top: 30px;
 	padding: 10px 40px;
 `;
 
@@ -45,7 +45,6 @@ export const InputField = styled(TextField)`
 
 export const Button = styled(MUIButton)`
 	&& {
-		margin-top: 30px;
 		background-color: ${({ theme: { colors } }) => colors.primary};
 		color: white;
 		font-weight: bold;

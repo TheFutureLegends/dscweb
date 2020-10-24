@@ -1,14 +1,27 @@
 import React from "react";
 import * as Style from "./styles/Form";
-function Form({ children, width, height, direction, ...restProps }) {
+function Form({ src, height, children, ...restProps }) {
+	console.log(src);
 	return (
-		<Style.Container {...restProps}>
-			<Style.Inner width={width} height={height} direction={direction}>
-				{children}
-			</Style.Inner>
+		<Style.Container src={src} height={height} {...restProps}>
+			{children}
 		</Style.Container>
 	);
 }
+
+Form.Inner = function FormInner({
+	width,
+	height,
+	direction,
+	children,
+	...restProps
+}) {
+	return (
+		<Style.Inner width={width} height={height} direction={direction}>
+			{children}
+		</Style.Inner>
+	);
+};
 
 Form.Header = function FormHeader({ children, ...restProps }) {
 	return <Style.Header {...restProps}>{children}</Style.Header>;

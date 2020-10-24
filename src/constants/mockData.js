@@ -1,4 +1,5 @@
 import * as ASSETS from "./asset";
+import faker from "faker";
 
 //FIXME this is for blog only
 export const mock_data = [
