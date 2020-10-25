@@ -1,5 +1,5 @@
 import * as ASSETS from "./asset";
-
+import faker from "faker";
 //FIXME this is for blog only
 export const mock_data = [
 	{
@@ -70,7 +70,7 @@ export const mock_data = [
 	},
 ];
 
-export const event_mock_data = [
+const event_mock_data = [
 	{
 		header: "RMIT Club Day Sem B",
 		date: "20th September 2020",
@@ -90,3 +90,12 @@ export const event_mock_data = [
 		picture: ASSETS.EVENT_PICTURE_3,
 	},
 ];
+
+const category_mock_data = [];
+for (let i = 0; i < 20; i++) {
+	category_mock_data.push({
+		name: faker.name.jobTitle(),
+	});
+}
+
+export { category_mock_data, event_mock_data };
