@@ -50,7 +50,7 @@ Blog.SubHeader = function BlogSubHeader({
 }) {
 	return (
 		<Style.SubHeader {...restProps}>
-			{text.length > limit ? `${text.substring(0, limit)}....` : text}
+			{text && text.length > limit ? `${text.substring(0, limit)}....` : text}
 		</Style.SubHeader>
 	);
 };

@@ -26,10 +26,13 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 	useEffect(() => {
 		setIsExpanded(location.pathname === ROUTES.BLOG);
 		const handleScroll = () => {
-			setNavStatus({
-				scrollPos: document.body.getBoundingClientRect().top,
-				show: document.body.getBoundingClientRect().top > navStatus.scrollPos,
-			});
+			const BoundingClientRectTop = document.body.getBoundingClientRect().top;
+			if (BoundingClientRectTop < -500) {
+				setNavStatus({
+					scrollPos: BoundingClientRectTop,
+					show: BoundingClientRectTop > navStatus.scrollPos,
+				});
+			}
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => {
@@ -42,13 +45,9 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 			<Navbar
 				{...restProps}
 				variants={animatedElement.Navbar(isExpanded ? 55 : 75)}
-				direction={isExpanded === true && "column"}
+				direction={isExpanded === true ? "column" : "row"}
 				animate={navStatus.show ? "hidden" : "show"}
-				style={
-					isExpanded === true
-						? { paddingBottom: "10px", position: "sticky" }
-						: { paddingBottom: "20px", position: "fixed" }
-				}
+				style={{ position: isExpanded === true ? "sticky" : "fixed" }}
 			>
 				<FlexBox justify="space-between" style={{ width: "100%" }}>
 					<FlexBox>

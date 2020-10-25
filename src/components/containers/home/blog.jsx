@@ -7,7 +7,6 @@ import * as CSS from "../../pages/Home/styles/home.style.js";
 import * as BREAK from "../../../constants/breakpoint";
 import { mock_data } from "../../../constants/mockData";
 import { UtilityContext } from "../../../contexts/UtilityContext";
-import faker from "faker";
 
 //TODO Open ranking section (Considered)
 //FIXME Each child in a list should have a unique "key" prop.
@@ -19,7 +18,7 @@ function BlogContainer({ ...restProps }) {
 	return (
 		<section
 			style={
-				CSS.blogSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px").main
+				CSS.blogSection(breakPoint >= BREAK.desktop_md ? "150px" : "30px").main
 			}
 			{...restProps}
 		>
@@ -37,9 +36,10 @@ function BlogContainer({ ...restProps }) {
 									sm={6}
 									md={7}
 									lg={4}
-									key={faker.random.uuid()}
+									key="blog_section_1"
 								>
 									<DefaultBlogContainer
+										key={mock_data[0].title}
 										author={mock_data[0].author}
 										category={mock_data[0].category}
 										title={mock_data[0].title}
@@ -52,8 +52,9 @@ function BlogContainer({ ...restProps }) {
 									/>
 								</Grid>
 								{useMediaQuery(`(min-width:${BREAK.desktop_sm + 100}px)`) && (
-									<Grid item={true} xs={4} key={faker.random.uuid()}>
+									<Grid item={true} xs={4} key="blog_section_2">
 										<DefaultBlogContainer
+											key={mock_data[1].title}
 											author={mock_data[1].author}
 											category={mock_data[1].category}
 											title={mock_data[1].title}
@@ -73,8 +74,9 @@ function BlogContainer({ ...restProps }) {
 										justify="space-between"
 										style={{ height: "100%" }}
 									>
-										{mock_data.slice(2).map((post) => (
+										{mock_data.slice(2).map((post, index) => (
 											<SmallBlogContainer
+												key={index}
 												author={post.author}
 												category={post.category}
 												title={post.title}
@@ -91,32 +93,6 @@ function BlogContainer({ ...restProps }) {
 						</Paper>
 					</FlexBox>
 				</Grid>
-				{/*
-				<Grid
-					item={true}
-					lg={3}
-					xs={12}
-					md={6}
-					sm={12}
-					style={{ margin: "0px auto" }}
-				>
-					<FlexBox direction="column">
-						<Typography variant="h2" style={CSS.blogSection().header}>
-							Top Authors
-						</Typography>
-						<Paper style={CSS.blogSection().paper.ranking}>
-							<FlexBox direction="column">
-								<AuthorItemWithPosts
-									src={ASSETS.AVATAR}
-									name={"Tin Quan Chung"}
-									role={"Content Writer"}
-									posts={12}
-								/>
-							</FlexBox>
-						</Paper>
-					</FlexBox>
-				</Grid>
-				*/}
 			</Grid>
 		</section>
 	);

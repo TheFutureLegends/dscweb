@@ -7,8 +7,6 @@ export const main = (pad) => ({
 	maxWidth: "1600px",
 	margin: "0px auto",
 	height: "100%",
-	padding: pad,
-	paddingBottom: "100px",
 	header: {
 		fontWeight: "700",
 		color: `${theme.context.light_gray}`,
@@ -27,9 +25,13 @@ export const main = (pad) => ({
 	},
 	post: {
 		margin: "0px auto",
-		image: {
-			width: "300px",
-			marginRight: "30px",
-		},
+		image: (src) => ({
+			width: "240px",
+			height: "200px",
+			marginLeft: "20px",
+			backgroundImage: `url(${src})`,
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+		}),
 	},
 });

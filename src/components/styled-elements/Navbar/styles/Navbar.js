@@ -46,7 +46,7 @@ export const Input = styled(InputBase)`
 	&& {
 		transition: width 0.3s;
 		font-size: 12px;
-		width: ${({ active }) => (active === true ? "300px" : "150px")};
+		width: ${({ active }) => (active === "true" ? "300px" : "150px")};
 		color: white;
 		&:focus {
 			display: none;

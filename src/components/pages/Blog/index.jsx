@@ -23,9 +23,10 @@ function BlogPage() {
 
 	return (
 		<div
-			style={CSS.main(
-				breakPoint >= BREAK.tablet_md ? "30px 150px" : "30px 30px"
-			)}
+			style={{
+				...CSS.main(),
+				padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "30px"}`,
+			}}
 		>
 			<section>
 				{useMediaQuery(theme.breakpoints.up("sm")) && (
@@ -40,7 +41,7 @@ function BlogPage() {
 				<Typography variant="h6" style={CSS.main().title}>
 					Most popular posts
 				</Typography>
-				<Grid container xs={12} spacing={3}>
+				<Grid container spacing={3}>
 					<Grid item={true} xs={12} sm={6} md={4} lg={4}>
 						<DefaultBlogContainer
 							author={mock_data[0].author}
@@ -78,8 +79,9 @@ function BlogPage() {
 								justify="space-between"
 								style={{ height: "100%" }}
 							>
-								{mock_data.slice(2).map((post) => (
+								{mock_data.slice(2).map((post, index) => (
 									<SmallBlogContainer
+										key={index}
 										author={post.author}
 										category={post.category}
 										title={post.title}
@@ -104,7 +106,7 @@ function BlogPage() {
 				>
 					Latest Update Posts
 				</Typography>
-				<Grid container xs={12} spacing={3}>
+				<Grid container spacing={3}>
 					<Grid item={true} xs={12} sm={6} md={4} lg={4}>
 						<DefaultBlogContainer
 							author={mock_data[0].author}
@@ -142,8 +144,9 @@ function BlogPage() {
 								justify="space-between"
 								style={{ height: "100%" }}
 							>
-								{mock_data.slice(2).map((post) => (
+								{mock_data.slice(2).map((post, index) => (
 									<SmallBlogContainer
+										key={index}
 										author={post.author}
 										category={post.category}
 										title={post.title}
@@ -161,31 +164,46 @@ function BlogPage() {
 				</Grid>
 				<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
 				<Grid container spacing={2}>
-					<Grid item xs={8}>
-						{mock_data.map((post) => (
-							<FlexBox>
-								<img
-									src={post.src}
-									alt={post.title}
-									style={CSS.main().post.image}
-								/>
-								<DefaultBlogContainer
-									author={post.author}
-									category={post.category}
-									title={post.title}
-									body={post.body}
-									date={post.date}
-									avatar={post.avatar}
-									to={post.to}
-									style={{ ...CSS.main().post, margin: "10px 0px" }}
-									onClick={() => handlePostClick(post.to)}
-								/>
-							</FlexBox>
-						))}
+					<Grid item lg={8} md={12}>
+						{useMediaQuery(theme.breakpoints.up("sm")) &&
+							mock_data.map((post) => (
+								<FlexBox>
+									<DefaultBlogContainer
+										author={post.author}
+										category={post.category}
+										title={post.title}
+										body={post.body}
+										date={post.date}
+										avatar={post.avatar}
+										to={post.to}
+										style={{ ...CSS.main().post, margin: "10px 0px" }}
+										onClick={() => handlePostClick(post.to)}
+									/>
+									<div style={CSS.main().post.image(post.src)} />
+								</FlexBox>
+							))}
+						{useMediaQuery(theme.breakpoints.down("sm")) &&
+							mock_data.map((post) => (
+								<FlexBox>
+									<SmallBlogContainer
+										author={post.author}
+										category={post.category}
+										title={post.title}
+										body={post.body}
+										date={post.date}
+										avatar={post.avatar}
+										src={post.src}
+										to={post.to}
+										onClick={() => handlePostClick(post.to)}
+									/>
+								</FlexBox>
+							))}
 					</Grid>
-					<Grid item xs={4}>
-						Hello
-					</Grid>
+					{useMediaQuery(theme.breakpoints.up("lg")) && (
+						<Grid item lg={4}>
+							Hello
+						</Grid>
+					)}
 				</Grid>
 			</section>
 		</div>

@@ -21,7 +21,7 @@ Navbar.SearchBar = function NavbarSearchBar({ children, ...restProps }) {
 
 Navbar.Input = function NavbarInput({ active, children, ...restProps }) {
 	return (
-		<Style.Input active={active} {...restProps}>
+		<Style.Input active={active.toString()} {...restProps}>
 			{children}
 		</Style.Input>
 	);

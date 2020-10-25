@@ -1,0 +1,26 @@
+	{/*
+				<Grid
+					item={true}
+					lg={3}
+					xs={12}
+					md={6}
+					sm={12}
+					style={{ margin: "0px auto" }}
+				>
+					<FlexBox direction="column">
+						<Typography variant="h2" style={CSS.blogSection().header}>
+							Top Authors
+						</Typography>
+						<Paper style={CSS.blogSection().paper.ranking}>
+							<FlexBox direction="column">
+								<AuthorItemWithPosts
+									src={ASSETS.AVATAR}
+									name={"Tin Quan Chung"}
+									role={"Content Writer"}
+									posts={12}
+								/>
+							</FlexBox>
+						</Paper>
+					</FlexBox>
+				</Grid>
+				*/}
