@@ -7,6 +7,12 @@ export const main = (pad) => ({
 	header: {
 		fontWeight: "700",
 		fontFamily: "Raleway, sans-serif",
-		marginBottom: "16px",
+	},
+	title: {
+		marginBottom: "15px",
+		textTransform: "capitalize",
+	},
+	divider: {
+		margin: "16px 0px",
 	},
 });

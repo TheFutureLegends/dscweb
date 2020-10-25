@@ -42,9 +42,13 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 			<Navbar
 				{...restProps}
 				variants={animatedElement.Navbar(isExpanded ? 55 : 75)}
-				direction={isExpanded && "column"}
+				direction={isExpanded === true && "column"}
 				animate={navStatus.show ? "hidden" : "show"}
-				style={isExpanded && { paddingBottom: "10px", position: "sticky" }}
+				style={
+					isExpanded === true
+						? { paddingBottom: "10px", position: "sticky" }
+						: { paddingBottom: "20px", position: "fixed" }
+				}
 			>
 				<FlexBox justify="space-between" style={{ width: "100%" }}>
 					<FlexBox>
