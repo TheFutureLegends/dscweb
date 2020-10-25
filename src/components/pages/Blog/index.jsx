@@ -10,7 +10,9 @@ import {
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import * as BREAK from "../../../constants/breakpoint";
 import DefaultBlogContainer from "../../containers/blog/default";
+import SmallBlogContainer from "../../containers/blog/small";
 import { mock_data } from "../../../constants/mockData";
+import { FlexBox } from "../../styled-elements";
 
 function BlogPage() {
 	const { breakPoint, history } = useContext(UtilityContext);
@@ -22,7 +24,7 @@ function BlogPage() {
 	return (
 		<div
 			style={CSS.main(
-				breakPoint >= BREAK.tablet_md ? "30px 150px" : "30px 40px"
+				breakPoint >= BREAK.tablet_md ? "30px 150px" : "30px 30px"
 			)}
 		>
 			<section>
@@ -38,52 +40,60 @@ function BlogPage() {
 				<Typography variant="h6" style={CSS.main().title}>
 					Most popular posts
 				</Typography>
-				<Grid container spacing={0}>
-					<Grid container xs={12} spacing={3}>
-						<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+				<Grid container xs={12} spacing={3}>
+					<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+						<DefaultBlogContainer
+							author={mock_data[0].author}
+							category={mock_data[0].category}
+							title={mock_data[0].title}
+							body={mock_data[0].body}
+							date={mock_data[0].date}
+							src={mock_data[0].src}
+							avatar={mock_data[0].avatar}
+							to={mock_data[0].to}
+							style={CSS.main().post}
+							onClick={() => handlePostClick(mock_data[0].to)}
+						/>
+					</Grid>
+					{useMediaQuery(theme.breakpoints.up("md")) && (
+						<Grid item={true} md={4}>
 							<DefaultBlogContainer
-								author={mock_data[0].author}
-								category={mock_data[0].category}
-								title={mock_data[0].title}
-								body={mock_data[0].body}
-								date={mock_data[0].date}
-								src={mock_data[0].src}
-								avatar={mock_data[0].avatar}
-								to={mock_data[0].to}
+								author={mock_data[1].author}
+								category={mock_data[1].category}
+								title={mock_data[1].title}
+								body={mock_data[1].body}
+								date={mock_data[1].date}
+								src={mock_data[1].src}
+								avatar={mock_data[1].avatar}
+								to={mock_data[1].to}
+								style={CSS.main().post}
 								onClick={() => handlePostClick(mock_data[0].to)}
 							/>
 						</Grid>
-						{useMediaQuery(theme.breakpoints.up("xs")) && (
-							<Grid item={true} sm={6} md={4} lg={4}>
-								<DefaultBlogContainer
-									author={mock_data[1].author}
-									category={mock_data[1].category}
-									title={mock_data[1].title}
-									body={mock_data[1].body}
-									date={mock_data[1].date}
-									src={mock_data[1].src}
-									avatar={mock_data[1].avatar}
-									to={mock_data[1].to}
-									onClick={() => handlePostClick(mock_data[0].to)}
-								/>
-							</Grid>
-						)}
-						{useMediaQuery(theme.breakpoints.up("md")) && (
-							<Grid item={true} md={4}>
-								<DefaultBlogContainer
-									author={mock_data[2].author}
-									category={mock_data[2].category}
-									title={mock_data[2].title}
-									body={mock_data[2].body}
-									date={mock_data[2].date}
-									src={mock_data[2].src}
-									avatar={mock_data[2].avatar}
-									to={mock_data[2].to}
-									onClick={() => handlePostClick(mock_data[0].to)}
-								/>
-							</Grid>
-						)}
-					</Grid>
+					)}
+					{useMediaQuery(theme.breakpoints.up("xs")) && (
+						<Grid item={true} md={4} sm={6} lg={4}>
+							<FlexBox
+								direction="column"
+								justify="space-between"
+								style={{ height: "100%" }}
+							>
+								{mock_data.slice(2).map((post) => (
+									<SmallBlogContainer
+										author={post.author}
+										category={post.category}
+										title={post.title}
+										date={post.date}
+										src={post.src}
+										avatar={post.avatar}
+										to={post.to}
+										style={CSS.main().post}
+										onClick={() => handlePostClick(post.to)}
+									/>
+								))}
+							</FlexBox>
+						</Grid>
+					)}
 				</Grid>
 				<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
 				<Typography
@@ -94,51 +104,87 @@ function BlogPage() {
 				>
 					Latest Update Posts
 				</Typography>
-				<Grid container spacing={0}>
-					<Grid container xs={12} spacing={3}>
-						<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+				<Grid container xs={12} spacing={3}>
+					<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+						<DefaultBlogContainer
+							author={mock_data[0].author}
+							category={mock_data[0].category}
+							title={mock_data[0].title}
+							body={mock_data[0].body}
+							date={mock_data[0].date}
+							src={mock_data[0].src}
+							avatar={mock_data[0].avatar}
+							to={mock_data[0].to}
+							style={CSS.main().post}
+							onClick={() => handlePostClick(mock_data[0].to)}
+						/>
+					</Grid>
+					{useMediaQuery(theme.breakpoints.up("md")) && (
+						<Grid item={true} md={4}>
 							<DefaultBlogContainer
-								author={mock_data[0].author}
-								category={mock_data[0].category}
-								title={mock_data[0].title}
-								body={mock_data[0].body}
-								date={mock_data[0].date}
-								src={mock_data[0].src}
-								avatar={mock_data[0].avatar}
-								to={mock_data[0].to}
+								author={mock_data[1].author}
+								category={mock_data[1].category}
+								title={mock_data[1].title}
+								body={mock_data[1].body}
+								date={mock_data[1].date}
+								src={mock_data[1].src}
+								avatar={mock_data[1].avatar}
+								to={mock_data[1].to}
+								style={CSS.main().post}
 								onClick={() => handlePostClick(mock_data[0].to)}
 							/>
 						</Grid>
-						{useMediaQuery(theme.breakpoints.up("xs")) && (
-							<Grid item={true} sm={6} md={4} lg={4}>
-								<DefaultBlogContainer
-									author={mock_data[1].author}
-									category={mock_data[1].category}
-									title={mock_data[1].title}
-									body={mock_data[1].body}
-									date={mock_data[1].date}
-									src={mock_data[1].src}
-									avatar={mock_data[1].avatar}
-									to={mock_data[1].to}
-									onClick={() => handlePostClick(mock_data[0].to)}
+					)}
+					{useMediaQuery(theme.breakpoints.up("xs")) && (
+						<Grid item={true} md={4} sm={6} lg={4}>
+							<FlexBox
+								direction="column"
+								justify="space-between"
+								style={{ height: "100%" }}
+							>
+								{mock_data.slice(2).map((post) => (
+									<SmallBlogContainer
+										author={post.author}
+										category={post.category}
+										title={post.title}
+										date={post.date}
+										src={post.src}
+										avatar={post.avatar}
+										to={post.to}
+										style={CSS.main().post}
+										onClick={() => handlePostClick(post.to)}
+									/>
+								))}
+							</FlexBox>
+						</Grid>
+					)}
+				</Grid>
+				<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
+				<Grid container spacing={2}>
+					<Grid item xs={8}>
+						{mock_data.map((post) => (
+							<FlexBox>
+								<img
+									src={post.src}
+									alt={post.title}
+									style={CSS.main().post.image}
 								/>
-							</Grid>
-						)}
-						{useMediaQuery(theme.breakpoints.up("md")) && (
-							<Grid item={true} md={4}>
 								<DefaultBlogContainer
-									author={mock_data[2].author}
-									category={mock_data[2].category}
-									title={mock_data[2].title}
-									body={mock_data[2].body}
-									date={mock_data[2].date}
-									src={mock_data[2].src}
-									avatar={mock_data[2].avatar}
-									to={mock_data[2].to}
-									onClick={() => handlePostClick(mock_data[0].to)}
+									author={post.author}
+									category={post.category}
+									title={post.title}
+									body={post.body}
+									date={post.date}
+									avatar={post.avatar}
+									to={post.to}
+									style={{ ...CSS.main().post, margin: "10px 0px" }}
+									onClick={() => handlePostClick(post.to)}
 								/>
-							</Grid>
-						)}
+							</FlexBox>
+						))}
+					</Grid>
+					<Grid item xs={4}>
+						Hello
 					</Grid>
 				</Grid>
 			</section>

@@ -14,7 +14,7 @@ function DefaultBlogContainer({
 }) {
 	return (
 		<Blog {...restProps}>
-			<Blog.Picture src={src} />
+			{src && <Blog.Picture src={src} />}
 			<Blog.Meta src={avatar} author={author} category={category} />
 			<Blog.Header variant="h2">{title}</Blog.Header>
 			<Blog.SubHeader variant="subtitle1" limit={100} text={body} />
