@@ -46,8 +46,8 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 			<Navbar
 				{...restProps}
 				height={breakPoint >= 600 ? (isExpanded ? "105px" : "75px") : "75px"}
-				variants={animatedElement.Navbar(75)}
-				direction={"column" }
+				variants={animatedElement.Navbar(breakPoint >= 600 ? 55 : 75)}
+				direction={"column"}
 				animate={navStatus.show ? "hidden" : "show"}
 				style={{ position: isExpanded === true ? "sticky" : "fixed" }}
 			>

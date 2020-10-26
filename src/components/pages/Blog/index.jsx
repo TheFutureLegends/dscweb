@@ -11,13 +11,10 @@ import * as BREAK from "../../../constants/breakpoint";
 import MostPopularSection from "../../containers/blog/mostPopularSection";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
 import AllPostSection from "../../containers/blog/allPostSection";
-import { useFetch } from "../../hooks/useFetch";
 
 function BlogPage() {
-	const { breakPoint, apiDomain } = useContext(UtilityContext);
+	const { breakPoint } = useContext(UtilityContext);
 	const theme = useTheme();
-	const fetchedPosts = useFetch(`${apiDomain}/posts`);
-	console.table(fetchedPosts);
 
 	return (
 		<div
@@ -37,7 +34,7 @@ function BlogPage() {
 			<MostPopularSection />
 			<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
 			<LatestUpdateSection />
-			<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
+			<Divider style={{ ...CSS.main().divider, margin: "30px 0px" }} />
 			<AllPostSection />
 		</div>
 	);

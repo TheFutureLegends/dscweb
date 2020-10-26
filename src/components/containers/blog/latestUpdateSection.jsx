@@ -1,15 +1,27 @@
-import React, { useContext } from "react";
-import { mock_data } from "../../../constants/mockData.js";
+import React, { useContext, useEffect, useState } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
 import { useMediaQuery, useTheme, Grid, Typography } from "@material-ui/core";
 import DefaultBlogContainer from "./default";
 import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
+import axios from "axios";
 
 function MostPopularBlogs() {
 	const theme = useTheme();
-	const { history } = useContext(UtilityContext);
+	const [posts, setPosts] = useState([]);
+	const { history, apiDomain } = useContext(UtilityContext);
+
+	useEffect(() => {
+		const fetchingData = async () => {
+			let res = await axios.get(
+				`${apiDomain}/posts/latest?sortBy=createdAt&limit=6&asc=true`
+			);
+			setPosts(res.data.posts);
+		};
+
+		fetchingData();
+	}, [apiDomain]);
 
 	return (
 		<section>
@@ -23,33 +35,38 @@ function MostPopularBlogs() {
 					Latest Update Posts
 				</Typography>
 				<Grid container spacing={3}>
-					<Grid item={true} xs={12} sm={6} md={4} lg={4}>
-						<DefaultBlogContainer
-							author={mock_data[0].author}
-							category={mock_data[0].category}
-							title={mock_data[0].title}
-							body={mock_data[0].body}
-							date={mock_data[0].date}
-							src={mock_data[0].src}
-							avatar={mock_data[0].avatar}
-							to={mock_data[0].to}
-							style={CSS.main().post}
-							onClick={() => history.push(mock_data[0].to)}
-						/>
-					</Grid>
-					{useMediaQuery(theme.breakpoints.up("md")) && (
+					{posts[0] && (
+						<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+							<DefaultBlogContainer
+								key={posts[0]._id}
+								author={posts[0].author.username}
+								category={posts[0].category.title}
+								title={posts[0].title}
+								body={posts[0].description}
+								date={posts[0].createdAt}
+								src={posts[0].image}
+								avatar={posts[0].author.avatar}
+								to="#"
+								style={CSS.main().post}
+								onClick={() => history.push("#")}
+							/>
+						</Grid>
+					)}
+
+					{useMediaQuery(theme.breakpoints.up("md")) && posts[1] && (
 						<Grid item={true} md={4}>
 							<DefaultBlogContainer
-								author={mock_data[1].author}
-								category={mock_data[1].category}
-								title={mock_data[1].title}
-								body={mock_data[1].body}
-								date={mock_data[1].date}
-								src={mock_data[1].src}
-								avatar={mock_data[1].avatar}
-								to={mock_data[1].to}
+								key={posts[1]._id}
+								author={posts[1].author.username}
+								category={posts[1].category.title}
+								title={posts[1].title}
+								body={posts[1].description}
+								date={posts[1].createdAt}
+								src={posts[1].image}
+								avatar={posts[1].author.avatar}
+								to="#"
 								style={CSS.main().post}
-								onClick={() => history.push(mock_data[0].to)}
+								onClick={() => history.push("#")}
 							/>
 						</Grid>
 					)}
@@ -60,20 +77,23 @@ function MostPopularBlogs() {
 								justify="space-between"
 								style={{ height: "100%" }}
 							>
-								{mock_data.slice(2).map((post, index) => (
-									<SmallBlogContainer
-										key={index}
-										author={post.author}
-										category={post.category}
-										title={post.title}
-										date={post.date}
-										src={post.src}
-										avatar={post.avatar}
-										to={post.to}
-										style={CSS.main().post}
-										onClick={() => history.push(post.to)}
-									/>
-								))}
+								{posts &&
+									posts
+										.slice(2)
+										.map((post) => (
+											<SmallBlogContainer
+												key={post._id}
+												author={post.author.username}
+												category={post.category.title}
+												title={post.title}
+												date={post.createdAt}
+												src={post.image}
+												avatar={post.author.avatar}
+												to="#"
+												style={CSS.main().post}
+												onClick={() => history.push("#")}
+											/>
+										))}
 							</FlexBox>
 						</Grid>
 					)}

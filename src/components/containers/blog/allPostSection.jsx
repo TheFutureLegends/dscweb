@@ -1,50 +1,66 @@
-import React, { useContext } from "react";
-import { mock_data } from "../../../constants/mockData.js";
+import React, { useContext, useState, useEffect } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
 import { useMediaQuery, useTheme, Grid } from "@material-ui/core";
 import DefaultBlogContainer from "./default";
 import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
+import axios from "axios";
 
 function MostPopularBlogs() {
 	const theme = useTheme();
-	const { history } = useContext(UtilityContext);
+	const { history, apiDomain } = useContext(UtilityContext);
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		const fetchingData = async () => {
+			let res = await axios.get(`${apiDomain}/posts?page=1`);
+			setPosts(res.data.posts);
+		};
+
+		fetchingData();
+	}, [apiDomain]);
+
+	console.log(posts);
 
 	return (
 		<section>
 			<Grid container spacing={2}>
 				<Grid item lg={8} md={12}>
 					{useMediaQuery(theme.breakpoints.up("sm")) &&
-						mock_data.map((post) => (
+						posts &&
+						posts.map((post) => (
 							<FlexBox>
 								<DefaultBlogContainer
-									author={post.author}
-									category={post.category}
+									key={post._id}
+									author={post.author.username}
+									category={post.category.title}
 									title={post.title}
-									body={post.body}
-									date={post.date}
-									avatar={post.avatar}
-									to={post.to}
+									body={post.description}
+									date={post.createdAt}
+									avatar={post.author.avatar}
+									to="#"
 									style={{ ...CSS.main().post, margin: "10px 0px" }}
 									onClick={() => history.push(post.to)}
 								/>
-								<div style={CSS.main().post.image(post.src)} />
+								<div style={CSS.main().post.image(post.image)} />
 							</FlexBox>
 						))}
 					{useMediaQuery(theme.breakpoints.down("sm")) &&
-						mock_data.map((post) => (
+						posts &&
+						posts.map((post) => (
 							<FlexBox>
 								<SmallBlogContainer
-									author={post.author}
-									category={post.category}
+									key={post._id}
+									author={post.author.username}
+									category={post.category.title}
 									title={post.title}
-									body={post.body}
-									date={post.date}
-									avatar={post.avatar}
-									src={post.src}
-									to={post.to}
-									onClick={() => history.push(post.to)}
+									date={post.createdAt}
+									src={post.image}
+									avatar={post.author.avatar}
+									to="#"
+									style={CSS.main().post}
+									onClick={() => history.push("#")}
 								/>
 							</FlexBox>
 						))}
