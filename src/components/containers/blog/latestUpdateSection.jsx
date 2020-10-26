@@ -5,23 +5,19 @@ import DefaultBlogContainer from "./default";
 import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
-import axios from "axios";
+import { useFetch } from "../../hooks/useFetch.js";
 
 function MostPopularBlogs() {
 	const theme = useTheme();
 	const [posts, setPosts] = useState([]);
-	const { history, apiDomain } = useContext(UtilityContext);
+	const { history } = useContext(UtilityContext);
+	const res = useFetch("/posts/latest?sortBy=createdAt&limit=6&asc=true");
 
 	useEffect(() => {
-		const fetchingData = async () => {
-			let res = await axios.get(
-				`${apiDomain}/posts/latest?sortBy=createdAt&limit=6&asc=true`
-			);
-			setPosts(res.data.posts);
-		};
-
-		fetchingData();
-	}, [apiDomain]);
+		if (res.response != null) {
+			setPosts(res.response.data.posts);
+		}
+	}, [res]);
 
 	return (
 		<section>

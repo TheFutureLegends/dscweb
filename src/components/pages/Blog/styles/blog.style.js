@@ -26,7 +26,7 @@ export const main = (pad) => ({
 	post: {
 		margin: "0px auto",
 		image: (src) => ({
-			width: "240px",
+			width: "200px",
 			height: "200px",
 			marginLeft: "20px",
 			backgroundImage: `url(${src})`,
