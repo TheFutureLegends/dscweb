@@ -4,7 +4,7 @@ export default class NavbarAnimation extends React.Component {
 	state = {
 		Navbar: (height) => ({
 			hidden: {
-				top: "-5px",
+				top: "-6px",
 			},
 			show: {
 				top: `-${height}px`,

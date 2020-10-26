@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { mock_data } from "../../../constants/mockData.js";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
-import { useMediaQuery, useTheme, Grid, Typography } from "@material-ui/core";
+import { useMediaQuery, useTheme, Grid } from "@material-ui/core";
 import DefaultBlogContainer from "./default";
 import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";

@@ -8,12 +8,15 @@ import { UtilityContext } from "./contexts/UtilityContext";
 import NavbarAnimation from "./components/animations/navbar";
 
 function Router() {
+	const apiDomain = "https://rmit-dsc-api.herokuapp.com/api";
 	const location = useLocation();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
 
 	return (
-		<UtilityContext.Provider value={{ history, breakPoint, location }}>
+		<UtilityContext.Provider
+			value={{ history, breakPoint, location, apiDomain }}
+		>
 			<NavbarAnimation
 				render={(ele) => <NavbarContainer animatedElement={ele} />}
 			/>

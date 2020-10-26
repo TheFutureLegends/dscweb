@@ -11,13 +11,13 @@ import * as BREAK from "../../../constants/breakpoint";
 import MostPopularSection from "../../containers/blog/mostPopularSection";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
 import AllPostSection from "../../containers/blog/allPostSection";
+import { useFetch } from "../../hooks/useFetch";
 
 function BlogPage() {
-	const { breakPoint, history } = useContext(UtilityContext);
+	const { breakPoint, apiDomain } = useContext(UtilityContext);
 	const theme = useTheme();
-	const handlePostClick = (to) => {
-		history.push(to);
-	};
+	const posts = useFetch(`${apiDomain}/posts&limit=10&page=1`);
+	console.table(posts);
 
 	return (
 		<div
