@@ -32,7 +32,7 @@ body {
 }
 .__category_navbar{
 	overflow: auto;
-	margin: 10px 20px 0px;
+	margin: 12px 20px 0px;
 	width: 100%;
 }
 `;

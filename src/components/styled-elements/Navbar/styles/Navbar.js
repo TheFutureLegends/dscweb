@@ -11,7 +11,7 @@ export const Container = motion.custom(styled(AppBar)`
 	}
 	&& {
 		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
-		height: ${({ height }) => height}px;
+		height: ${({ height }) => height};
 		padding: 20px 20px;
 		top: -6px;
 		background-color: ${({ theme: { context } }) => context.dark_gray};
