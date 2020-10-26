@@ -16,8 +16,8 @@ import { useFetch } from "../../hooks/useFetch";
 function BlogPage() {
 	const { breakPoint, apiDomain } = useContext(UtilityContext);
 	const theme = useTheme();
-	const posts = useFetch(`${apiDomain}/posts&limit=10&page=1`);
-	console.table(posts);
+	const fetchedPosts = useFetch(`${apiDomain}/posts`);
+	console.table(fetchedPosts);
 
 	return (
 		<div
