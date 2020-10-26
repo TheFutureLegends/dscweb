@@ -1,9 +1,10 @@
 import React from "react";
 import * as Style from "./styles/Navbar";
 
-function Navbar({ children, direction, ...restProps }) {
+function Navbar({ children, height, direction, ...restProps }) {
+	console.log(height);
 	return (
-		<Style.Container {...restProps}>
+		<Style.Container height={height} {...restProps}>
 			<Style.Inner direction={direction} justify="space-between">
 				{children}
 			</Style.Inner>

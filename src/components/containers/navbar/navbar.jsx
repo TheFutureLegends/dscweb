@@ -44,6 +44,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 		<Fragment>
 			<Navbar
 				{...restProps}
+				height={isExpanded ? 105 : 75}
 				variants={animatedElement.Navbar(isExpanded ? 55 : 75)}
 				direction={isExpanded === true ? "column" : "row"}
 				animate={navStatus.show ? "hidden" : "show"}
