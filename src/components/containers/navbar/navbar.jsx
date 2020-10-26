@@ -7,7 +7,7 @@ import { Navbar, FlexBox, IconLinkButton, Tag } from "../../styled-elements";
 import DrawerContainer from "./drawer";
 // MUI components
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery } from "@material-ui/core";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 // Constants
 import * as ASSETS from "../../../constants/asset";
 import * as ROUTES from "../../../constants/route";
@@ -20,6 +20,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 		show: true,
 		scrollPos: 0,
 	});
+	const theme = useTheme();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const { breakPoint, location } = useContext(UtilityContext);
 
@@ -44,7 +45,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 		<Fragment>
 			<Navbar
 				{...restProps}
-				height={isExpanded ? "105px" : "75px"}
+				height={breakPoint >= 600 ? (isExpanded ? "105px" : "75px") : "75px"}
 				variants={animatedElement.Navbar(isExpanded ? 55 : 75)}
 				direction={isExpanded === true ? "column" : "row"}
 				animate={navStatus.show ? "hidden" : "show"}
@@ -101,13 +102,13 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 						)}
 					</FlexBox>
 				</FlexBox>
-				{isExpanded && (
+				{useMediaQuery(theme.breakpoints.up("sm")) && isExpanded ? (
 					<FlexBox justify="unset" className="__category_navbar">
 						{category_mock_data.map((category) => (
 							<Tag.Item>{category.name}</Tag.Item>
 						))}
 					</FlexBox>
-				)}
+				) : null}
 			</Navbar>
 			<DrawerContext.Provider value={{ openMenu, setOpenMenu }}>
 				{breakPoint < BREAK.tablet_xs && <DrawerContainer />}
