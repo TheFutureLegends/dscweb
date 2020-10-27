@@ -21,6 +21,10 @@ Blog.Picture = function BlogPicture({ src, ...restProps }) {
 	);
 };
 
+Blog.PictureWrapper = function BlogPictureWrapper({ children, ...restProps }) {
+	return <Style.PictureWrapper {...restProps}>{children}</Style.PictureWrapper>;
+};
+
 Blog.Header = function BlogHeader({ children, ...restProps }) {
 	return <Style.Header {...restProps}>{children}</Style.Header>;
 };
@@ -38,6 +42,17 @@ Blog.Meta = function BlogMeta({
 			<div style={{ width: "100%", marginLeft: "10px" }}>
 				<span>{author}</span> in <span>{category}</span>
 			</div>
+		</Style.Meta>
+	);
+};
+
+Blog.MetaSkeleton = function BlogMetaSkeleton({ children, src, ...restProps }) {
+	return (
+		<Style.Meta justify="space-between" {...restProps}>
+			<Blog.PictureWrapper className="__meta_picture">
+				{src}
+			</Blog.PictureWrapper>
+			<div style={{ width: "100%", marginLeft: "10px" }}>{children}</div>
 		</Style.Meta>
 	);
 };

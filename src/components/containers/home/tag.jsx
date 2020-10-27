@@ -1,10 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Tag } from "../../styled-elements";
 import { UtilityContext } from "../../../contexts/UtilityContext";
+import { CircularProgress } from "@material-ui/core";
 import * as BREAK from "../../../constants/breakpoint";
+import { useFetch } from "../../hooks/useFetch";
+import { theme } from "../../../global-theme";
 
 function TagContainer({ ...restProps }) {
 	const { breakPoint } = useContext(UtilityContext);
+	const [categories, setCategories] = useState([]);
+	const res = useFetch("/categories?limit=15&page=1");
+
+	useEffect(() => {
+		if (res.response != null) {
+			setCategories(res.response.data.categories);
+		}
+	}, [res]);
+
 	return (
 		<Tag
 			justify="flex-start"
@@ -13,17 +25,13 @@ function TagContainer({ ...restProps }) {
 			}}
 			{...restProps}
 		>
-			<Tag.Item>Course Roadmap</Tag.Item>
-			<Tag.Item>Design Pattern</Tag.Item>
-			<Tag.Item>Machine Learning</Tag.Item>
-			<Tag.Item>Robotics & Electronic</Tag.Item>
-			<Tag.Item>Algorithms & Data Structure</Tag.Item>
-			<Tag.Item>UI/UX Design</Tag.Item>
-			<Tag.Item>Testing & QA</Tag.Item>
-			<Tag.Item>Programming Languages</Tag.Item>
-			<Tag.Item>Self-help</Tag.Item>
-			<Tag.Item>Web Development</Tag.Item>
-			<Tag.Item>Game Development</Tag.Item>
+			{categories.length !== 0 ? (
+				categories.map((category) => (
+					<Tag.Item key={category._id}>{category.title}</Tag.Item>
+				))
+			) : (
+				<CircularProgress style={{ color: theme.colors.primary }} />
+			)}
 		</Tag>
 	);
 }

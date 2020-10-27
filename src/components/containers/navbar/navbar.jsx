@@ -1,10 +1,11 @@
 import React, { useState, Fragment, useContext, useEffect } from "react";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import { DrawerContext } from "../../../contexts/DrawerContext.js";
-import { category_mock_data } from "../../../constants/mockData";
 // Components
 import { Navbar, FlexBox, IconLinkButton, Tag } from "../../styled-elements";
 import DrawerContainer from "./drawer";
+import { useFetch } from "../../hooks/useFetch";
+import { TagSkeleton } from "../skeleton";
 // MUI components
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery, useTheme } from "@material-ui/core";
@@ -23,6 +24,15 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 	const theme = useTheme();
 	const [isExpanded, setIsExpanded] = useState(false);
 	const { breakPoint, location } = useContext(UtilityContext);
+
+	const [categories, setCategories] = useState([]);
+	const res = useFetch("/categories?limit=15&page=1");
+
+	useEffect(() => {
+		if (res.response != null) {
+			setCategories(res.response.data.categories);
+		}
+	}, [res]);
 
 	useEffect(() => {
 		setIsExpanded(location.pathname === ROUTES.BLOG);
@@ -45,8 +55,10 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 		<Fragment>
 			<Navbar
 				{...restProps}
-				height={breakPoint >= 600 ? (isExpanded ? "105px" : "75px") : "75px"}
-				variants={animatedElement.Navbar(breakPoint >= 600 ? 55 : 75)}
+				height={breakPoint >= 600 ? (isExpanded ? "100px" : "75px") : "75px"}
+				variants={animatedElement.Navbar(
+					breakPoint >= 600 ? (isExpanded ? 55 : 75) : 75
+				)}
 				direction={"column"}
 				animate={navStatus.show ? "hidden" : "show"}
 				style={{ position: isExpanded === true ? "sticky" : "fixed" }}
@@ -104,9 +116,13 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 				</FlexBox>
 				{useMediaQuery(theme.breakpoints.up("sm")) && isExpanded ? (
 					<FlexBox justify="unset" className="__category_navbar">
-						{category_mock_data.map((category) => (
-							<Tag.Item>{category.name}</Tag.Item>
-						))}
+						{categories.length !== 0 ? (
+							categories.map((category) => (
+								<Tag.Item key={category._id}>{category.title}</Tag.Item>
+							))
+						) : (
+							<TagSkeleton />
+						)}
 					</FlexBox>
 				) : null}
 			</Navbar>
