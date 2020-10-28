@@ -27,6 +27,7 @@ function Router() {
 				{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 				<Route path={ROUTES.BLOG} component={PAGE.BlogPage} />
 				<Route path={ROUTES.HOME} component={PAGE.HomePage} />
+				<Route path={ROUTES.SINGLE_POST} component={PAGE.PostPage} />
 			</Switch>
 			<FooterContainer />
 		</UtilityContext.Provider>

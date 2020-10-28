@@ -6,6 +6,8 @@ import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { useFetch } from "../../hooks/useFetch.js";
+import * as ROUTES from "../../../constants/route";
+
 var offset = 1000;
 
 function MostPopularBlogs() {
@@ -53,7 +55,7 @@ function MostPopularBlogs() {
 											margin: "15px 0px",
 											maxWidth: "500px",
 										}}
-										onClick={() => history.push(post.to)}
+										onClick={() => history.push(`${ROUTES.POST}/${post.slug}`)}
 									/>
 									<div style={CSS.main().post.image(post.image)} />
 								</FlexBox>
@@ -70,7 +72,7 @@ function MostPopularBlogs() {
 										avatar={post.author.avatar}
 										to="#"
 										style={CSS.main().post}
-										onClick={() => history.push("#")}
+										onClick={() => history.push(`${ROUTES.POST}/${post.slug}`)}
 									/>
 								</FlexBox>
 						  ))}

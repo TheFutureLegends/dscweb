@@ -12,9 +12,13 @@ export const EVENT = "/event";
 export const BLOG = "/blog";
 export const ABOUT = "/about";
 
+export const POST = "/posts";
+export const SINGLE_POST = `/posts/:slug`;
+
 export const listOfRoutes = [
 	{ route: HOME, icon: faHome, text: "Home" },
 	{ route: EVENT, icon: faCalendarAlt, text: "Event" },
 	{ route: BLOG, icon: faBook, text: "Blog" },
 	{ route: ABOUT, icon: faUsers, text: "About" },
+	{ route: POST, text: "Single Post" },
 ];

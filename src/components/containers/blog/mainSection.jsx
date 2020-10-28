@@ -6,6 +6,7 @@ import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { DefaultPostSkeleton, SmallPostSkeleton } from "../skeleton";
+import * as ROUTES from "../../../constants/route";
 
 function MostPopularBlogs({ header, posts }) {
 	const theme = useTheme();
@@ -30,7 +31,7 @@ function MostPopularBlogs({ header, posts }) {
 							avatar={posts[0].author.avatar}
 							to="#"
 							style={CSS.main().post}
-							onClick={() => history.push("#")}
+							onClick={() => history.push(`${ROUTES.POST}/${posts[0].slug}`)}
 						/>
 					) : (
 						<DefaultPostSkeleton />
@@ -38,19 +39,19 @@ function MostPopularBlogs({ header, posts }) {
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("md")) && (
 					<Grid item={true} md={4}>
-						{posts[0] ? (
+						{posts[1] ? (
 							<DefaultBlogContainer
-								key={posts[0]._id}
-								author={posts[0].author.username}
-								category={posts[0].category.title}
-								title={posts[0].title}
-								body={posts[0].description}
-								date={posts[0].createdAt}
-								src={posts[0].image}
-								avatar={posts[0].author.avatar}
+								key={posts[1]._id}
+								author={posts[1].author.username}
+								category={posts[1].category.title}
+								title={posts[1].title}
+								body={posts[1].description}
+								date={posts[1].createdAt}
+								src={posts[1].image}
+								avatar={posts[1].author.avatar}
 								to="#"
 								style={CSS.main().post}
-								onClick={() => history.push("#")}
+								onClick={() => history.push(`${ROUTES.POST}/${posts[1].slug}`)}
 							/>
 						) : (
 							<DefaultPostSkeleton />
@@ -77,7 +78,9 @@ function MostPopularBlogs({ header, posts }) {
 											avatar={post.author.avatar}
 											to="#"
 											style={CSS.main().post}
-											onClick={() => history.push("#")}
+											onClick={() =>
+												history.push(`${ROUTES.POST}/${post.slug}`)
+											}
 										/>
 									))
 							: Array(4)
