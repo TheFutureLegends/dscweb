@@ -40,7 +40,7 @@ function MostPopularBlogs() {
 				<Grid item lg={8} md={12}>
 					{useMediaQuery(theme.breakpoints.up("sm")) && posts
 						? posts.map((post) => (
-								<FlexBox>
+								<FlexBox justify="flex-start">
 									<DefaultBlogContainer
 										key={post._id}
 										author={post.author.username}

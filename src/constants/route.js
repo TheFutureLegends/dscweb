@@ -20,5 +20,4 @@ export const listOfRoutes = [
 	{ route: EVENT, icon: faCalendarAlt, text: "Event" },
 	{ route: BLOG, icon: faBook, text: "Blog" },
 	{ route: ABOUT, icon: faUsers, text: "About" },
-	{ route: POST, text: "Single Post" },
 ];
