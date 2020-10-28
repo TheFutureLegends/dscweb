@@ -6,12 +6,25 @@ import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { useFetch } from "../../hooks/useFetch.js";
+var offset = 1000;
 
 function MostPopularBlogs() {
 	const theme = useTheme();
 	const { history } = useContext(UtilityContext);
+
+	const [page, setPage] = useState(1);
 	const [posts, setPosts] = useState([]);
-	const res = useFetch("/posts?page=1");
+	const res = useFetch(`/posts?limit=${page}0`);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.pageYOffset > offset) {
+				offset += 2000;
+				setPage((page) => (page += 1));
+			}
+		};
+		window.addEventListener("scroll", handleScroll);
+	}, []);
 
 	useEffect(() => {
 		if (res.response != null) {
@@ -63,7 +76,7 @@ function MostPopularBlogs() {
 						  ))}
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("lg")) && (
-					<Grid item lg={4}>
+					<Grid item={true} lg={4}>
 						Hello
 					</Grid>
 				)}

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import * as Style from "./styles/Blog";
-
+import Lazyload from "react-lazyload";
 function Blog({ children, size, ...restProps }) {
 	return (
 		<Fragment>
@@ -16,7 +16,9 @@ function Blog({ children, size, ...restProps }) {
 Blog.Picture = function BlogPicture({ src, ...restProps }) {
 	return (
 		<Style.PictureWrapper {...restProps}>
-			<Style.Picture src={src} />
+			<Lazyload throttle={1000} height={50}>
+				<Style.Picture src={src} />
+			</Lazyload>
 		</Style.PictureWrapper>
 	);
 };
