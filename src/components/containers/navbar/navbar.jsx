@@ -85,9 +85,9 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 						)}
 					</FlexBox>
 					<FlexBox>
-						{useMediaQuery(`(min-width: ${BREAK.tablet_xs}px)`) ? (
+						{useMediaQuery(`(min-width: ${BREAK.tablet_xs + 80}px)`) ? (
 							<Fragment>
-								{breakPoint <= BREAK.tablet_md
+								{breakPoint <= BREAK.desktop_sm
 									? ROUTES.listOfRoutes.map((item) => (
 											<IconLinkButton
 												src={item.icon}
@@ -127,7 +127,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 				) : null}
 			</Navbar>
 			<DrawerContext.Provider value={{ openMenu, setOpenMenu }}>
-				{breakPoint < BREAK.tablet_xs && <DrawerContainer />}
+				{breakPoint < BREAK.desktop_sm && <DrawerContainer />}
 			</DrawerContext.Provider>
 		</Fragment>
 	);
