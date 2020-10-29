@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
@@ -7,6 +7,9 @@ import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
 import * as ASSETS from "../../../constants/asset.js";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const validationSchema = Yup.object({
 	email: validRuleSet.email,
@@ -14,7 +17,8 @@ const validationSchema = Yup.object({
 });
 
 const LoginContainer = ({ animatedElement }) => {
-	const { breakPoint } = useContext(UtilityContext);
+	const [error, setError] = useState(null);
+	const { breakPoint, apiDomain, history } = useContext(UtilityContext);
 	return (
 		<Formik
 			initialValues={{ email: "", password: "" }}
@@ -22,15 +26,12 @@ const LoginContainer = ({ animatedElement }) => {
 				setSubmitting = true;
 
 				try {
-					let res = await axios.post(
-						"https://club-platform-api.herokuapp.com/api/auth/login",
-						values
-					);
-					console.log(res);
+					let res = await axios.post(`${apiDomain}/auth/signin`, values);
+					cookies.set("accessToken", res.data.accessToken, { path: "/" });
+					history.push("/");
 				} catch (error) {
-					console.log(error);
+					setError("Something went wrong.");
 				}
-
 				setSubmitting = false;
 			}}
 			validateOnBlur={false}
@@ -63,8 +64,8 @@ const LoginContainer = ({ animatedElement }) => {
 									size="medium"
 									name="email"
 									fullWidth
-									error={errors.email ? true : false}
-									helperText={errors.email}
+									error={errors.email || error ? true : false}
+									helperText={errors.email || error}
 									as={Form.InputField}
 								/>
 								<Field
@@ -75,7 +76,7 @@ const LoginContainer = ({ animatedElement }) => {
 									name="password"
 									type="password"
 									fullWidth
-									error={errors.password ? true : false}
+									error={errors.password || error ? true : false}
 									helperText={errors.password}
 									as={Form.InputField}
 								/>

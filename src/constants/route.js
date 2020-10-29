@@ -1,8 +1,8 @@
 import {
 	faHome,
-	faCalendarAlt,
+	// faCalendarAlt,
 	faBook,
-	faUsers,
+	// faUsers,
 	faCodeBranch,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,16 +12,17 @@ export const SIGN_UP = "/signup";
 export const EVENT = "/event";
 export const BLOG = "/blog";
 export const ABOUT = "/about";
-
 export const POST = "/posts";
 export const SINGLE_POST = `/posts/:slug`;
 export const PLAYGROUND = "/playgrounds";
 export const PLAYGROUND_PROJECT = "/playgrounds/:slug";
 
+export const DEVELOPMENT = "/development";
+
 export const listOfRoutes = [
 	{ route: HOME, icon: faHome, text: "Home" },
-	{ route: EVENT, icon: faCalendarAlt, text: "Event" },
+	// { route: EVENT, icon: faCalendarAlt, text: "Event" },
 	{ route: BLOG, icon: faBook, text: "Blog" },
-	{ route: ABOUT, icon: faUsers, text: "About" },
+	// { route: ABOUT, icon: faUsers, text: "About" },
 	{ route: PLAYGROUND, icon: faCodeBranch, text: "Playground" },
 ];

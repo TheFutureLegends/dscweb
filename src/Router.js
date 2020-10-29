@@ -13,18 +13,21 @@ function Router() {
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
 
+	let isDeveloped = location.pathname === ROUTES.DEVELOPMENT;
 	return (
 		<UtilityContext.Provider
 			value={{ history, breakPoint, location, apiDomain }}
 		>
-			<NavbarAnimation
-				render={(ele) => <NavbarContainer animatedElement={ele} />}
-			/>
+			{!isDeveloped && (
+				<NavbarAnimation
+					render={(ele) => <NavbarContainer animatedElement={ele} />}
+				/>
+			)}
 			<Switch location={location} key={location.pathname}>
+				{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 				<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 				<Route exact path={ROUTES.EVENT} component={PAGE.EventPage} />
 				<Route exact path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
-				{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 				<Route exact path={ROUTES.BLOG} component={PAGE.BlogPage} />
 				<Route exact path={ROUTES.HOME} component={PAGE.HomePage} />
 				<Route
@@ -33,8 +36,13 @@ function Router() {
 					component={PAGE.SinglePostPage}
 				/>
 				<Route exact path={ROUTES.PLAYGROUND} component={PAGE.PlaygroundPage} />
+				<Route
+					exact
+					path={ROUTES.DEVELOPMENT}
+					component={PAGE.DevelopmentPage}
+				/>
 			</Switch>
-			<FooterContainer />
+			{!isDeveloped && <FooterContainer />}
 		</UtilityContext.Provider>
 	);
 }

@@ -8,7 +8,8 @@ import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { useFetch } from "../../hooks/useFetch.js";
 import * as ROUTES from "../../../constants/route";
-import { SmallPostSkeleton } from "../skeleton";
+import { SmallPostSkeleton, DefaultPostSkeleton } from "../skeleton";
+import { Skeleton } from "@material-ui/lab";
 
 var offset = 1000;
 
@@ -88,7 +89,12 @@ function MostPopularBlogs() {
 								.fill(<SmallPostSkeleton />)
 								.map((post) => post)
 						: Array(10)
-								.fill(<SmallPostSkeleton />)
+								.fill(
+									<FlexBox justify="flex-start">
+										<DefaultPostSkeleton />
+										<Skeleton height="100%" width="100%" effect="wave" />
+									</FlexBox>
+								)
 								.map((post) => post)}
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("lg")) && (
