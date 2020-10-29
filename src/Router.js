@@ -32,6 +32,7 @@ function Router() {
 					path={ROUTES.SINGLE_POST}
 					component={PAGE.SinglePostPage}
 				/>
+				<Route exact path={ROUTES.PLAYGROUND} component={PAGE.PlaygroundPage} />
 			</Switch>
 			<FooterContainer />
 		</UtilityContext.Provider>

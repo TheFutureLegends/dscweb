@@ -14,6 +14,8 @@ export const ABOUT = "/about";
 
 export const POST = "/posts";
 export const SINGLE_POST = `/posts/:slug`;
+export const PLAYGROUND = "/playgrounds";
+export const PLAYGROUND_PROJECT = "/playgrounds/:slug";
 
 export const listOfRoutes = [
 	{ route: HOME, icon: faHome, text: "Home" },

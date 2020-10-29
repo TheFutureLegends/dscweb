@@ -27,6 +27,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "^4.0.0",
 		"react-tooltip": "^4.2.10",
+		"react-unity-webgl": "^8.0.2",
 		"styled-components": "^5.2.0",
 		"yup": "^0.29.3"
 	},
