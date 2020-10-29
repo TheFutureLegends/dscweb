@@ -20,7 +20,7 @@ function BlogPage() {
 		<div
 			style={{
 				...CSS.main(),
-				padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "30px"}`,
+				padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "20px"}`,
 			}}
 		>
 			{useMediaQuery(theme.breakpoints.up("sm")) && (

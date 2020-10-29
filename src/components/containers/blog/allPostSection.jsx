@@ -13,6 +13,19 @@ import { Skeleton } from "@material-ui/lab";
 
 var offset = 1000;
 
+function CustomPostSkeleton() {
+	return (
+		<FlexBox justify="flex-start">
+			<DefaultPostSkeleton style={{ width: "100%" }} hasImage={false} />
+			<Skeleton
+				height="300px"
+				width="300px"
+				effect="wave"
+				style={{ marginLeft: "20px" }}
+			/>
+		</FlexBox>
+	);
+}
 function MostPopularBlogs() {
 	const theme = useTheme();
 	const { history, breakPoint } = useContext(UtilityContext);
@@ -86,28 +99,20 @@ function MostPopularBlogs() {
 							  ))
 						: breakPoint >= BREAK.smartphone_md
 						? Array(10)
-								.fill(
-									<FlexBox justify="flex-start">
-										<DefaultPostSkeleton
-											style={{ width: "100%" }}
-											hasImage={false}
-										/>
-										<Skeleton
-											height="300px"
-											width="300px"
-											effect="wave"
-											style={{ marginLeft: "20px" }}
-										/>
-									</FlexBox>
-								)
+								.fill(<CustomPostSkeleton />)
 								.map((post) => post)
 						: Array(10)
 								.fill(<SmallPostSkeleton />)
 								.map((post) => post)}
+					{breakPoint >= BREAK.smartphone_md ? (
+						<CustomPostSkeleton />
+					) : (
+						<SmallPostSkeleton />
+					)}
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("lg")) && (
 					<Grid item={true} lg={4}>
-						Hello
+						Admin Dashboard
 					</Grid>
 				)}
 			</Grid>

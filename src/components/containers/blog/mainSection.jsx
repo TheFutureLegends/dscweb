@@ -10,13 +10,15 @@ import * as ROUTES from "../../../constants/route";
 
 function MostPopularBlogs({ header, posts }) {
 	const theme = useTheme();
-	const { history } = useContext(UtilityContext);
+	const { history, location } = useContext(UtilityContext);
 
 	return (
 		<section>
-			<Typography variant="h6" style={CSS.main().title}>
-				{header}
-			</Typography>
+			{location.pathname !== "/" && (
+				<Typography variant="h6" style={CSS.main().title}>
+					{header}
+				</Typography>
+			)}
 			<Grid container spacing={3}>
 				<Grid item={true} xs={12} sm={6} md={4} lg={4}>
 					{posts[0] ? (

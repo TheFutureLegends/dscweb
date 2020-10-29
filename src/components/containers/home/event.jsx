@@ -13,7 +13,7 @@ function EventSectionContainer({ ...restProps }) {
 	//FIXME Each child in a list should have a unique "key" prop.
 	return (
 		<section
-			style={CSS.lastSection(breakPoint >= BREAK.desktop_md ? "100px" : "30px")}
+			style={CSS.lastSection(breakPoint >= BREAK.desktop_md ? "140px" : "30px")}
 			{...restProps}
 		>
 			<FlexBox direction="column">
