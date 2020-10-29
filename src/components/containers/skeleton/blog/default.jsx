@@ -2,17 +2,20 @@ import React from "react";
 import { Blog, FlexBox } from "../../../styled-elements";
 import { Skeleton } from "@material-ui/lab";
 
-function DefaultPostSkeleton({ ...restProps }) {
+function DefaultPostSkeleton({ hasImage = true, ...restProps }) {
 	return (
 		<Blog {...restProps}>
-			<Blog.PictureWrapper>
-				<Skeleton
-					animation="wave"
-					variant="rect"
-					width={"100%"}
-					height={"100%"}
-				/>
-			</Blog.PictureWrapper>
+			{hasImage === true && (
+				<Blog.PictureWrapper>
+					<Skeleton
+						animation="wave"
+						variant="rect"
+						width={"100%"}
+						height={"100%"}
+					/>
+				</Blog.PictureWrapper>
+			)}
+
 			<Blog.MetaSkeleton
 				src={
 					<Skeleton

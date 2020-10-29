@@ -17,7 +17,6 @@ export const blogSection = (pad) => ({
 		width: "100%",
 		maxWidth: "1800px",
 		margin: "10px auto",
-		boxShadow: theme.colors.dark.__elevation_low,
 	},
 	paper: {
 		ranking: {

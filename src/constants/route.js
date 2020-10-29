@@ -3,7 +3,7 @@ import {
 	// faCalendarAlt,
 	faBook,
 	// faUsers,
-	faCodeBranch,
+	// faCodeBranch,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const HOME = "/";
@@ -24,5 +24,5 @@ export const listOfRoutes = [
 	// { route: EVENT, icon: faCalendarAlt, text: "Event" },
 	{ route: BLOG, icon: faBook, text: "Blog" },
 	// { route: ABOUT, icon: faUsers, text: "About" },
-	{ route: PLAYGROUND, icon: faCodeBranch, text: "Playground" },
+	// { route: PLAYGROUND, icon: faCodeBranch, text: "Playground" },
 ];

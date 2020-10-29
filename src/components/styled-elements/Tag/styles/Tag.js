@@ -28,5 +28,4 @@ export const Container = styled(FlexBox)`
 	background-color: white;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_low};
 `;

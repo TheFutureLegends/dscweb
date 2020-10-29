@@ -86,15 +86,23 @@ function MostPopularBlogs() {
 							  ))
 						: breakPoint >= BREAK.smartphone_md
 						? Array(10)
-								.fill(<SmallPostSkeleton />)
-								.map((post) => post)
-						: Array(10)
 								.fill(
 									<FlexBox justify="flex-start">
-										<DefaultPostSkeleton />
-										<Skeleton height="100%" width="100%" effect="wave" />
+										<DefaultPostSkeleton
+											style={{ width: "100%" }}
+											hasImage={false}
+										/>
+										<Skeleton
+											height="300px"
+											width="300px"
+											effect="wave"
+											style={{ marginLeft: "20px" }}
+										/>
 									</FlexBox>
 								)
+								.map((post) => post)
+						: Array(10)
+								.fill(<SmallPostSkeleton />)
 								.map((post) => post)}
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("lg")) && (
