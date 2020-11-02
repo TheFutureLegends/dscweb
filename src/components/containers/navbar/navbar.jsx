@@ -1,6 +1,8 @@
 import React, { useState, Fragment, useContext, useEffect } from "react";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import { DrawerContext } from "../../../contexts/DrawerContext.js";
+import { logoutUser } from "../../../core/redux/actions/user.action";
+import { connect } from "react-redux";
 // Components
 import { Navbar, FlexBox, IconLinkButton, Tag } from "../../styled-elements";
 import DrawerContainer from "./drawer";
@@ -77,7 +79,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 								<Navbar.Input
 									onFocus={() => setActive(true)}
 									onBlur={() => setActive(false)}
-									active={breakPoint > BREAK.desktop_sm ? active : false}
+									active={breakPoint > BREAK.tablet_sm ? active : false}
 									placeholder="Search…"
 								/>
 								<Navbar.Icon icon={faSearch} className="__search" />
@@ -133,4 +135,12 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 	);
 }
 
-export default NavbarDesktop;
+const mapStateToProps = (state) => ({
+	user: state.user,
+});
+
+const mapDispatchToProps = {
+	logoutUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarDesktop);

@@ -16,10 +16,10 @@ var offset = 1000;
 function CustomPostSkeleton() {
 	return (
 		<FlexBox justify="flex-start">
-			<DefaultPostSkeleton style={{ width: "100%" }} hasImage={false} />
+			<DefaultPostSkeleton style={{ width: "58%" }} hasImage={false} />
 			<Skeleton
-				height="300px"
-				width="300px"
+				height="280px"
+				width="200px"
 				effect="wave"
 				style={{ marginLeft: "20px" }}
 			/>

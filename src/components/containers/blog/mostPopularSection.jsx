@@ -4,7 +4,7 @@ import MainSection from "./mainSection";
 
 function MostPopularBlogs() {
 	const [posts, setPosts] = useState([]);
-	const res = useFetch("/posts/latest?sortBy=visit&limit=6&asc=true");
+	const res = useFetch("/posts/latest?sortBy=visit&limit=6&asc=false");
 
 	useEffect(() => {
 		if (res.response != null) {

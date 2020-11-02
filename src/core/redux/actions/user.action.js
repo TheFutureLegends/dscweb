@@ -1,24 +1,19 @@
 import {
-	// SET_USER,
+	SET_USER,
 	SET_UNAUTHENTICATED,
 	LOADING_USER,
 } from "../types/user.types";
-import {
-	LOADING_UI,
-	SET_ERRORS,
-	//  CLEAR_ERRORS
-} from "../types/ui.types";
+import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
 import axios from "axios";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
-const cookieName = "biscuitToken";
+import { apiDomain } from "../../../constants/api";
+import { cookies, cookieName } from "../../../constants/cookie";
 
 export const loginUser = (userData, history) => async (dispatch) => {
 	dispatch({ type: LOADING_UI });
 	try {
 		let res = await axios.post(`${apiDomain}/auth/signin`, userData);
-		cookies.set(cookieName, res.data.accessToken, { path: "/" });
+		setAuthorizationHeader(res.data.accessToken);
+		dispatch({ type: STOP_LOADING_UI });
 		history.push("/");
 	} catch (error) {
 		dispatch({ type: SET_ERRORS, payload: { login: "Something went wrong" } });
@@ -30,8 +25,21 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getUserData = (id) => (dispatch) => {
+export const getUserData = (cookieToken) => (dispatch) => {
 	dispatch({ type: LOADING_USER });
+	axios
+		.get(`${apiDomain}/users/profile`, {
+			headers: {
+				"x-access-token": cookieToken,
+			},
+		})
+		.then((res) => {
+			dispatch({
+				type: SET_USER,
+				payload: res.data,
+			});
+		})
+		.catch((err) => console.log(err));
 };
 
 // export const getAuthUserData = (method) => async (dispatch) => {
@@ -55,8 +63,7 @@ export const getUserData = (id) => (dispatch) => {
 // 	}
 // };
 
-// const setAuthorizationHeader = (token) => {
-// 	const FBIdToken = `Bearer ${token}`;
-// 	localStorage.setItem("FBIdToken", FBIdToken);
-// 	axios.defaults.headers.common["Authorization"] = FBIdToken;
-// };
+const setAuthorizationHeader = (token) => {
+	cookies.set(cookieName, token, { path: "/" });
+	axios.defaults.headers.common["Authorization"] = token;
+};

@@ -6,9 +6,25 @@ import * as PAGE from "./components/pages";
 import { NavbarContainer, FooterContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
 import NavbarAnimation from "./components/animations/navbar";
+import { apiDomain } from "./constants/api";
+import { cookies, cookieName } from "./constants/cookie";
+// -- Redux --
+import { SET_AUTHENTICATED } from "./core/redux/types/user.types";
+import { logoutUser, getUserData } from "./core/redux/actions/user.action";
+import axios from "axios";
+import store from "./core/redux/store";
+
+const cookie = cookies.get(cookieName);
+
+if (cookie) {
+	store.dispatch({ type: SET_AUTHENTICATED });
+	axios.defaults.headers.common["Authorization"] = cookie.token;
+	store.dispatch(getUserData(cookie.token));
+} else {
+	store.dispatch(logoutUser());
+}
 
 function Router() {
-	const apiDomain = "https://rmit-dsc-api.herokuapp.com/api";
 	const location = useLocation();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();

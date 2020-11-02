@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation";
@@ -7,38 +6,27 @@ import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
 import * as ASSETS from "../../../constants/asset.js";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import { connect } from "react-redux";
+import { loginUser } from "../../../core/redux/actions/user.action.js";
 
 const validationSchema = Yup.object({
 	email: validRuleSet.email,
 	password: validRuleSet.password,
 });
 
-const LoginContainer = ({ animatedElement }) => {
-	const [error, setError] = useState(null);
-	const { breakPoint, apiDomain, history } = useContext(UtilityContext);
+const LoginContainer = ({ animatedElement, ...props }) => {
+	const { breakPoint, history } = useContext(UtilityContext);
 	return (
 		<Formik
 			initialValues={{ email: "", password: "" }}
-			onSubmit={async (values, { setSubmitting }) => {
-				setSubmitting = true;
-
-				try {
-					let res = await axios.post(`${apiDomain}/auth/signin`, values);
-					cookies.set("accessToken", res.data.accessToken, { path: "/" });
-					history.push("/");
-				} catch (error) {
-					setError("Something went wrong.");
-				}
-				setSubmitting = false;
+			onSubmit={async (values) => {
+				props.loginUser(values, history);
 			}}
 			validateOnBlur={false}
 			validateOnChange={false}
 			validationSchema={validationSchema}
 		>
-			{({ values, errors, handleSubmit, isSubmitting }) => (
+			{({ values, errors, handleSubmit }) => (
 				<Form height="calc(100vh - 75px)" src={ASSETS.RMIT_WALLPAPER}>
 					<Form.Inner
 						width={breakPoint > BREAK.smartphone_md ? "400px" : "100vw"}
@@ -64,8 +52,16 @@ const LoginContainer = ({ animatedElement }) => {
 									size="medium"
 									name="email"
 									fullWidth
-									error={errors.email || error ? true : false}
-									helperText={errors.email || error}
+									error={
+										errors.email ||
+										(props.ui.errors !== null && props.ui.errors.login)
+											? true
+											: false
+									}
+									helperText={
+										errors.email ||
+										(props.ui.errors !== null && props.ui.errors.login)
+									}
 									as={Form.InputField}
 								/>
 								<Field
@@ -76,7 +72,12 @@ const LoginContainer = ({ animatedElement }) => {
 									name="password"
 									type="password"
 									fullWidth
-									error={errors.password || error ? true : false}
+									error={
+										errors.password ||
+										(props.ui.errors !== null && props.ui.errors.login)
+											? true
+											: false
+									}
 									helperText={errors.password}
 									as={Form.InputField}
 								/>
@@ -87,7 +88,7 @@ const LoginContainer = ({ animatedElement }) => {
 								disableElevation
 								size="large"
 								type="submit"
-								disabled={isSubmitting === true}
+								disabled={props.ui.loading}
 								style={{ marginTop: "30px" }}
 							>
 								Login
@@ -109,4 +110,12 @@ const LoginContainer = ({ animatedElement }) => {
 	);
 };
 
-export default LoginContainer;
+const mapStateToProps = (state) => ({
+	ui: state.ui,
+});
+
+const mapDispatchToProps = {
+	loginUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
