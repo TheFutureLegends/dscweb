@@ -31,7 +31,6 @@ function MostPopularBlogs({ header, posts }) {
 							date={posts[0].createdAt}
 							src={posts[0].image}
 							avatar={posts[0].author.avatar}
-							to="#"
 							style={CSS.main().post}
 							onClick={() => history.push(`${ROUTES.POST}/${posts[0].slug}`)}
 						/>
@@ -51,7 +50,6 @@ function MostPopularBlogs({ header, posts }) {
 								date={posts[1].createdAt}
 								src={posts[1].image}
 								avatar={posts[1].author.avatar}
-								to="#"
 								style={CSS.main().post}
 								onClick={() => history.push(`${ROUTES.POST}/${posts[1].slug}`)}
 							/>
@@ -78,7 +76,6 @@ function MostPopularBlogs({ header, posts }) {
 											date={post.createdAt}
 											src={post.image}
 											avatar={post.author.avatar}
-											to="#"
 											style={CSS.main().post}
 											onClick={() =>
 												history.push(`${ROUTES.POST}/${post.slug}`)

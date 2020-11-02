@@ -8,7 +8,6 @@ function DefaultBlogContainer({
 	date,
 	author,
 	category,
-	to,
 	avatar,
 	...restProps
 }) {
@@ -20,7 +19,6 @@ function DefaultBlogContainer({
 			<Blog.SubHeader variant="subtitle1" limit={100} text={body} />
 			<FlexBox justify="space-between" style={{ marginTop: "50px" }}>
 				<Blog.Text>Publish Date: {date}</Blog.Text>
-				<Blog.Link to={to}>Read More</Blog.Link>
 			</FlexBox>
 		</Blog>
 	);

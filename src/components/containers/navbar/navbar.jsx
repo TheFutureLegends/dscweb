@@ -63,7 +63,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 				)}
 				direction={"column"}
 				animate={navStatus.show ? "hidden" : "show"}
-				style={{ position: isExpanded === true ? "sticky" : "fixed" }}
+				style={{ position: "sticky" }}
 			>
 				<FlexBox justify="space-between" style={{ width: "100%" }}>
 					<FlexBox>

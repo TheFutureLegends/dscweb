@@ -10,7 +10,6 @@ function SmallBlogContainer({
 	date,
 	author,
 	category,
-	to,
 	avatar,
 	...restProps
 }) {
@@ -27,7 +26,6 @@ function SmallBlogContainer({
 				/>
 				<FlexBox justify="space-between" style={{ marginTop: "10px" }}>
 					<Blog.Text>{date}</Blog.Text>
-					<Blog.Link to={to}>Read More</Blog.Link>
 				</FlexBox>
 			</Grid>
 			<Grid item={true} xs={4}>

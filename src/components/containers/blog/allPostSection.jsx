@@ -66,7 +66,6 @@ function MostPopularBlogs() {
 											body={post.description}
 											date={post.createdAt}
 											avatar={post.author.avatar}
-											to="#"
 											style={{
 												...CSS.main().post,
 												margin: "15px 0px",
@@ -89,7 +88,6 @@ function MostPopularBlogs() {
 											date={post.createdAt}
 											src={post.image}
 											avatar={post.author.avatar}
-											to="#"
 											style={CSS.main().post}
 											onClick={() =>
 												history.push(`${ROUTES.POST}/${post.slug}`)
