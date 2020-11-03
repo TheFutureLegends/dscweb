@@ -4,13 +4,19 @@ import { DrawerContext } from "../../../contexts/DrawerContext.js";
 import { logoutUser } from "../../../core/redux/actions/user.action";
 import { connect } from "react-redux";
 // Components
-import { Navbar, FlexBox, IconLinkButton, Tag } from "../../styled-elements";
+import {
+	Navbar,
+	FlexBox,
+	IconLinkButton,
+	Tag,
+	MUIMediaQuery,
+} from "../../styled-elements";
 import DrawerContainer from "./drawer";
 import { useFetch } from "../../hooks/useFetch";
 import { TagSkeleton } from "../skeleton";
 // MUI components
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useMediaQuery, useTheme } from "@material-ui/core";
+import { useTheme } from "@material-ui/core";
 // Constants
 import * as ASSETS from "../../../constants/asset";
 import * as ROUTES from "../../../constants/route";
@@ -69,12 +75,15 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 					<FlexBox>
 						<Navbar.Logo src={ASSETS.LOGO_BUBBLE} />
 						<Navbar.Header>
-							{useMediaQuery("(max-width:1050px)")
-								? "RMIT DSC"
-								: "RMIT DEVELOPER STUDENT CLUB"}
+							<MUIMediaQuery option="(max-width:1050px)">
+								RMIT DSC
+							</MUIMediaQuery>
+							<MUIMediaQuery option="(min-width:1050px)">
+								RMIT DEVELOPER STUDENT CLUB
+							</MUIMediaQuery>
 						</Navbar.Header>
 						<FlexBox.FlexBasis width="30px" />
-						{useMediaQuery(`(min-width:${BREAK.smartphone_sm}px)`) && (
+						<MUIMediaQuery option={`(min-width:${BREAK.smartphone_sm}px)`}>
 							<Navbar.SearchBar>
 								<Navbar.Input
 									onFocus={() => setActive(true)}
@@ -84,10 +93,10 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 								/>
 								<Navbar.Icon icon={faSearch} className="__search" />
 							</Navbar.SearchBar>
-						)}
+						</MUIMediaQuery>
 					</FlexBox>
 					<FlexBox>
-						{useMediaQuery(`(min-width: ${BREAK.tablet_xs + 80}px)`) ? (
+						<MUIMediaQuery option={`(min-width: ${BREAK.tablet_xs + 80}px)`}>
 							<Fragment>
 								{breakPoint <= BREAK.desktop_sm
 									? ROUTES.listOfRoutes.map((item) => (
@@ -103,7 +112,8 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 
 								<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
 							</Fragment>
-						) : (
+						</MUIMediaQuery>
+						<MUIMediaQuery option={`(max-width: ${BREAK.tablet_xs + 80}px)`}>
 							<Fragment>
 								<IconLinkButton
 									src={faBars}
@@ -113,10 +123,13 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 									title={"Menu"}
 								/>
 							</Fragment>
-						)}
+						</MUIMediaQuery>
 					</FlexBox>
 				</FlexBox>
-				{useMediaQuery(theme.breakpoints.up("sm")) && isExpanded ? (
+				<MUIMediaQuery
+					option={theme.breakpoints.up("sm")}
+					external={isExpanded}
+				>
 					<FlexBox justify="unset" className="__category_navbar">
 						{categories.length !== 0 ? (
 							categories.map((category) => (
@@ -126,7 +139,7 @@ function NavbarDesktop({ animatedElement, ...restProps }) {
 							<TagSkeleton />
 						)}
 					</FlexBox>
-				) : null}
+				</MUIMediaQuery>
 			</Navbar>
 			<DrawerContext.Provider value={{ openMenu, setOpenMenu }}>
 				{breakPoint < BREAK.desktop_sm && <DrawerContainer />}

@@ -16,7 +16,7 @@ function Home() {
 		boxShadow: theme.colors.dark.__elevation_low,
 	};
 	const resolution = CSS.blogSection(
-		breakPoint >= BREAK.desktop_md ? "150px" : "20px"
+		breakPoint >= BREAK.desktop_sm ? "150px" : "30px"
 	).main;
 
 	return (
@@ -25,7 +25,13 @@ function Home() {
 			<HOME.TagContainer />
 			<Divider style={dividerStyle} />
 			<div style={resolution}>
-				<h2 style={{ ...CSS.blogSection().header, marginBottom: "20px" }}>
+				<h2
+					style={{
+						...CSS.blogSection().header,
+						marginBottom: "30px",
+						textAlign: "center",
+					}}
+				>
 					Latest Blog Post
 				</h2>
 				<LatestUpdateSection />
