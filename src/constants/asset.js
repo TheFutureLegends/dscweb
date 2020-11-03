@@ -5,6 +5,7 @@ export const LOGO_RMIT_VN_FULL = `${src}logo/rmitvnfull.jpg`;
 
 export const NET_COM_JUMBOTRON = `${src}jumbotron/netcom.jpg`;
 export const RMIT_WALLPAPER = `${src}jumbotron/RMITwallpaper.jpg`;
+export const SPACE_WALLPAPER = `${src}jumbotron/banner.png`;
 
 export const AVATAR = `${src}avatars/avatar.jpg`;
 export const AVATAR_2 = `${src}avatars/avatar_2.jpg`;

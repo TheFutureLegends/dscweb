@@ -23,7 +23,7 @@ function SinglePostPage(...props) {
 
 	return (
 		<React.Fragment>
-			{post ? (
+			{post && (
 				<React.Fragment>
 					<FlexBox direction="column">
 						<FlexBox style={__style__.category_container} justify="flex-start">
@@ -127,8 +127,6 @@ function SinglePostPage(...props) {
 						</FlexBox>
 					</FlexBox>
 				</React.Fragment>
-			) : (
-				<>Skeleton here</>
 			)}
 		</React.Fragment>
 	);
