@@ -25,7 +25,7 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getUserData = (cookieToken) => (dispatch) => {
+export const getAuthUserData = (cookieToken) => (dispatch) => {
 	dispatch({ type: LOADING_USER });
 	axios
 		.get(`${apiDomain}/users/profile`, {

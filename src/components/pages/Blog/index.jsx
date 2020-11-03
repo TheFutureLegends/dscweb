@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as CSS from "./styles/blog.style.js";
 import {
 	Typography,
@@ -11,10 +11,35 @@ import * as BREAK from "../../../constants/breakpoint";
 import MostPopularSection from "../../containers/blog/mostPopularSection";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
 import AllPostSection from "../../containers/blog/allPostSection";
+import {
+	getMostPopularPosts,
+	getLatestPost,
+	getPostsWithPagination,
+} from "../../../core/redux/actions/post.action";
+import { connect } from "react-redux";
 
-function BlogPage() {
+var offset = 1000;
+function BlogPage({ ...props }) {
 	const { breakPoint } = useContext(UtilityContext);
 	const theme = useTheme();
+	const [page, setPage] = useState(1);
+
+	props.getMostPopularPosts(6, false);
+	props.getLatestPost(6, true);
+
+	useEffect(() => {
+		props.getPostsWithPagination(10 * page, 1);
+	}, [props, page]);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.pageYOffset > offset) {
+				offset += 2000;
+				setPage((page) => (page += 1));
+			}
+		};
+		window.addEventListener("scroll", handleScroll);
+	}, []);
 
 	return (
 		<div
@@ -35,9 +60,15 @@ function BlogPage() {
 			<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
 			<LatestUpdateSection />
 			<Divider style={{ ...CSS.main().divider, margin: "30px 0px" }} />
-			<AllPostSection />
+			<AllPostSection page={page} />
 		</div>
 	);
 }
 
-export default BlogPage;
+const mapDispatchToProps = {
+	getMostPopularPosts,
+	getLatestPost,
+	getPostsWithPagination,
+};
+
+export default connect(null, mapDispatchToProps)(BlogPage);

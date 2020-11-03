@@ -10,7 +10,7 @@ import { apiDomain } from "./constants/api";
 import { cookies, cookieName } from "./constants/cookie";
 // -- Redux --
 import { SET_AUTHENTICATED } from "./core/redux/types/user.types";
-import { logoutUser, getUserData } from "./core/redux/actions/user.action";
+import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
 import axios from "axios";
 import store from "./core/redux/store";
 
@@ -19,7 +19,7 @@ const cookie = cookies.get(cookieName);
 if (cookie) {
 	store.dispatch({ type: SET_AUTHENTICATED });
 	axios.defaults.headers.common["Authorization"] = cookie.token;
-	store.dispatch(getUserData(cookie.token));
+	store.dispatch(getAuthUserData(cookie.token));
 } else {
 	store.dispatch(logoutUser());
 }

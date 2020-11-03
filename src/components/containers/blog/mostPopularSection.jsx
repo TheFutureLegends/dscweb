@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useFetch } from "../../hooks/useFetch.js";
+import React from "react";
 import MainSection from "./mainSection";
+import { connect } from "react-redux";
 
-function MostPopularBlogs() {
-	const [posts, setPosts] = useState([]);
-	const res = useFetch("/posts/latest?sortBy=visit&limit=6&asc=false");
-
-	useEffect(() => {
-		if (res.response != null) {
-			setPosts(res.response.data.posts);
-		}
-	}, [res]);
-
-	return <MainSection posts={posts} header="Most Popular Posts" />;
+function MostPopularBlogs({ ...props }) {
+	return <MainSection posts={props.posts} header="Most Popular Posts" />;
 }
 
-export default MostPopularBlogs;
+const mapStateToProps = (state) => ({
+	posts: state.post.mostPopularPosts,
+});
+
+export default connect(mapStateToProps, null)(MostPopularBlogs);
