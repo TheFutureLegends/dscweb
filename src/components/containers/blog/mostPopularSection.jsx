@@ -1,9 +1,9 @@
 import React from "react";
-import MainSection from "./mainSection";
+import MainBlogSection from "../test/mainSection"; //TODO routing to the main comp
 import { connect } from "react-redux";
 
 function MostPopularBlogs({ ...props }) {
-	return <MainSection posts={props.posts} header="Most Popular Posts" />;
+	return <MainBlogSection posts={props.posts} header="Most Popular Posts" />;
 }
 
 const mapStateToProps = (state) => ({

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
 import * as BREAK from "../../../constants/breakpoint";
-import { useMediaQuery, useTheme, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import DefaultBlogContainer from "./default";
 import SmallBlogContainer from "./small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
@@ -14,10 +14,10 @@ import { connect } from "react-redux";
 function CustomPostSkeleton() {
 	return (
 		<FlexBox justify="flex-start">
-			<DefaultPostSkeleton style={{ width: "58%" }} hasImage={false} />
+			<DefaultPostSkeleton style={{ width: "100%" }} hasImage={false} />
 			<Skeleton
 				height="280px"
-				width="200px"
+				width="280px"
 				effect="wave"
 				style={{ marginLeft: "20px" }}
 			/>
@@ -27,16 +27,15 @@ function CustomPostSkeleton() {
 
 //TODO fetch data completely then redirecting
 function PaginationPostsSection({ page, ...props }) {
-	const theme = useTheme();
 	const { history, breakPoint } = useContext(UtilityContext);
 
 	return (
 		<section>
 			<Grid container spacing={2}>
-				<Grid item lg={8} xs={12} md={12}>
+				<Grid item lg={12} xs={12} md={12}>
 					{props.posts.length !== 0
 						? breakPoint >= BREAK.smartphone_md
-							? props.posts.slice(page === 1 ? 6 : 0).map((post) => (
+							? props.posts.slice(5).map((post) => (
 									<FlexBox justify="flex-start">
 										<DefaultBlogContainer
 											key={post._id}
@@ -88,11 +87,6 @@ function PaginationPostsSection({ page, ...props }) {
 						<SmallPostSkeleton />
 					)}
 				</Grid>
-				{useMediaQuery(theme.breakpoints.up("lg")) && (
-					<Grid item={true} lg={4}>
-						Admin Dashboard
-					</Grid>
-				)}
 			</Grid>
 		</section>
 	);
