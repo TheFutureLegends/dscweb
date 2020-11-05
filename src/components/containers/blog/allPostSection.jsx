@@ -24,6 +24,8 @@ function CustomPostSkeleton() {
 		</FlexBox>
 	);
 }
+
+//TODO fetch data completely then redirecting
 function PaginationPostsSection({ page, ...props }) {
 	const theme = useTheme();
 	const { history, breakPoint } = useContext(UtilityContext);

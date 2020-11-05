@@ -19,7 +19,7 @@ const cookie = cookies.get(cookieName);
 if (cookie) {
 	store.dispatch({ type: SET_AUTHENTICATED });
 	axios.defaults.headers.common["Authorization"] = cookie.token;
-	store.dispatch(getAuthUserData(cookie.token));
+	//FIXME store.dispatch(getAuthUserData(cookie.token));
 } else {
 	store.dispatch(logoutUser());
 }

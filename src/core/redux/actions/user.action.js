@@ -13,6 +13,7 @@ export const loginUser = (userData, history) => async (dispatch) => {
 	try {
 		let res = await axios.post(`${apiDomain}/auth/signin`, userData);
 		setAuthorizationHeader(res.data.accessToken);
+		dispatch({ type: SET_USER, payload: res.data });
 		dispatch({ type: STOP_LOADING_UI });
 		history.push("/");
 	} catch (error) {
@@ -25,21 +26,22 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getAuthUserData = (cookieToken) => (dispatch) => {
+export const getAuthUserData = (cookieToken) => async (dispatch) => {
 	dispatch({ type: LOADING_USER });
-	axios
-		.get(`${apiDomain}/users/profile`, {
+	console.log(cookieToken);
+	try {
+		let res = axios.get(`${apiDomain}/users/profile`, {
 			headers: {
 				"x-access-token": cookieToken,
 			},
-		})
-		.then((res) => {
-			dispatch({
-				type: SET_USER,
-				payload: res.data,
-			});
-		})
-		.catch((err) => console.log(err));
+		});
+		dispatch({
+			type: SET_USER,
+			payload: res.data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 // export const getAuthUserData = (method) => async (dispatch) => {

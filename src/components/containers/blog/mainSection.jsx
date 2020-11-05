@@ -20,7 +20,14 @@ function MostPopularBlogs({ header, posts }) {
 				</Typography>
 			)}
 			<Grid container spacing={3}>
-				<Grid item={true} xs={12} sm={6} md={4} lg={4}>
+				<Grid
+					item={true}
+					xs={12}
+					sm={6}
+					md={4}
+					lg={4}
+					key="default_container_1"
+				>
 					{posts[0] ? (
 						<DefaultBlogContainer
 							key={posts[0]._id}
@@ -39,7 +46,7 @@ function MostPopularBlogs({ header, posts }) {
 					)}
 				</Grid>
 				{useMediaQuery(theme.breakpoints.up("md")) && (
-					<Grid item={true} md={4}>
+					<Grid item={true} md={4} key="default_container_2">
 						{posts[1] ? (
 							<DefaultBlogContainer
 								key={posts[1]._id}

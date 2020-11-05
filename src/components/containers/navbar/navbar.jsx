@@ -22,7 +22,7 @@ import * as ASSETS from "../../../constants/asset";
 import * as ROUTES from "../../../constants/route";
 import * as BREAK from "../../../constants/breakpoint";
 
-function NavbarDesktop({ animatedElement, ...restProps }) {
+function NavbarContainer({ animatedElement, ...restProps }) {
 	const [active, setActive] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const [navStatus, setNavStatus] = useState({
@@ -156,4 +156,4 @@ const mapDispatchToProps = {
 	logoutUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarDesktop);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);
