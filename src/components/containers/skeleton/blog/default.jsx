@@ -5,14 +5,22 @@ import { Skeleton } from "@material-ui/lab";
 function DefaultPostSkeleton({ hasImage = true, ...restProps }) {
 	return (
 		<Blog {...restProps}>
-			<Blog.MetaSkeleton
-				style={{ marginBottom: "10px" }}
-				src={
-					<Skeleton animation="wave" variant="rect" width={40} height={40} />
-				}
-			>
-				<Skeleton animation="wave" variant="text" width={"100%"} height={20} />
-			</Blog.MetaSkeleton>
+			<div style={{ padding: "10px" }}>
+				<Blog.MetaSkeleton
+					style={{ marginBottom: "10px" }}
+					src={
+						<Skeleton animation="wave" variant="rect" width={40} height={40} />
+					}
+				>
+					<Skeleton
+						animation="wave"
+						variant="text"
+						width={"100%"}
+						height={20}
+					/>
+				</Blog.MetaSkeleton>
+			</div>
+
 			{hasImage === true && (
 				<Blog.PictureWrapper>
 					<Skeleton

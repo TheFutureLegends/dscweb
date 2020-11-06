@@ -18,7 +18,7 @@ import * as ASSETS from "../../../constants/asset";
 import * as ROUTES from "../../../constants/route";
 import * as BREAK from "../../../constants/breakpoint";
 
-function NavbarContainer({ ...restProps }) {
+function NavbarContainer({ ...props }) {
 	const [active, setActive] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const { breakPoint } = useContext(UtilityContext);
@@ -26,7 +26,7 @@ function NavbarContainer({ ...restProps }) {
 	return (
 		<Fragment>
 			<Navbar
-				{...restProps}
+				{...props}
 				height={"75px"}
 				direction={"column"}
 				style={{ position: "sticky" }}
@@ -67,8 +67,11 @@ function NavbarContainer({ ...restProps }) {
 									: ROUTES.listOfRoutes.map((item) => (
 											<Navbar.Link to={item.route}>{item.text}</Navbar.Link>
 									  ))}
-
-								<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
+								{props.user.authenticated === true ? (
+									props.user.username
+								) : (
+									<Navbar.Link to={ROUTES.LOG_IN}>Log In</Navbar.Link>
+								)}
 							</Fragment>
 						</MUIMediaQuery>
 						<MUIMediaQuery option={`(max-width: ${BREAK.tablet_xs + 80}px)`}>

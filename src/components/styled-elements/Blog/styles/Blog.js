@@ -65,7 +65,6 @@ export const SubHeader = styled(Typography)`
 export const SmallContainer = styled(Grid)`
 	&& {
 		cursor: pointer;
-		margin-bottom: 10px;
 		background-color: ${({ theme: { context } }) => context.dark};
 		border-radius: 7px;
 		&:hover {

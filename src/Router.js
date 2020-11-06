@@ -10,8 +10,8 @@ import { cookies, cookieName } from "./constants/cookie";
 import { MUIMediaQuery } from "./components/styled-elements";
 import { useTheme } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
+import Dashboard from "./components/containers/dashboard";
 // -- Redux --
-import { SET_AUTHENTICATED } from "./core/redux/types/user.types";
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
 import axios from "axios";
 import store from "./core/redux/store";
@@ -19,9 +19,8 @@ import store from "./core/redux/store";
 const cookie = cookies.get(cookieName);
 
 if (cookie) {
-	store.dispatch({ type: SET_AUTHENTICATED });
-	axios.defaults.headers.common["Authorization"] = cookie.token;
-	//FIXME store.dispatch(getAuthUserData(cookie.token));
+	axios.defaults.headers["x-access-token"] = cookie.token;
+	store.dispatch(getAuthUserData(cookie.token));
 } else {
 	store.dispatch(logoutUser());
 }
@@ -36,10 +35,16 @@ function Router() {
 			value={{ history, breakPoint, location, apiDomain }}
 		>
 			<NavbarContainer />
-			<Grid container spacing={1} style={{ margin: "0", width: "100%" }}>
-				<MUIMediaQuery option={theme.breakpoints.up("md")}>
+			<Grid
+				container
+				spacing={1}
+				style={{ margin: "0 auto", maxWidth: "3000px" }}
+			>
+				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
 					<Grid item lg={2}>
-						<div style={{ position: "fixed" }}>Admin</div>
+						<div style={{ position: "fixed" }}>
+							<Dashboard />
+						</div>
 					</Grid>
 				</MUIMediaQuery>
 				<Grid item lg={8}>
@@ -67,9 +72,11 @@ function Router() {
 						/>
 					</Switch>
 				</Grid>
-				<Grid item lg={2} style={{ paddingRight: "0" }}>
-					<div style={{ position: "fixed" }}>Admin</div>
-				</Grid>
+				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
+					<Grid item lg={2}>
+						<div style={{ position: "fixed" }}>Admin</div>
+					</Grid>
+				</MUIMediaQuery>
 			</Grid>
 			<FooterContainer />
 		</UtilityContext.Provider>

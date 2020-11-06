@@ -1,6 +1,7 @@
 import {
 	SET_USER,
 	SET_UNAUTHENTICATED,
+	SET_AUTHENTICATED,
 	LOADING_USER,
 } from "../types/user.types";
 import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
@@ -28,13 +29,9 @@ export const logoutUser = () => (dispatch) => {
 
 export const getAuthUserData = (cookieToken) => async (dispatch) => {
 	dispatch({ type: LOADING_USER });
-	console.log(cookieToken);
 	try {
-		let res = axios.get(`${apiDomain}/users/profile`, {
-			headers: {
-				"x-access-token": cookieToken,
-			},
-		});
+		let res = await axios.get(`${apiDomain}/users/profile`);
+		if (res) dispatch({ type: SET_AUTHENTICATED });
 		dispatch({
 			type: SET_USER,
 			payload: res.data,
