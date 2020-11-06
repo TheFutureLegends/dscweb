@@ -3,7 +3,13 @@ import MainBlogSection from "../test/mainSection"; //TODO routing to the main co
 import { connect } from "react-redux";
 
 function MostPopularBlogs({ ...props }) {
-	return <MainBlogSection posts={props.posts} header="Most Popular Posts" />;
+	return (
+		<MainBlogSection
+			posts={props.posts}
+			header="Most Popular Posts"
+			{...props}
+		/>
+	);
 }
 
 const mapStateToProps = (state) => ({

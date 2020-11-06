@@ -1,19 +1,24 @@
 export const theme = {
 	context: {
 		light: "white",
-		dark: "#2F3136",
+		dark: "#242526",
 		light_gray: "#36393F",
-		dark_gray: "#202225",
+		dark_gray: "#242526",
 	},
 	colors: {
 		primary: "#F79444",
 		secondary: "#4E81C2",
 		accent: "#9A459A",
 		light: {
-			__light_gray: "rgb(211, 211, 211)",
+			__light_gray: "#242526",
 			__dark_gray: "rgb(163, 163, 163)",
 		},
 		dark: {
+			fb: {
+				__fb_dark_theme: "#18191A",
+				__fb_primary_text: "#E4E6EB",
+				__fb_secondary_text: "#B0B3B8",
+			},
 			__background_interactive_gray: "#202225",
 			__text_muted: "#72767d",
 			__elevation_low:

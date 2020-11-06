@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext, useEffect } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import { DrawerContext } from "../../../contexts/DrawerContext.js";
 import { logoutUser } from "../../../core/redux/actions/user.action";
@@ -8,67 +8,27 @@ import {
 	Navbar,
 	FlexBox,
 	IconLinkButton,
-	Tag,
 	MUIMediaQuery,
 } from "../../styled-elements";
 import DrawerContainer from "./drawer";
-import { useFetch } from "../../hooks/useFetch";
-import { TagSkeleton } from "../skeleton";
 // MUI components
 import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "@material-ui/core";
 // Constants
 import * as ASSETS from "../../../constants/asset";
 import * as ROUTES from "../../../constants/route";
 import * as BREAK from "../../../constants/breakpoint";
 
-function NavbarContainer({ animatedElement, ...restProps }) {
+function NavbarContainer({ ...restProps }) {
 	const [active, setActive] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
-	const [navStatus, setNavStatus] = useState({
-		show: true,
-		scrollPos: 0,
-	});
-	const theme = useTheme();
-	const [isExpanded, setIsExpanded] = useState(false);
-	const { breakPoint, location } = useContext(UtilityContext);
-
-	const [categories, setCategories] = useState([]);
-	const res = useFetch("/categories?limit=15&page=1");
-
-	useEffect(() => {
-		if (res.response != null) {
-			setCategories(res.response.data.categories);
-		}
-	}, [res]);
-
-	useEffect(() => {
-		setIsExpanded(location.pathname === ROUTES.BLOG);
-		const handleScroll = () => {
-			const BoundingClientRectTop = document.body.getBoundingClientRect().top;
-			if (BoundingClientRectTop < -500) {
-				setNavStatus({
-					scrollPos: BoundingClientRectTop,
-					show: BoundingClientRectTop > navStatus.scrollPos,
-				});
-			}
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, [location.pathname, navStatus.scrollPos]);
+	const { breakPoint } = useContext(UtilityContext);
 
 	return (
 		<Fragment>
 			<Navbar
 				{...restProps}
-				height={breakPoint >= 600 ? (isExpanded ? "100px" : "75px") : "75px"}
-				variants={animatedElement.Navbar(
-					breakPoint >= 600 ? (isExpanded ? 55 : 75) : 75
-				)}
+				height={"75px"}
 				direction={"column"}
-				animate={navStatus.show ? "hidden" : "show"}
 				style={{ position: "sticky" }}
 			>
 				<FlexBox justify="space-between" style={{ width: "100%" }}>
@@ -83,17 +43,15 @@ function NavbarContainer({ animatedElement, ...restProps }) {
 							</MUIMediaQuery>
 						</Navbar.Header>
 						<FlexBox.FlexBasis width="30px" />
-						<MUIMediaQuery option={`(min-width:${BREAK.smartphone_sm}px)`}>
-							<Navbar.SearchBar>
-								<Navbar.Input
-									onFocus={() => setActive(true)}
-									onBlur={() => setActive(false)}
-									active={breakPoint > BREAK.tablet_sm ? active : false}
-									placeholder="Search…"
-								/>
-								<Navbar.Icon icon={faSearch} className="__search" />
-							</Navbar.SearchBar>
-						</MUIMediaQuery>
+						<Navbar.SearchBar>
+							<Navbar.Input
+								onFocus={() => setActive(true)}
+								onBlur={() => setActive(false)}
+								active={breakPoint > BREAK.smartphone_md ? active : false}
+								placeholder="Search…"
+							/>
+							<Navbar.Icon icon={faSearch} className="__search" />
+						</Navbar.SearchBar>
 					</FlexBox>
 					<FlexBox>
 						<MUIMediaQuery option={`(min-width: ${BREAK.tablet_xs + 80}px)`}>
@@ -126,20 +84,6 @@ function NavbarContainer({ animatedElement, ...restProps }) {
 						</MUIMediaQuery>
 					</FlexBox>
 				</FlexBox>
-				<MUIMediaQuery
-					option={theme.breakpoints.up("sm")}
-					external={isExpanded}
-				>
-					<FlexBox justify="unset" className="__category_navbar">
-						{categories.length !== 0 ? (
-							categories.map((category) => (
-								<Tag.Item key={category._id}>{category.title}</Tag.Item>
-							))
-						) : (
-							<TagSkeleton />
-						)}
-					</FlexBox>
-				</MUIMediaQuery>
 			</Navbar>
 			<DrawerContext.Provider value={{ openMenu, setOpenMenu }}>
 				{breakPoint < BREAK.desktop_sm && <DrawerContainer />}

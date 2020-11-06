@@ -3,6 +3,7 @@ import { theme } from "../../../../global-theme";
 export const category_container = {
 	width: "100%",
 	height: "65px",
+	marginBottom: "30px",
 	boxShadow: theme.colors.dark.__elevation_medium,
 	padding: "0px 10%",
 	backgroundColor: theme.colors.secondary,
@@ -34,7 +35,6 @@ export const content_container = (width) => {
 	return {
 		minHeight: "100vh",
 		maxWidth: width,
-		padding: "40px 0px",
 		title: {
 			fontFamily: "Source Serif Pro, serif",
 			lineHeight: "60px",

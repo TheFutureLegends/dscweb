@@ -5,7 +5,6 @@ import {
 	Divider,
 	useTheme,
 	useMediaQuery,
-	Grid,
 } from "@material-ui/core";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import * as BREAK from "../../../constants/breakpoint";
@@ -43,36 +42,26 @@ function BlogPage({ ...props }) {
 	}, []);
 
 	return (
-		<Grid container spacing={3}>
-			<Grid item={true} xs={2}>
-				Hello World
-			</Grid>
-			<Grid item={true} xs={8} key="feeds-section">
-				<div
-					style={{
-						...CSS.main(),
-						padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "20px"}`,
-					}}
-				>
-					{useMediaQuery(theme.breakpoints.up("sm")) && (
-						<React.Fragment>
-							<Typography variant="h5" style={CSS.main().header}>
-								Good Evening, Tin Quan Chung
-							</Typography>
-							<Divider style={CSS.main().divider} />
-						</React.Fragment>
-					)}
-					<MostPopularSection />
-					<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
-					<LatestUpdateSection />
-					<Divider style={{ ...CSS.main().divider, margin: "30px 0px" }} />
-					<AllPostSection page={page} />
-				</div>
-			</Grid>
-			<Grid item={true} xs={2}>
-				Hello World
-			</Grid>
-		</Grid>
+		<div
+			style={{
+				...CSS.main(),
+				padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "20px"}`,
+			}}
+		>
+			{useMediaQuery(theme.breakpoints.up("sm")) && (
+				<React.Fragment>
+					<Typography variant="h5" style={CSS.main().header}>
+						Good Evening, Tin Quan Chung
+					</Typography>
+					<Divider style={CSS.main().divider} />
+				</React.Fragment>
+			)}
+			<MostPopularSection />
+			<Divider style={{ ...CSS.main().divider, marginTop: "30px" }} />
+			<LatestUpdateSection />
+			<Divider style={{ ...CSS.main().divider, margin: "30px 0px" }} />
+			<AllPostSection page={page} />
+		</div>
 	);
 }
 

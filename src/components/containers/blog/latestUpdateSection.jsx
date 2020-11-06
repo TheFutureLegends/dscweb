@@ -3,7 +3,9 @@ import MainSection from "../test/mainSection"; //TODO routing to the main comp
 import { connect } from "react-redux";
 
 function LatestUpdateSection({ ...props }) {
-	return <MainSection posts={props.posts} header="Latest Update Posts" />;
+	return (
+		<MainSection posts={props.posts} header="Latest Update Posts" {...props} />
+	);
 }
 
 const mapStateToProps = (state) => ({

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
-import { useTheme, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import DefaultBlogContainer from "../blog/default";
 import SmallBlogContainer from "../blog/small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
@@ -8,17 +8,17 @@ import { FlexBox } from "../../styled-elements";
 import { DefaultPostSkeleton, SmallPostSkeleton } from "../skeleton";
 import * as ROUTES from "../../../constants/route";
 
-function MainBlogSection__({ header, posts }) {
+function MainBlogSection__({ header, posts, ...props }) {
 	const { history, location } = useContext(UtilityContext);
 
 	return (
-		<section>
+		<section {...props}>
 			{location.pathname !== "/" && (
 				<Typography variant="h6" style={CSS.main().title}>
 					{header}
 				</Typography>
 			)}
-			<Grid container spacing={3}>
+			<Grid container spacing={2}>
 				<Grid
 					item={true}
 					xs={12}
@@ -48,7 +48,7 @@ function MainBlogSection__({ header, posts }) {
 					<FlexBox
 						direction="column"
 						justify="space-between"
-						style={{ height: "100%" }}
+						style={{ height: "100%", width: "100%" }}
 					>
 						{posts[0]
 							? posts

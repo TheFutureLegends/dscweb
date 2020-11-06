@@ -14,7 +14,13 @@ function SmallBlogContainer({
 	...restProps
 }) {
 	return (
-		<Blog {...restProps} container spacing={2} size="small">
+		<Blog
+			{...restProps}
+			container
+			spacing={2}
+			size="small"
+			style={{ margin: "10px" }}
+		>
 			<Grid item={true} xs={8}>
 				<Blog.Meta src={avatar} author={author} category={category} />
 				<Blog.Header variant="h2">{title}</Blog.Header>

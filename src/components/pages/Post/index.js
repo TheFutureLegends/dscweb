@@ -26,37 +26,40 @@ function SinglePostPage(...props) {
 			{post && (
 				<React.Fragment>
 					<FlexBox direction="column">
-						<FlexBox style={__style__.category_container} justify="flex-start">
-							<FlexBox
-								justify="flex-start"
-								style={__style__.category_container.inner}
-							>
-								<div style={__style__.category_container.header}>
-									{post.category.title}
-								</div>
-								<MUIMediaQuery option={theme.breakpoints.up("md")}>
-									<FlexBox.FlexBasis width={"50px"} />
-									<ReactRouterLink
-										style={__style__.category_container.subHeader}
-									>
-										See All Posts
-									</ReactRouterLink>
-									<FlexBox.FlexBasis width={"25px"} />
-									<Divider style={__style__.separator} />
-									<FlexBox.FlexBasis width={"25px"} />
-									<ReactRouterLink
-										style={__style__.category_container.subHeader}
-									>
-										Study Guide
-									</ReactRouterLink>
-								</MUIMediaQuery>
-							</FlexBox>
-						</FlexBox>
 						<FlexBox
 							justify="flex-start"
 							direction="column"
 							style={__style__.content_container("800px")}
 						>
+							<FlexBox
+								style={__style__.category_container}
+								justify="flex-start"
+							>
+								<FlexBox
+									justify="flex-start"
+									style={__style__.category_container.inner}
+								>
+									<div style={__style__.category_container.header}>
+										{post.category.title}
+									</div>
+									<MUIMediaQuery option={theme.breakpoints.up("md")}>
+										<FlexBox.FlexBasis width={"50px"} />
+										<ReactRouterLink
+											style={__style__.category_container.subHeader}
+										>
+											See All Posts
+										</ReactRouterLink>
+										<FlexBox.FlexBasis width={"25px"} />
+										<Divider style={__style__.separator} />
+										<FlexBox.FlexBasis width={"25px"} />
+										<ReactRouterLink
+											style={__style__.category_container.subHeader}
+										>
+											Study Guide
+										</ReactRouterLink>
+									</MUIMediaQuery>
+								</FlexBox>
+							</FlexBox>
 							<Typography
 								variant="h4"
 								style={__style__.content_container().title}
