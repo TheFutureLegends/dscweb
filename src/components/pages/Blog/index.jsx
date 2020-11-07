@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as CSS from "./styles/blog.style.js";
 import { Typography, Divider, useTheme } from "@material-ui/core";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
-import * as BREAK from "../../../constants/breakpoint";
 import MostPopularSection from "../../containers/blog/mostPopularSection";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
 import AllPostSection from "../../containers/blog/allPostSection";
@@ -16,7 +14,6 @@ import { connect } from "react-redux";
 
 var offset = 1000;
 function BlogPage({ ...props }) {
-	const { breakPoint } = useContext(UtilityContext);
 	const theme = useTheme();
 	const [page, setPage] = useState(1);
 
@@ -41,7 +38,7 @@ function BlogPage({ ...props }) {
 		<div
 			style={{
 				...CSS.main(),
-				padding: `30px ${breakPoint >= BREAK.tablet_md ? "150px" : "20px"}`,
+				padding: `30px 20px`,
 			}}
 		>
 			<MUIMediaQuery option={theme.breakpoints.up("sm")}>

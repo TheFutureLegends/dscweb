@@ -20,3 +20,9 @@ export const BLOG_PICTURE_6 = `${src}blog/test_6.png`;
 export const EVENT_PICTURE_1 = `${src}events/event_test_1.jpg`;
 export const EVENT_PICTURE_2 = `${src}events/event_test_2.png`;
 export const EVENT_PICTURE_3 = `${src}events/event_test_3.jpg`;
+
+export const BLOG_ICON = `${src}icons/content-writing.svg`;
+export const EVENT_ICON = `${src}icons/balloons.svg`;
+export const WEAPON_MASTER_ICON = `${src}icons/rifle.svg`;
+export const SPACESHIP_SHOOTER_ICON = `${src}icons/spacecraft.svg`;
+export const BLOCK_BREAKER_ICON = `${src}icons/blocks.svg`;

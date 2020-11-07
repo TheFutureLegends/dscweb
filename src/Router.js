@@ -11,6 +11,7 @@ import { MUIMediaQuery } from "./components/styled-elements";
 import { useTheme } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import Dashboard from "./components/containers/dashboard";
+import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
 // -- Redux --
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
 import axios from "axios";
@@ -38,16 +39,18 @@ function Router() {
 			<Grid
 				container
 				spacing={1}
-				style={{ margin: "0 auto", maxWidth: "3000px" }}
+				style={{ margin: "0 auto", maxWidth: "3000px", width: "100%" }}
 			>
 				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
-					<Grid item lg={2}>
-						<div style={{ position: "fixed" }}>
+					<Grid item lg={3}>
+						<div
+							style={{ maxWidth: "330px", width: "100%", position: "fixed" }}
+						>
 							<Dashboard />
 						</div>
 					</Grid>
 				</MUIMediaQuery>
-				<Grid item lg={8}>
+				<Grid item lg={6}>
 					<Switch location={location} key={location.pathname}>
 						{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 						<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
@@ -73,8 +76,10 @@ function Router() {
 					</Switch>
 				</Grid>
 				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
-					<Grid item lg={2}>
-						<div style={{ position: "fixed" }}>Admin</div>
+					<Grid item lg={3}>
+						<RequiredRoute route={ROUTES.BLOG}>
+							<div style={{ position: "fixed" }}>Admin</div>
+						</RequiredRoute>
 					</Grid>
 				</MUIMediaQuery>
 			</Grid>

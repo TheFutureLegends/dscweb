@@ -12,7 +12,7 @@ function MainBlogSection__({ header, posts, ...props }) {
 	const { history, location } = useContext(UtilityContext);
 
 	return (
-		<section {...props}>
+		<section>
 			{location.pathname !== "/" && (
 				<Typography variant="h6" style={CSS.main().title}>
 					{header}

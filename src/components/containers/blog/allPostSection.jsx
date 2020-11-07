@@ -28,7 +28,7 @@ function PaginationPostsSection({ page, ...props }) {
 		<section>
 			<Grid container spacing={2}>
 				{props.posts.length !== 0 ? (
-					props.posts.map((post) => (
+					props.posts.slice(4).map((post) => (
 						<Grid item={true} xs={12} lg={6}>
 							<DefaultBlogContainer
 								key={post._id}

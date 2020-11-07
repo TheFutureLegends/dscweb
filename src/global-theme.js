@@ -15,6 +15,7 @@ export const theme = {
 		},
 		dark: {
 			fb: {
+				__fb_light_gray: "#303031",
 				__fb_dark_theme: "#18191A",
 				__fb_primary_text: "#E4E6EB",
 				__fb_secondary_text: "#B0B3B8",
