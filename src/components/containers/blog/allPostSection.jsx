@@ -53,7 +53,7 @@ function PaginationPostsSection({ ...props }) {
 						</Grid>
 					))
 				) : (
-					<CustomPostSkeleton />
+					<CustomPostSkeleton style={{ marginBottom: "20px" }} />
 				)}
 			</Grid>
 			<CustomPostSkeleton />

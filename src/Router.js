@@ -3,13 +3,13 @@ import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import useBreakPoint from "./components/logics/useBreakPoint";
 import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
+import * as BREAK from "./constants/breakpoint";
 import { NavbarContainer } from "./components/containers";
 import { UtilityContext } from "./contexts/UtilityContext";
 import { apiDomain } from "./constants/api";
 import { cookies, cookieName } from "./constants/cookie";
 import { MUIMediaQuery } from "./components/styled-elements";
 import { useTheme } from "@material-ui/core";
-import { Container } from "@material-ui/core";
 import Dashboard from "./components/containers/dashboard";
 import BlogDashboard from "./components/containers/blogDashboard";
 import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
@@ -28,38 +28,45 @@ if (cookie) {
 	store.dispatch(logoutUser());
 }
 
-const style = {
-	divider: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
-};
-
 function Router() {
 	const location = useLocation();
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
 	const theme = useTheme();
+	const style = {
+		centerDiv: {
+			marginLeft: breakPoint >= BREAK.tablet_sm ? "360px" : "20px",
+			marginRight: breakPoint >= BREAK.desktop_sm ? "360px" : "20px",
+		},
+		divider: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
+		leftSidebar: { maxWidth: "330px", width: "100%", position: "fixed" },
+		rightSidebar: {
+			overflowY: "auto",
+			height: "calc(100% - 80px)",
+			maxWidth: "330px",
+			width: "100%",
+			right: "0px",
+			position: "fixed",
+		},
+	};
 	return (
 		<UtilityContext.Provider
 			value={{ history, breakPoint, location, apiDomain }}
 		>
 			<NavbarContainer />
 			<MUIMediaQuery option={theme.breakpoints.up("md")}>
-				<div style={{ maxWidth: "330px", width: "100%", position: "fixed" }}>
+				<div style={style.leftSidebar}>
 					<Dashboard />
 				</div>
 			</MUIMediaQuery>
-			<MUIMediaQuery option={theme.breakpoints.up("md")}>
-				<div
-					style={{
-						maxWidth: "330px",
-						width: "100%",
-						right: "0px",
-						position: "fixed",
-					}}
-				>
-					<BlogDashboard />
-				</div>
-			</MUIMediaQuery>
-			<div style={{ marginLeft: "360px", marginRight: " 360px" }}>
+			<RequiredRoute route={ROUTES.BLOG}>
+				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
+					<div style={style.rightSidebar}>
+						<BlogDashboard />
+					</div>
+				</MUIMediaQuery>
+			</RequiredRoute>
+			<div style={style.centerDiv}>
 				<Switch location={location} key={location.pathname}>
 					{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 					<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />

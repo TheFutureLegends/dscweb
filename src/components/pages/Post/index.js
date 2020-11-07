@@ -90,7 +90,6 @@ function SinglePostPage(...props) {
 									<CountUp end={post.visit} separator="," duration={3} />
 								</div>
 							</FlexBox>
-
 							<Lazyload throttle={1000} height={500}>
 								<img
 									style={__style__.content_container().image}
