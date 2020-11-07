@@ -3,7 +3,7 @@ import { FlexBox } from "../../index";
 import { Divider as MUIDivider } from "@material-ui/core";
 
 export const Container = styled.div`
-	padding: 20px 10px 0px;
+	padding: 10px 10px 0px;
 	height: 100%;
 	width: 100%;
 `;
@@ -50,7 +50,7 @@ export const Header = styled.h4`
 
 export const Divider = styled(MUIDivider)`
 	&& {
-		height: 1px;
+		height: 2px;
 		width: 100%;
 		background-color: ${({ theme: { colors } }) =>
 			colors.dark.fb.__fb_light_gray};

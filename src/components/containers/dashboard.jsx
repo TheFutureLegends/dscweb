@@ -1,8 +1,9 @@
 import React from "react";
 import { Sidebar } from "../styled-elements";
-import * as ASSETS from "../../constants/asset";
 import { listOfGames } from "../../constants/games";
 import faker from "faker";
+import { listOfRoutes } from "../../constants/route";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 function ItemWithImage({ src, className, header, ...restProps }) {
 	return (
@@ -29,11 +30,16 @@ function Dashboard() {
 					className="__avatar"
 					header="Tin Quan Chung"
 				/>
-				<ItemWithImage
-					src={ASSETS.BLOG_ICON}
-					className="__icon"
-					header="Blog"
-				/>
+				{listOfRoutes.slice(1).map((route) => (
+					<ReactRouterLink to={route.route} style={style.__a}>
+						<ItemWithImage
+							src={route.svg}
+							className="__icon"
+							header={route.text}
+						/>
+					</ReactRouterLink>
+				))}
+
 				<Sidebar.Divider />
 				{listOfGames.map((game) => (
 					<a href={game.href} style={style.__a}>

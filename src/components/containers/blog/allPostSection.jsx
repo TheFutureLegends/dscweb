@@ -21,7 +21,7 @@ function CustomPostSkeleton() {
 }
 
 //TODO fetch data completely then redirecting
-function PaginationPostsSection({ page, ...props }) {
+function PaginationPostsSection({ ...props }) {
 	const { history } = useContext(UtilityContext);
 
 	return (
