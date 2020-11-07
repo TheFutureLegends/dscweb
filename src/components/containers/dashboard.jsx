@@ -2,7 +2,6 @@ import React from "react";
 import { Sidebar } from "../styled-elements";
 import * as ASSETS from "../../constants/asset";
 import { listOfGames } from "../../constants/games";
-import { Divider } from "@material-ui/core";
 import faker from "faker";
 
 function ItemWithImage({ src, className, header, ...restProps }) {

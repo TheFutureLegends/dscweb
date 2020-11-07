@@ -12,6 +12,7 @@ import { useTheme } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import Dashboard from "./components/containers/dashboard";
 import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
+import { theme as StyledTheme } from "./global-theme";
 // -- Redux --
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
 import axios from "axios";
@@ -25,6 +26,12 @@ if (cookie) {
 } else {
 	store.dispatch(logoutUser());
 }
+
+const style = {
+	divider: {
+		borderColor: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
+	},
+};
 
 function Router() {
 	const location = useLocation();
@@ -42,7 +49,13 @@ function Router() {
 				style={{ margin: "0 auto", maxWidth: "3000px", width: "100%" }}
 			>
 				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
-					<Grid item lg={3}>
+					<Grid
+						item
+						lg={3}
+						style={{
+							borderRight: style.divider.borderColor,
+						}}
+					>
 						<div
 							style={{ maxWidth: "330px", width: "100%", position: "fixed" }}
 						>
@@ -76,7 +89,13 @@ function Router() {
 					</Switch>
 				</Grid>
 				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
-					<Grid item lg={3}>
+					<Grid
+						item
+						lg={3}
+						style={{
+							borderLeft: style.divider.borderColor,
+						}}
+					>
 						<RequiredRoute route={ROUTES.BLOG}>
 							<div style={{ position: "fixed" }}>Admin</div>
 						</RequiredRoute>
