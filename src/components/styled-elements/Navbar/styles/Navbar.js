@@ -10,11 +10,11 @@ export const Container = motion.custom(styled(AppBar)`
 		user-select: none;
 	}
 	&& {
-		box-shadow: ${({ theme: { colors } }) => colors.dark.__elevation_high};
+		box-shadow: unset;
 		height: ${({ height }) => height};
 		padding: 20px 20px;
-		top: -6px;
-		background-color: ${({ theme: { context } }) => context.dark_gray};
+		${"" /* top: -6px; */}
+		background-color: ${({ theme: { context } }) => context.dark};
 	}
 `);
 
@@ -39,7 +39,7 @@ export const SearchBar = styled(FlexBox)`
 	padding: 1px 10px;
 	font-size: 14px;
 	border-radius: 4px;
-	background-color: ${({ theme: { context } }) => context.dark};
+	background-color: #3a3b3c;
 `;
 
 export const Input = styled(InputBase)`

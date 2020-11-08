@@ -81,7 +81,7 @@ function DrawerContainer({ ...restProps }) {
 								style={drawerStyle.item().icon}
 							/>
 						</ListItemIcon>
-						<ListItemText primary={"Sign In"} />
+						<ListItemText primary={"Log In"} />
 					</ListItem>
 				</List>
 			</div>

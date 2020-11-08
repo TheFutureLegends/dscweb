@@ -15,6 +15,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	background-color: ${theme.colors.dark.fb.__fb_dark_theme}
 
 }
 *{

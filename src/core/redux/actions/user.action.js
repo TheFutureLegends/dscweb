@@ -1,6 +1,7 @@
 import {
 	SET_USER,
 	SET_UNAUTHENTICATED,
+	SET_AUTHENTICATED,
 	LOADING_USER,
 } from "../types/user.types";
 import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
@@ -13,6 +14,7 @@ export const loginUser = (userData, history) => async (dispatch) => {
 	try {
 		let res = await axios.post(`${apiDomain}/auth/signin`, userData);
 		setAuthorizationHeader(res.data.accessToken);
+		dispatch({ type: SET_USER, payload: res.data });
 		dispatch({ type: STOP_LOADING_UI });
 		history.push("/");
 	} catch (error) {
@@ -25,21 +27,18 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getAuthUserData = (cookieToken) => (dispatch) => {
+export const getAuthUserData = (cookieToken) => async (dispatch) => {
 	dispatch({ type: LOADING_USER });
-	axios
-		.get(`${apiDomain}/users/profile`, {
-			headers: {
-				"x-access-token": cookieToken,
-			},
-		})
-		.then((res) => {
-			dispatch({
-				type: SET_USER,
-				payload: res.data,
-			});
-		})
-		.catch((err) => console.log(err));
+	try {
+		let res = await axios.get(`${apiDomain}/users/profile`);
+		if (res) dispatch({ type: SET_AUTHENTICATED });
+		dispatch({
+			type: SET_USER,
+			payload: res.data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 // export const getAuthUserData = (method) => async (dispatch) => {

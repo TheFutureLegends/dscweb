@@ -7,6 +7,7 @@ export { default as Blog } from "./Blog";
 export { default as Footer } from "./Footer";
 export { default as Form } from "./Form";
 export { default as MUIMediaQuery } from "./MediaQuery";
+export { default as Sidebar } from "./Sidebar";
 // Custom
 export { default as IconLinkButton } from "./custom/IconLinkButton";
 export { default as AuthorItemWithPosts } from "./custom/AuthorItemWithPosts";

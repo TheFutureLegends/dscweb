@@ -7,8 +7,13 @@ import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import * as HOME from "../../containers/home";
 import * as BREAK from "../../../constants/breakpoint";
 import * as CSS from "./styles/home.style";
+import { connect } from "react-redux";
+import { getLatestPost } from "../../../core/redux/actions/post.action";
 
-function Home() {
+function Home({ ...props }) {
+	console.log(props);
+	props.getLatestPost(6, true);
+
 	const { breakPoint } = useContext(UtilityContext);
 
 	const dividerStyle = {
@@ -42,5 +47,8 @@ function Home() {
 		</Fragment>
 	);
 }
+const mapDispatchToProps = {
+	getLatestPost,
+};
 
-export default Home;
+export default connect(null, mapDispatchToProps)(Home);

@@ -48,6 +48,7 @@ export const eventSection = (src) => ({
 	card: {
 		cursor: "pointer",
 		boxShadow: ` 2px 2px 10px ${theme.colors.dark.__elevation_high}`,
+		backgroundColor: theme.context.dark,
 		"&:hover": {
 			display: "none",
 			transform: "scale(1.1)",
@@ -55,7 +56,7 @@ export const eventSection = (src) => ({
 		header: {
 			fontSize: "21px",
 			fontWeight: "700",
-			color: theme.colors.dark,
+			color: "white",
 			fontFamily: "Raleway, sans-serif",
 		},
 		meta: {

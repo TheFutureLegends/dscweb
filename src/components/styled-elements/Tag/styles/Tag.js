@@ -6,11 +6,12 @@ export const Item = styled.div`
 	flex-wrap: wrap;
 	flex-shrink: 0;
 	text-transform: capitalize;
-	background-color: ${({ theme: { context } }) => context.light_gray};
+	background-color: ${({ theme: { colors } }) =>
+		colors.dark.fb.__fb_light_gray};
 	color: white;
 	padding: 5px 10px;
 	margin: 5px 5px;
-	font-size: 14px;
+	font-size: 11px;
 	cursor: pointer;
 	&:hover {
 		background-color: ${({ theme: { colors } }) => colors.primary};
@@ -23,9 +24,7 @@ export const Container = styled(FlexBox)`
 	overflow: auto;
 	flex-wrap: wrap;
 	width: fit-content;
-	justify-content: center;
 	margin: 0px auto;
-	background-color: white;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 `;

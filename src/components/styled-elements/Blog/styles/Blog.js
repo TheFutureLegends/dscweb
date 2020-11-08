@@ -5,6 +5,7 @@ import { FlexBox } from "../..";
 
 export const Picture = styled.img`
 	width: 100%;
+	border-radius: 5px;
 `;
 
 export const PictureWrapper = styled(FlexBox)`
@@ -29,10 +30,10 @@ export const PictureWrapper = styled(FlexBox)`
 export const Header = styled(Typography)`
 	transition: 0.2s linear;
 	margin-bottom: 10px;
+	color: ${({ theme: { colors } }) => colors.dark.fb.__fb_primary_text};
 `;
 
 export const Meta = styled(FlexBox)`
-	margin-top: 10px;
 	font-size: 12px;
 	div {
 		font-family: "Poppins", sans-serif;
@@ -41,7 +42,7 @@ export const Meta = styled(FlexBox)`
 		span {
 			font-family: "Raleway", sans-serif;
 			font-weight: bold;
-			color: ${({ theme: { context } }) => context.dark};
+			color: ${({ theme: { colors } }) => colors.dark.fb.__fb_primary_text};
 			&:nth-child(2) {
 				margin-left: 2px;
 			}
@@ -57,13 +58,15 @@ export const SubHeader = styled(Typography)`
 		font-weight: normal;
 		font-family: "Raleway", sans-serif;
 		font-size: 14px;
+		color: white;
 	}
 `;
 
 export const SmallContainer = styled(Grid)`
 	&& {
 		cursor: pointer;
-		margin-bottom: 10px;
+		background-color: ${({ theme: { context } }) => context.dark};
+		border-radius: 7px;
 		&:hover {
 			${Header} {
 				transition: 0.2s linear;
@@ -91,6 +94,8 @@ export const SmallContainer = styled(Grid)`
 
 export const Container = styled.div`
 	cursor: pointer;
+	background-color: ${({ theme: { context } }) => context.dark};
+	border-radius: 7px;
 	&:hover {
 		${Header} {
 			transition: 0.2s linear;
@@ -115,6 +120,7 @@ export const Container = styled.div`
 
 export const Text = styled.p`
 	font-size: 12px;
+	color: ${({ theme: { colors } }) => colors.dark.fb.__fb_secondary_text};
 `;
 
 export const Link = styled(ReactRouterLink)`

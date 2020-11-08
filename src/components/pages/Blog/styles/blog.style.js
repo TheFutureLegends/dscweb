@@ -2,14 +2,14 @@ import { theme } from "../../../../global-theme.js";
 
 export const general = {};
 
-export const main = (pad) => ({
+export const main = () => ({
 	minHeight: "100vh",
 	maxWidth: "1600px",
 	margin: "0px auto",
 	height: "100%",
 	header: {
 		fontWeight: "700",
-		color: `${theme.context.light_gray}`,
+		color: "white",
 		fontFamily: "Raleway, sans-serif",
 	},
 	title: {
@@ -17,11 +17,12 @@ export const main = (pad) => ({
 		fontSize: "18px",
 		textTransform: "uppercase",
 		fontWeight: "600",
-		fontColor: "rgb(41,41,41)",
+		color: `${theme.colors.dark.fb.__fb_primary_text}`,
 		fontFamily: "Poppins, sans-serif",
 	},
 	divider: {
 		margin: "16px 0px",
+		backgroundColor: `${theme.context.light_gray}`,
 	},
 	post: {
 		margin: "0px auto",
