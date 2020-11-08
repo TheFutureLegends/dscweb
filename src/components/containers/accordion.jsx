@@ -6,12 +6,21 @@ import {
 } from "@material-ui/core";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { theme } from "../../global-theme.js";
 
 function AccordionContainer({ children, header, ...restProps }) {
 	return (
 		<Accordion {...restProps}>
 			<AccordionSummary
-				expandIcon={<FontAwesomeIcon icon={faChevronDown} />}
+				expandIcon={
+					<FontAwesomeIcon
+						style={{
+							color: theme.colors.dark.fb.__fb_primary_text,
+							fontSize: "smaller",
+						}}
+						icon={faChevronDown}
+					/>
+				}
 				id="panel1a-header"
 			>
 				<div style={{ paddingTop: "5px" }}>{header}</div>

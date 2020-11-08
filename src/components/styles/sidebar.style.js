@@ -8,6 +8,7 @@ export const style = {
 		margin: "0px 15px 15px",
 		borderRadius: "7px",
 		width: "300px",
+		boxShadow: "unset",
 	},
 	card: {
 		marginBottom: "15px",
