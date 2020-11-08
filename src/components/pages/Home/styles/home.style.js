@@ -53,6 +53,10 @@ export const eventSection = (src) => ({
 			display: "none",
 			transform: "scale(1.1)",
 		},
+		button: {
+			color: theme.colors.dark.fb.__fb_primary_text,
+			fontSize: "14px",
+		},
 		header: {
 			fontSize: "15px",
 			fontWeight: "700",

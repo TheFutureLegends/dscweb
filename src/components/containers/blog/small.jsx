@@ -16,10 +16,12 @@ function SmallBlogContainer({
 	return (
 		<Blog
 			{...restProps}
+			style={{
+				margin: "10px 0px",
+			}}
 			container
 			spacing={2}
 			size="small"
-			style={{ margin: "10px" }}
 		>
 			<Grid item={true} xs={8}>
 				<Blog.Meta src={avatar} author={author} category={category} />

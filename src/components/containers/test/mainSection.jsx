@@ -23,7 +23,7 @@ function MainBlogSection__({ header, posts, ...props }) {
 					item={true}
 					xs={12}
 					sm={6}
-					md={6}
+					md={12}
 					lg={6}
 					key="default_container_1"
 				>
@@ -44,7 +44,7 @@ function MainBlogSection__({ header, posts, ...props }) {
 						<DefaultPostSkeleton />
 					)}
 				</Grid>
-				<Grid item={true} xs={12} md={6} sm={6} lg={6}>
+				<Grid item={true} xs={12} md={12} sm={6} lg={6}>
 					<FlexBox
 						direction="column"
 						justify="space-between"

@@ -58,3 +58,11 @@ export const Divider = styled(MUIDivider)`
 		margin-top: 10px;
 	}
 `;
+
+export const Title = styled.h4`
+	width: 100%;
+	color: white;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	font-family: "Poppins", sans-serif;
+`;

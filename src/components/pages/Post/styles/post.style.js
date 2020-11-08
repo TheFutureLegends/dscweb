@@ -1,35 +1,5 @@
 import { theme } from "../../../../global-theme";
 
-export const category_container = {
-	width: "100%",
-	height: "65px",
-	marginBottom: "30px",
-	boxShadow: theme.colors.dark.__elevation_medium,
-	padding: "0px 10%",
-	backgroundColor: theme.colors.secondary,
-	header: {
-		fontSize: "25px",
-		fontFamily: "Poppins, sans-serif",
-		fontWeight: "700",
-		color: "white",
-		cursor: "pointer",
-		whiteSpace: "nowrap",
-	},
-	subHeader: {
-		textDecoration: "none",
-		color: "rgb(230, 243, 255)",
-		textTransform: "uppercase",
-		fontSize: "13px",
-		fontFamily: "Raleway, sans-serif",
-		fontWeight: "bold",
-		whiteSpace: "nowrap",
-	},
-	inner: {
-		maxWidth: "700px",
-		width: "100%",
-	},
-};
-
 export const content_container = (width) => {
 	let avatarSize = "50px";
 	return {
@@ -37,11 +7,13 @@ export const content_container = (width) => {
 		maxWidth: width,
 		title: {
 			fontFamily: "Source Serif Pro, serif",
+			color: "white",
 			lineHeight: "60px",
 			fontWeight: "500",
 			fontSize: "45px",
 		},
 		meta: {
+			color: theme.colors.dark.fb.__fb_primary_text,
 			width: "100%",
 			marginTop: "25px",
 		},
@@ -73,7 +45,7 @@ export const content_container = (width) => {
 		separator: {
 			height: "2px",
 			width: "100%",
-			backgroundColor: theme.colors.dark.__interactive_normal,
+			backgroundColor: theme.colors.dark.fb.__fb_light_gray,
 			margin: "20px 0px",
 		},
 	};
@@ -89,6 +61,7 @@ export const footer = {
 	width: "100%",
 	header: {
 		fontSize: "25px",
+		color: theme.colors.dark.fb.__fb_primary_text,
 		fontFamily: "Raleway, sans-serif",
 	},
 };
