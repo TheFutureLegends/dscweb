@@ -1,7 +1,6 @@
 import {
 	faHome,
 	faCalendarAlt,
-	faBook,
 	// faCodeBranch,
 } from "@fortawesome/free-solid-svg-icons";
 import * as ASSETS from "./asset";
@@ -20,9 +19,9 @@ export const PLAYGROUND_PROJECT = "/playgrounds/:slug";
 export const DEVELOPMENT = "/development";
 
 export const listOfRoutes = [
-	{ route: HOME, icon: faHome, text: "Home" },
+	{ route: HOME, icon: faHome, svg: ASSETS.HOME_ICON, text: "Home" },
 	{ route: EVENT, icon: faCalendarAlt, svg: ASSETS.EVENT_ICON, text: "Event" },
-	{ route: BLOG, icon: faBook, svg: ASSETS.BLOG_ICON, text: "Blog" },
+	// { route: BLOG, icon: faBook, svg: ASSETS.BLOG_ICON, text: "Blog" },
 	// { route: ABOUT, icon: faUsers, text: "About" },
 	// { route: PLAYGROUND, icon: faCodeBranch, text: "Playground" },
 ];

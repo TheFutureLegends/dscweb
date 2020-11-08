@@ -12,7 +12,7 @@ import { MUIMediaQuery } from "./components/styled-elements";
 import { useTheme } from "@material-ui/core";
 import Dashboard from "./components/containers/dashboard";
 import BlogDashboard from "./components/containers/blogDashboard";
-import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
+// import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
 import { theme as StyledTheme } from "./global-theme";
 // -- Redux --
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
@@ -35,8 +35,8 @@ function Router() {
 	const theme = useTheme();
 	const style = {
 		centerDiv: {
-			marginLeft: breakPoint >= BREAK.tablet_sm ? "360px" : "20px",
-			marginRight: breakPoint >= BREAK.desktop_sm ? "360px" : "20px",
+			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "20px",
+			marginRight: breakPoint >= BREAK.tablet_sm ? "360px" : "20px",
 		},
 		divider: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
 		leftSidebar: { maxWidth: "330px", width: "100%", position: "fixed" },
@@ -54,26 +54,24 @@ function Router() {
 			value={{ history, breakPoint, location, apiDomain }}
 		>
 			<NavbarContainer />
-			<MUIMediaQuery option={theme.breakpoints.up("md")}>
+			<MUIMediaQuery option={theme.breakpoints.up("lg")}>
 				<div style={style.leftSidebar}>
 					<Dashboard />
 				</div>
 			</MUIMediaQuery>
-			<RequiredRoute route={ROUTES.BLOG}>
-				<MUIMediaQuery option={theme.breakpoints.up("lg")}>
-					<div style={style.rightSidebar}>
-						<BlogDashboard />
-					</div>
-				</MUIMediaQuery>
-			</RequiredRoute>
+			<MUIMediaQuery option={theme.breakpoints.up("md")}>
+				<div style={style.rightSidebar}>
+					<BlogDashboard />
+				</div>
+			</MUIMediaQuery>
 			<div style={style.centerDiv}>
 				<Switch location={location} key={location.pathname}>
 					{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 					<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 					<Route exact path={ROUTES.EVENT} component={PAGE.EventPage} />
 					<Route exact path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
-					<Route exact path={ROUTES.BLOG} component={PAGE.BlogPage} />
-					<Route exact path={ROUTES.HOME} component={PAGE.HomePage} />
+					{/* <Route exact path={ROUTES.BLOG} component={PAGE.BlogPage} /> */}
+					<Route exact path={ROUTES.HOME} component={PAGE.BlogPage} />
 					<Route
 						exact
 						path={ROUTES.SINGLE_POST}

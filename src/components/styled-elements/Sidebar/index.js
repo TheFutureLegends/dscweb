@@ -25,4 +25,8 @@ Sidebar.Divider = function SidebarDivider({ ...restProps }) {
 	return <Style.Divider {...restProps} />;
 };
 
+Sidebar.Title = function SidebarTitle({ children, ...restProps }) {
+	return <Style.Title {...restProps}>{children}</Style.Title>;
+};
+
 export default Sidebar;

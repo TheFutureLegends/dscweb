@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import ReactHtmlParser from "react-html-parser";
 import { useFetch } from "../../hooks/useFetch";
+import { theme } from "../../../global-theme";
 // Components
 import { FlexBox } from "../../styled-elements";
-import { Typography, useTheme, Divider, Avatar, Grid } from "@material-ui/core";
-import { Link as ReactRouterLink } from "react-router-dom";
-import { MUIMediaQuery } from "../../styled-elements";
+import { Typography, Divider, Avatar, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import Lazyload from "react-lazyload";
 import SmallBlogContainer from "../../containers/blog/small";
@@ -18,48 +17,24 @@ function SinglePostPage(...props) {
 	const slug = props[0].match.params.slug;
 	const res = useFetch(`/posts/${slug}`);
 	const post = res.response && res.response.data.post;
-	const theme = useTheme();
 	const { history } = useContext(UtilityContext);
 
 	return (
 		<React.Fragment>
 			{post && (
 				<React.Fragment>
-					<FlexBox direction="column">
+					<FlexBox
+						direction="column"
+						style={{
+							backgroundColor: theme.context.dark,
+							padding: "50px 30px",
+						}}
+					>
 						<FlexBox
 							justify="flex-start"
 							direction="column"
 							style={__style__.content_container("800px")}
 						>
-							<FlexBox
-								style={__style__.category_container}
-								justify="flex-start"
-							>
-								<FlexBox
-									justify="flex-start"
-									style={__style__.category_container.inner}
-								>
-									<div style={__style__.category_container.header}>
-										{post.category.title}
-									</div>
-									<MUIMediaQuery option={theme.breakpoints.up("md")}>
-										<FlexBox.FlexBasis width={"50px"} />
-										<ReactRouterLink
-											style={__style__.category_container.subHeader}
-										>
-											See All Posts
-										</ReactRouterLink>
-										<FlexBox.FlexBasis width={"25px"} />
-										<Divider style={__style__.separator} />
-										<FlexBox.FlexBasis width={"25px"} />
-										<ReactRouterLink
-											style={__style__.category_container.subHeader}
-										>
-											Study Guide
-										</ReactRouterLink>
-									</MUIMediaQuery>
-								</FlexBox>
-							</FlexBox>
 							<Typography
 								variant="h4"
 								style={__style__.content_container().title}
@@ -97,7 +72,7 @@ function SinglePostPage(...props) {
 									alt={post.image}
 								/>
 							</Lazyload>
-							<div style={{ width: "100%" }}>
+							<div style={{ width: "100%", color: "white" }}>
 								{ReactHtmlParser(post.description)}
 							</div>
 							<Divider style={__style__.content_container().separator} />
@@ -108,7 +83,7 @@ function SinglePostPage(...props) {
 								<Grid container spacing={3} style={{ marginTop: "15px" }}>
 									{Array(4)
 										.fill(
-											<Grid item xs={6}>
+											<Grid item xs={12} sm={6}>
 												<SmallBlogContainer
 													key={post._id}
 													author={post.author.username}

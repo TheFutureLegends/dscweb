@@ -2,6 +2,9 @@ const src = "/assets/images/";
 
 export const LOGO_BUBBLE = `${src}logo/bubble_logo.svg`;
 export const LOGO_RMIT_VN_FULL = `${src}logo/rmitvnfull.jpg`;
+export const LOGO_RMIT = `${src}logo/rmitlogo.png`;
+export const LOGO_FINTECH = `${src}logo/fintech.jpg`;
+export const LOGO_NCT = `${src}logo/nct.jpg`;
 
 export const NET_COM_JUMBOTRON = `${src}jumbotron/netcom.jpg`;
 export const RMIT_WALLPAPER = `${src}jumbotron/RMITwallpaper.jpg`;
@@ -23,6 +26,8 @@ export const EVENT_PICTURE_3 = `${src}events/event_test_3.jpg`;
 
 export const BLOG_ICON = `${src}icons/content-writing.svg`;
 export const EVENT_ICON = `${src}icons/balloons.svg`;
+export const HOME_ICON = `${src}icons/home.svg`;
+
 export const WEAPON_MASTER_ICON = `${src}icons/rifle.svg`;
 export const SPACESHIP_SHOOTER_ICON = `${src}icons/spacecraft.svg`;
 export const BLOCK_BREAKER_ICON = `${src}icons/blocks.svg`;

@@ -10,7 +10,10 @@ function EventCard({ header, date, src, ...restProps }) {
 			<CardHeader
 				action={
 					<IconButton aria-label="Schedule">
-						<FontAwesomeIcon icon={faEllipsisV} />
+						<FontAwesomeIcon
+							icon={faEllipsisV}
+							style={CSS.eventSection().card.button}
+						/>
 					</IconButton>
 				}
 				title={
