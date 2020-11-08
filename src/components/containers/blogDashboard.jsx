@@ -1,11 +1,12 @@
 import React from "react";
-import { Paper, Avatar, Typography, Divider } from "@material-ui/core";
+import { Paper, Avatar, Typography, Divider, Grid } from "@material-ui/core";
 import { FlexBox } from "../styled-elements";
 import { theme } from "../../global-theme";
 import { AvatarGroup } from "@material-ui/lab";
 import { TagContainer, AuthorWithView, AccordionContainer } from "./index";
 import EventCard from "./event/card";
 import faker from "faker";
+import * as ASSETS from "../../constants/asset";
 import { style } from "../styles/sidebar.style.js";
 
 function BlogDashboard() {
@@ -42,7 +43,7 @@ function BlogDashboard() {
 				<FlexBox direction="column">
 					{Array(5).fill(
 						<React.Fragment>
-							<FlexBox justify="flex-start">
+							<FlexBox justify="flex-start" style={{ width: "100%" }}>
 								<AuthorWithView
 									alt="Remy Sharp"
 									src={faker.image.avatar()}
@@ -85,18 +86,31 @@ function BlogDashboard() {
 					</FlexBox>
 				</FlexBox>
 			</AccordionContainer>
-			<Paper
-				style={{ ...style.card, backgroundColor: "unset", padding: "0px" }}
+			<AccordionContainer
+				style={{ ...style.accordion, backgroundColor: theme.context.dark }}
+				header={
+					<Typography variant="h6" style={style.header}>
+						Your Events
+					</Typography>
+				}
 			>
-				<Typography variant="h6" style={style.header}>
-					Events
-				</Typography>
-				<EventCard
-					header={"Experience Day"}
-					date={"12-01-2001"}
-					src={faker.image.business()}
-				/>
-			</Paper>
+				<Grid container spacing={2}>
+					<Grid item={true} xs={12}>
+						<EventCard
+							header={"Experience Day"}
+							date={"12-01-2001"}
+							src={ASSETS.EVENT_PICTURE_1}
+						/>
+					</Grid>
+					<Grid item={true} xs={12}>
+						<EventCard
+							header={"AI Seminar"}
+							date={"12-01-2020"}
+							src={ASSETS.EVENT_PICTURE_2}
+						/>
+					</Grid>
+				</Grid>
+			</AccordionContainer>
 		</FlexBox>
 	);
 }

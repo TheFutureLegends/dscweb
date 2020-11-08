@@ -14,7 +14,7 @@ function DefaultBlogContainer({
 	return (
 		<Blog {...restProps}>
 			<Blog.Meta
-				style={{ padding: "15px 10px 0px 10px" }}
+				style={{ padding: "10px 10px 8px" }}
 				src={avatar}
 				author={author}
 				category={category}
@@ -23,7 +23,7 @@ function DefaultBlogContainer({
 			<div style={{ padding: "10px" }}>
 				<Blog.Header variant="h2">{title}</Blog.Header>
 				<Blog.SubHeader variant="subtitle1" limit={120} text={body} />
-				<FlexBox justify="space-between" style={{ marginTop: "50px" }}>
+				<FlexBox justify="space-between" style={{ marginTop: "30px" }}>
 					<Blog.Text>Publish Date: {date}</Blog.Text>
 				</FlexBox>
 			</div>

@@ -48,19 +48,19 @@ export const eventSection = (src) => ({
 	card: {
 		cursor: "pointer",
 		boxShadow: ` 2px 2px 10px ${theme.colors.dark.__elevation_high}`,
-		backgroundColor: theme.context.dark,
+		backgroundColor: theme.colors.dark.fb.__fb_light_gray,
 		"&:hover": {
 			display: "none",
 			transform: "scale(1.1)",
 		},
 		header: {
-			fontSize: "21px",
+			fontSize: "15px",
 			fontWeight: "700",
 			color: "white",
 			fontFamily: "Raleway, sans-serif",
 		},
 		meta: {
-			fontSize: "15px",
+			fontSize: "13px",
 			fontWeight: "600",
 			color: theme.colors.primary,
 			marginTop: "2px",
@@ -69,7 +69,7 @@ export const eventSection = (src) => ({
 			backgroundImage: `url(${src})`,
 			backgroundSize: "cover",
 			width: "100%",
-			height: "250px",
+			height: "100px",
 		},
 	},
 });
