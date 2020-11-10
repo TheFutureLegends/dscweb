@@ -35,8 +35,8 @@ function Router() {
 	const theme = useTheme();
 	const style = {
 		centerDiv: {
-			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "20px",
-			marginRight: breakPoint >= BREAK.tablet_sm ? "360px" : "20px",
+			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "0px",
+			marginRight: breakPoint >= BREAK.tablet_sm ? "360px" : "0px",
 		},
 		divider: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
 		leftSidebar: { maxWidth: "330px", width: "100%", position: "fixed" },
