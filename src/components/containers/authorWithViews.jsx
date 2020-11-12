@@ -16,7 +16,7 @@ function AuthorWithViews({ name, views, alt, src, ...restProps }) {
 					{name}
 				</Typography>
 				<Typography
-					variant="p"
+					variant="body1"
 					style={{ ...style.info.meta, fontSize: "14px" }}
 				>
 					Number of views: &nbsp;

@@ -1,5 +1,5 @@
 import React from "react";
-import MainBlogSection from "../test/mainSection"; //TODO routing to the main comp
+import MainBlogSection from "./mainSection";
 import { connect } from "react-redux";
 
 function MostPopularBlogs({ ...props }) {

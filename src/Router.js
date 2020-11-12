@@ -70,22 +70,11 @@ function Router() {
 					<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 					<Route exact path={ROUTES.EVENT} component={PAGE.EventPage} />
 					<Route exact path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
-					{/* <Route exact path={ROUTES.BLOG} component={PAGE.BlogPage} /> */}
 					<Route exact path={ROUTES.HOME} component={PAGE.BlogPage} />
 					<Route
 						exact
 						path={ROUTES.SINGLE_POST}
 						component={PAGE.SinglePostPage}
-					/>
-					<Route
-						exact
-						path={ROUTES.PLAYGROUND}
-						component={PAGE.PlaygroundPage}
-					/>
-					<Route
-						exact
-						path={ROUTES.DEVELOPMENT}
-						component={PAGE.DevelopmentPage}
 					/>
 				</Switch>
 			</div>

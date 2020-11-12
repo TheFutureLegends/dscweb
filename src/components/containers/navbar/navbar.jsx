@@ -10,7 +10,8 @@ import {
 	MUIMediaQuery,
 	IconLinkButton,
 } from "../../styled-elements";
-import MenuContainer from "./menu";
+import MenuContainer from "./accountMenu";
+import AddMenuContainer from "./addMenu";
 import DrawerContainer from "./drawer";
 import {
 	faSearch,
@@ -26,17 +27,10 @@ function NavbarContainer({ ...props }) {
 	const [active, setActive] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const { breakPoint } = useContext(UtilityContext);
-	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	const handleOpenMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleCloseMenu = () => {
-		setAnchorEl(null);
-	};
-
-	const handlePostBlog = () => {};
+	const [anchorEl, setAnchorEl] = useState({
+		AddMenu: null,
+		AccountMenu: null,
+	});
 
 	return (
 		<Fragment>
@@ -72,18 +66,25 @@ function NavbarContainer({ ...props }) {
 					</FlexBox>
 					<FlexBox>
 						<IconLinkButton
-							title="Add New Post"
+							title="Add"
 							id="Add"
 							icon={faPlus}
-							onClick={handlePostBlog}
+							onClick={(e) =>
+								setAnchorEl({ ...anchorEl, AddMenu: e.currentTarget })
+							}
 						/>
+						<MenuContext.Provider value={{ anchorEl, setAnchorEl }}>
+							<AddMenuContainer />
+						</MenuContext.Provider>
 						<IconLinkButton
 							title="Account"
 							id="Account"
 							icon={faCaretDown}
-							onClick={handleOpenMenu}
+							onClick={(e) =>
+								setAnchorEl({ ...anchorEl, AccountMenu: e.currentTarget })
+							}
 						/>
-						<MenuContext.Provider value={{ anchorEl, handleCloseMenu }}>
+						<MenuContext.Provider value={{ anchorEl, setAnchorEl }}>
 							<MenuContainer />
 						</MenuContext.Provider>
 						<MUIMediaQuery option={`(max-width: ${BREAK.desktop_sm}px)`}>

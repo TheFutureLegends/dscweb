@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
-import { useMediaQuery, useTheme, Grid, Typography } from "@material-ui/core";
-import DefaultBlogContainer from "./default";
-import SmallBlogContainer from "./small";
+import { Grid, Typography } from "@material-ui/core";
+import DefaultBlogContainer from "../blog/default";
+import SmallBlogContainer from "../blog/small";
 import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { DefaultPostSkeleton, SmallPostSkeleton } from "../skeleton";
 import * as ROUTES from "../../../constants/route";
 
-function MainBlogSection({ header, posts }) {
-	const theme = useTheme();
+function MainBlogSection__({ header, posts, ...props }) {
 	const { history, location } = useContext(UtilityContext);
 
 	return (
@@ -19,13 +18,13 @@ function MainBlogSection({ header, posts }) {
 					{header}
 				</Typography>
 			)}
-			<Grid container spacing={3}>
+			<Grid container spacing={2}>
 				<Grid
 					item={true}
 					xs={12}
 					sm={6}
-					md={4}
-					lg={4}
+					md={12}
+					lg={6}
 					key="default_container_1"
 				>
 					{posts[0] ? (
@@ -45,35 +44,15 @@ function MainBlogSection({ header, posts }) {
 						<DefaultPostSkeleton />
 					)}
 				</Grid>
-				{useMediaQuery(theme.breakpoints.up("md")) && (
-					<Grid item={true} md={4} key="default_container_2">
-						{posts[1] ? (
-							<DefaultBlogContainer
-								key={posts[1]._id}
-								author={posts[1].author.username}
-								category={posts[1].category.title}
-								title={posts[1].title}
-								body={posts[1].description}
-								date={posts[1].createdAt}
-								src={posts[1].image}
-								avatar={posts[1].author.avatar}
-								style={CSS.main().post}
-								onClick={() => history.push(`${ROUTES.POST}/${posts[1].slug}`)}
-							/>
-						) : (
-							<DefaultPostSkeleton />
-						)}
-					</Grid>
-				)}
-				<Grid item={true} xs={12} md={4} sm={6} lg={4}>
+				<Grid item={true} xs={12} md={12} sm={6} lg={6}>
 					<FlexBox
 						direction="column"
 						justify="space-between"
-						style={{ height: "100%" }}
+						style={{ height: "100%", width: "100%" }}
 					>
 						{posts[0]
 							? posts
-									.slice(2)
+									.slice(1)
 									.map((post) => (
 										<SmallBlogContainer
 											key={post._id}
@@ -99,4 +78,4 @@ function MainBlogSection({ header, posts }) {
 	);
 }
 
-export default MainBlogSection;
+export default MainBlogSection__;
