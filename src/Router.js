@@ -76,6 +76,7 @@ function Router() {
 						path={ROUTES.SINGLE_POST}
 						component={PAGE.SinglePostPage}
 					/>
+					<Route exact path={ROUTES.NEW_POST} component={PAGE.NewPostPage} />
 				</Switch>
 			</div>
 		</UtilityContext.Provider>

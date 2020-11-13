@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { MenuItem, Typography, Divider } from "@material-ui/core";
+import { MenuItem, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FlexBox } from "../../styled-elements";
 import { faBook, faDemocrat } from "@fortawesome/free-solid-svg-icons";
 import { MenuContext } from "../../../contexts/MenuContext";
-import { style as SidebarStyle } from "../../styles/sidebar.style.js";
+import { UtilityContext } from "../../../contexts/UtilityContext";
+// import { style as SidebarStyle } from "../../styles/sidebar.style.js";
 import * as ROUTES from "../../../constants/route";
 import MenuLayout from "./menuLayout";
 
@@ -39,12 +40,16 @@ function CustomItem({ icon, header, body, ...restProps }) {
 
 function AddMenuContainer({ ...restProps }) {
 	const { setAnchorEl, anchorEl } = useContext(MenuContext);
+	const { history } = useContext(UtilityContext);
 
-	const handleCloseMenu = () =>
+	const handleRedirect = (route) => {
 		setAnchorEl({
 			...anchorEl,
 			AddMenu: null,
 		});
+
+		history.push(route);
+	};
 
 	return (
 		<MenuLayout type="AddMenu" {...restProps}>
@@ -52,15 +57,14 @@ function AddMenuContainer({ ...restProps }) {
 				icon={faBook}
 				header="Post"
 				body="Create a new blog post"
-				onClick={handleCloseMenu}
+				onClick={() => handleRedirect(ROUTES.NEW_POST)}
 			/>
 			<CustomItem
 				icon={faDemocrat}
 				header="Event"
 				body="Add more new events"
-				onClick={handleCloseMenu}
+				onClick={() => handleRedirect("#")}
 			/>
-			<Divider style={SidebarStyle.divider} />
 		</MenuLayout>
 	);
 }

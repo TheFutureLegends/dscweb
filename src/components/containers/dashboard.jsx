@@ -45,7 +45,7 @@ function Dashboard() {
 						/>
 					</a>
 				))}
-				<Sidebar.Divider />
+				<Sidebar.Divider style={{ height: "2px" }} />
 				<Sidebar.Title>Affiliated Partners</Sidebar.Title>
 				{listOfPartners.map((partner) => (
 					<a href={partner.href} style={style.__a}>
