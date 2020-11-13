@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, InputBase } from "@material-ui/core";
+import { InputBase } from "@material-ui/core";
 import { style } from "./style/newPost.style.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { FlexBox } from "../../styled-elements";
+import { FlexBox, IconLinkButton } from "../../styled-elements";
 import { Formik } from "formik";
 import QuillEditor from "../../containers/editor/quillEditor";
 
@@ -40,20 +40,19 @@ function NewPostPage() {
 								placeholder="Title"
 								inputProps={{ "aria-label": "title" }}
 							/>
-							<Button
-								variant="contained"
-								color="primary"
-								onClick={handleSubmit}
-								style={style.button.submit}
-							>
-								Post &nbsp;
-								<FontAwesomeIcon icon={faPaperPlane} />
-							</Button>
+							<FlexBox.FlexBasis width="20px" />
+							<IconLinkButton
+								icon={faPaperPlane}
+								id="post_button"
+								title="Post"
+								place="bottom"
+								disabled={content.description.length < 10 ? true : false}
+							/>
 						</FlexBox>
 
 						<QuillEditor
 							placeholder={"Start Posting Something..."}
-							onEditorChange={(e) => setContent(e)}
+							onEditorChange={(e) => setContent({ ...content, description: e })}
 							onFilesChange={handleFilesChange}
 						/>
 					</React.Fragment>

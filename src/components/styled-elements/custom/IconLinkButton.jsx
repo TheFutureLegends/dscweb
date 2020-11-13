@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "../index";
 import { theme } from "../../../global-theme";
 
-function IconLinkButton({ icon, id, title, ...restProps }) {
+function IconLinkButton({ icon, id, title, place, ...restProps }) {
 	return (
 		<>
 			<IconButton
@@ -22,7 +22,7 @@ function IconLinkButton({ icon, id, title, ...restProps }) {
 			>
 				<FontAwesomeIcon icon={icon} />
 			</IconButton>
-			<Tooltip id={id} effect="solid">
+			<Tooltip id={id} place={place} effect="solid">
 				{title}
 			</Tooltip>
 		</>
