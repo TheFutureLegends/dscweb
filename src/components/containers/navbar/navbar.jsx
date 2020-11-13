@@ -4,52 +4,33 @@ import { DrawerContext } from "../../../contexts/DrawerContext.js";
 import { MenuContext } from "../../../contexts/MenuContext.js";
 import { connect } from "react-redux";
 // Components
-import { Navbar, FlexBox, MUIMediaQuery } from "../../styled-elements";
-import MenuContainer from "./menu";
+import {
+	Navbar,
+	FlexBox,
+	MUIMediaQuery,
+	IconLinkButton,
+} from "../../styled-elements";
+import MenuContainer from "./accountMenu";
+import AddMenuContainer from "./addMenu";
 import DrawerContainer from "./drawer";
-import { theme } from "../../../global-theme";
 import {
 	faSearch,
 	faBars,
 	faCaretDown,
+	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconButton } from "@material-ui/core";
 // Constants
 import * as ASSETS from "../../../constants/asset";
 import * as BREAK from "../../../constants/breakpoint";
-
-function CustomIconButton({ icon, ...restProps }) {
-	return (
-		<IconButton
-			style={{
-				fontSize: "20px",
-				width: "40px",
-				height: "40px",
-				margin: "0px 5px",
-				color: theme.colors.dark.fb.__fb_primary_text,
-				backgroundColor: theme.colors.dark.fb.__fb_light_gray,
-			}}
-			{...restProps}
-		>
-			<FontAwesomeIcon icon={icon} />
-		</IconButton>
-	);
-}
 
 function NavbarContainer({ ...props }) {
 	const [active, setActive] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	const { breakPoint } = useContext(UtilityContext);
-	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	const handleOpenMenu = (e) => {
-		setAnchorEl(e.currentTarget);
-	};
-
-	const handleCloseMenu = () => {
-		setAnchorEl(null);
-	};
+	const [anchorEl, setAnchorEl] = useState({
+		AddMenu: null,
+		AccountMenu: null,
+	});
 
 	return (
 		<Fragment>
@@ -84,12 +65,32 @@ function NavbarContainer({ ...props }) {
 						</MUIMediaQuery>
 					</FlexBox>
 					<FlexBox>
-						<CustomIconButton icon={faCaretDown} onClick={handleOpenMenu} />
-						<MenuContext.Provider value={{ anchorEl, handleCloseMenu }}>
+						<IconLinkButton
+							title="Add"
+							id="Add"
+							icon={faPlus}
+							onClick={(e) =>
+								setAnchorEl({ ...anchorEl, AddMenu: e.currentTarget })
+							}
+						/>
+						<MenuContext.Provider value={{ anchorEl, setAnchorEl }}>
+							<AddMenuContainer />
+						</MenuContext.Provider>
+						<IconLinkButton
+							title="Account"
+							id="Account"
+							icon={faCaretDown}
+							onClick={(e) =>
+								setAnchorEl({ ...anchorEl, AccountMenu: e.currentTarget })
+							}
+						/>
+						<MenuContext.Provider value={{ anchorEl, setAnchorEl }}>
 							<MenuContainer />
 						</MenuContext.Provider>
 						<MUIMediaQuery option={`(max-width: ${BREAK.desktop_sm}px)`}>
-							<CustomIconButton
+							<IconLinkButton
+								title="Dashboard"
+								id="Dashboard"
 								icon={faBars}
 								onClick={() => setOpenMenu(true)}
 							/>

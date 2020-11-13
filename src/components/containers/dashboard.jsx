@@ -4,7 +4,6 @@ import { listOfGames } from "../../constants/games";
 import { listOfPartners } from "../../constants/partner";
 import { listOfRoutes } from "../../constants/route";
 import { Link as ReactRouterLink } from "react-router-dom";
-import faker from "faker";
 
 function ItemWithImage({ src, className, header, ...restProps }) {
 	return (
@@ -26,11 +25,6 @@ function Dashboard() {
 	return (
 		<Sidebar>
 			<Sidebar.Inner direction="column">
-				<ItemWithImage
-					src={faker.image.avatar}
-					className="__avatar"
-					header="Tin Quan Chung"
-				/>
 				{listOfRoutes.map((route) => (
 					<ReactRouterLink to={route.route} style={style.__a}>
 						<ItemWithImage
@@ -51,7 +45,7 @@ function Dashboard() {
 						/>
 					</a>
 				))}
-				<Sidebar.Divider />
+				<Sidebar.Divider style={{ height: "2px" }} />
 				<Sidebar.Title>Affiliated Partners</Sidebar.Title>
 				{listOfPartners.map((partner) => (
 					<a href={partner.href} style={style.__a}>

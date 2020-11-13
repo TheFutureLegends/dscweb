@@ -18,7 +18,7 @@ export default function FooterContainer() {
 					<Footer.Link to="#">
 						<span>Investor Relations</span>
 					</Footer.Link>
-					<Footer.Link to={ROUTES.BLOG}>
+					<Footer.Link to={ROUTES.POST}>
 						<span>Blog Platform</span>
 					</Footer.Link>
 					<Footer.Link to={ROUTES.ABOUT}>

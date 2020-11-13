@@ -1,13 +1,28 @@
 import React from "react";
-import { Navbar, Tooltip } from "../index";
+import { IconButton } from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Tooltip } from "../index";
+import { theme } from "../../../global-theme";
 
-function IconLinkButton({ src, route, title, ...restProps }) {
+function IconLinkButton({ icon, id, title, ...restProps }) {
 	return (
 		<>
-			<Navbar.Link to={route} {...restProps}>
-				<Navbar.IconButton icon={src} data-for={`${route}${src}`} data-tip />
-			</Navbar.Link>
-			<Tooltip id={`${route}${src}`} effect="solid">
+			<IconButton
+				style={{
+					fontSize: "20px",
+					width: "40px",
+					height: "40px",
+					margin: "0px 5px",
+					color: theme.colors.dark.fb.__fb_primary_text,
+					backgroundColor: theme.colors.dark.fb.__fb_light_gray,
+				}}
+				data-for={id}
+				data-tip
+				{...restProps}
+			>
+				<FontAwesomeIcon icon={icon} />
+			</IconButton>
+			<Tooltip id={id} effect="solid">
 				{title}
 			</Tooltip>
 		</>

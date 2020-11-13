@@ -35,8 +35,8 @@ function Router() {
 	const theme = useTheme();
 	const style = {
 		centerDiv: {
-			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "20px",
-			marginRight: breakPoint >= BREAK.tablet_sm ? "360px" : "20px",
+			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "0px",
+			marginRight: breakPoint >= BREAK.tablet_sm ? "360px" : "0px",
 		},
 		divider: `3px solid ${StyledTheme.colors.dark.fb.__fb_light_gray}`,
 		leftSidebar: { maxWidth: "330px", width: "100%", position: "fixed" },
@@ -70,23 +70,13 @@ function Router() {
 					<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 					<Route exact path={ROUTES.EVENT} component={PAGE.EventPage} />
 					<Route exact path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
-					{/* <Route exact path={ROUTES.BLOG} component={PAGE.BlogPage} /> */}
 					<Route exact path={ROUTES.HOME} component={PAGE.BlogPage} />
 					<Route
 						exact
 						path={ROUTES.SINGLE_POST}
 						component={PAGE.SinglePostPage}
 					/>
-					<Route
-						exact
-						path={ROUTES.PLAYGROUND}
-						component={PAGE.PlaygroundPage}
-					/>
-					<Route
-						exact
-						path={ROUTES.DEVELOPMENT}
-						component={PAGE.DevelopmentPage}
-					/>
+					<Route exact path={ROUTES.NEW_POST} component={PAGE.NewPostPage} />
 				</Switch>
 			</div>
 		</UtilityContext.Provider>

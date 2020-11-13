@@ -27,6 +27,7 @@ export const EVENT_PICTURE_3 = `${src}events/event_test_3.jpg`;
 export const BLOG_ICON = `${src}icons/content-writing.svg`;
 export const EVENT_ICON = `${src}icons/balloons.svg`;
 export const HOME_ICON = `${src}icons/home.svg`;
+export const FORUM_ICON = `${src}icons/talking.svg`;
 
 export const WEAPON_MASTER_ICON = `${src}icons/rifle.svg`;
 export const SPACESHIP_SHOOTER_ICON = `${src}icons/spacecraft.svg`;

@@ -1,5 +1,5 @@
 import React from "react";
-import MainSection from "../test/mainSection"; //TODO routing to the main comp
+import MainSection from "./mainSection";
 import { connect } from "react-redux";
 
 function LatestUpdateSection({ ...props }) {

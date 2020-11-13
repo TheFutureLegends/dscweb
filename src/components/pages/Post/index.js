@@ -23,13 +23,7 @@ function SinglePostPage(...props) {
 		<React.Fragment>
 			{post && (
 				<React.Fragment>
-					<FlexBox
-						direction="column"
-						style={{
-							backgroundColor: theme.context.dark,
-							padding: "50px 30px",
-						}}
-					>
+					<FlexBox direction="column" style={{ padding: "50px 30px" }}>
 						<FlexBox
 							justify="flex-start"
 							direction="column"

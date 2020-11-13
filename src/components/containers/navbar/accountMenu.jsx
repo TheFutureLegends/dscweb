@@ -1,42 +1,12 @@
 import React, { useContext } from "react";
-import {
-	MenuItem,
-	Menu,
-	withStyles,
-	Avatar,
-	Typography,
-	Divider,
-} from "@material-ui/core";
+import { MenuItem, Avatar, Typography, Divider } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FlexBox } from "../../styled-elements";
 import { MenuContext } from "../../../contexts/MenuContext";
-import { theme } from "../../../global-theme";
 import { style as SidebarStyle } from "../../styles/sidebar.style.js";
+import MenuLayout from "./menuLayout";
 import faker from "faker";
-
-const StyledMenu = withStyles(() => ({
-	paper: {
-		backgroundColor: theme.colors.dark.fb.__fb_dark_theme,
-		boxShadow: theme.colors.dark.__elevation_high,
-		color: theme.colors.dark.fb.__fb_primary_text,
-		width: "300px",
-	},
-}))((props) => (
-	<Menu
-		elevation={0}
-		getContentAnchorEl={null}
-		anchorOrigin={{
-			vertical: "bottom",
-			horizontal: "center",
-		}}
-		transformOrigin={{
-			vertical: "top",
-			horizontal: "center",
-		}}
-		{...props}
-	/>
-));
 
 const style = {
 	icon: {
@@ -47,17 +17,17 @@ const style = {
 	},
 };
 
-function NavbarMenuContainer({ ...restProps }) {
-	const { handleCloseMenu, anchorEl } = useContext(MenuContext);
+function AccountMenu({ ...restProps }) {
+	const { setAnchorEl, anchorEl } = useContext(MenuContext);
+
+	const handleCloseMenu = () =>
+		setAnchorEl({
+			...anchorEl,
+			AccountMenu: null,
+		});
+
 	return (
-		<StyledMenu
-			id="navbar-menu"
-			anchorEl={anchorEl}
-			keepMounted
-			open={Boolean(anchorEl)}
-			onClose={handleCloseMenu}
-			{...restProps}
-		>
+		<MenuLayout type="AccountMenu" {...restProps}>
 			<MenuItem onClick={handleCloseMenu}>
 				<FlexBox>
 					<Avatar
@@ -75,8 +45,8 @@ function NavbarMenuContainer({ ...restProps }) {
 					<Typography variant="subtitle1">Log Out</Typography>
 				</FlexBox>
 			</MenuItem>
-		</StyledMenu>
+		</MenuLayout>
 	);
 }
 
-export default NavbarMenuContainer;
+export default AccountMenu;

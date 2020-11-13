@@ -50,7 +50,7 @@ export const Header = styled.h4`
 
 export const Divider = styled(MUIDivider)`
 	&& {
-		height: 2px;
+		height: 1px;
 		width: 100%;
 		background-color: ${({ theme: { colors } }) =>
 			colors.dark.fb.__fb_light_gray};
