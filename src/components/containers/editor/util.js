@@ -1,4 +1,4 @@
-import { faImage, faVideo, faFile } from "@fortawesome/free-solid-svg-icons";
+// import { faImage, faVideo, faFile } from "@fortawesome/free-solid-svg-icons";
 
 export const buttonList = [
 	{ className: "ql-bold", tip: "Bold", for: "bold" },

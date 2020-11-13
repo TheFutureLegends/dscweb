@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Button } from "@material-ui/core";
+import { Button, InputBase } from "@material-ui/core";
 import { style } from "./style/newPost.style.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,13 @@ import { Formik } from "formik";
 import QuillEditor from "../../containers/editor/quillEditor";
 
 function NewPostPage() {
-	const handleEditorChange = () => {};
+	const [content, setContent] = useState({
+		title: "",
+		description: "",
+		categories: "",
+		image: "",
+	});
+
 	const handleFilesChange = () => {};
 
 	return (
@@ -26,11 +32,14 @@ function NewPostPage() {
 					<React.Fragment>
 						<FlexBox
 							justify="space-between"
-							style={{ marginTop: "30px", padding: "0px 10px" }}
+							style={{ marginTop: "30px", padding: "0px 18px" }}
 						>
-							<Typography variant="h5" style={style.header}>
-								Create New Post
-							</Typography>
+							<InputBase
+								multiline
+								style={style.input.title}
+								placeholder="Title"
+								inputProps={{ "aria-label": "title" }}
+							/>
 							<Button
 								variant="contained"
 								color="primary"
@@ -44,7 +53,7 @@ function NewPostPage() {
 
 						<QuillEditor
 							placeholder={"Start Posting Something..."}
-							onEditorChange={handleEditorChange}
+							onEditorChange={(e) => setContent(e)}
 							onFilesChange={handleFilesChange}
 						/>
 					</React.Fragment>

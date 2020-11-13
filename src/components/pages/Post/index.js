@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { UtilityContext } from "../../../contexts/UtilityContext";
 import ReactHtmlParser from "react-html-parser";
 import { useFetch } from "../../hooks/useFetch";
-import { theme } from "../../../global-theme";
 // Components
 import { FlexBox } from "../../styled-elements";
 import { Typography, Divider, Avatar, Grid } from "@material-ui/core";

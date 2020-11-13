@@ -4,9 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.customButtonList = exports.buttonList = void 0;
-
-var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
-
+// import { faImage, faVideo, faFile } from "@fortawesome/free-solid-svg-icons";
 var buttonList = [{
   className: "ql-bold",
   tip: "Bold",
