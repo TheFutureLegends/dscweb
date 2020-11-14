@@ -10,8 +10,10 @@ import { apiDomain } from "./constants/api";
 import { cookies, cookieName } from "./constants/cookie";
 import { MUIMediaQuery } from "./components/styled-elements";
 import { useTheme } from "@material-ui/core";
-import Dashboard from "./components/containers/dashboard";
-import BlogDashboard from "./components/containers/blogDashboard";
+import {
+	DashboardContainer,
+	BlogDashboardContainer,
+} from "./components/containers";
 // import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
 import { theme as StyledTheme } from "./global-theme";
 // -- Redux --
@@ -56,12 +58,12 @@ function Router() {
 			<NavbarContainer />
 			<MUIMediaQuery option={theme.breakpoints.up("lg")}>
 				<div style={style.leftSidebar}>
-					<Dashboard />
+					<DashboardContainer />
 				</div>
 			</MUIMediaQuery>
 			<MUIMediaQuery option={theme.breakpoints.up("md")}>
 				<div style={style.rightSidebar}>
-					<BlogDashboard />
+					<BlogDashboardContainer />
 				</div>
 			</MUIMediaQuery>
 			<div style={style.centerDiv}>
