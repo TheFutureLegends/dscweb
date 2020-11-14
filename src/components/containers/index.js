@@ -5,6 +5,6 @@ export { default as SignupContainer } from "./form/signup.jsx";
 export { default as DashboardContainer } from "./MyDashboard";
 export { default as AccordionContainer } from "./MyAccordion";
 export { default as AuthorWithView } from "./authorWithViews.jsx";
-export { default as BlogDashboardContainer } from "./BlogDashboard";
+export { default as BlogDashboardContainer } from "./blogDashboard";
 export { default as FileUpload } from "./FileUpload";
 export { default as PreviewPanel } from "./PreviewPanel";
