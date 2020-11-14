@@ -53,12 +53,14 @@ export const Meta = styled(FlexBox)`
 	}
 `;
 
-export const SubHeader = styled(Typography)`
+export const SubHeader = styled.div`
 	&& {
 		font-weight: normal;
 		font-family: "Raleway", sans-serif;
 		font-size: 14px;
 		color: white;
+		height: "100px";
+		overflow: "hidden";
 	}
 `;
 

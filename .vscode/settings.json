@@ -1,9 +1,12 @@
 {
     "cSpell.words": [
+        "Dropzone",
         "Formik",
         "RMIT",
+        "describedby",
         "fontawesome",
         "fortawesome",
+        "labelledby",
         "lazyload"
     ],
     "compile-hero.disable-compile-files-on-did-save-code": true

@@ -6,3 +6,5 @@ export { default as DashboardContainer } from "./MyDashboard";
 export { default as AccordionContainer } from "./MyAccordion";
 export { default as AuthorWithView } from "./authorWithViews.jsx";
 export { default as BlogDashboardContainer } from "./BlogDashboard";
+export { default as FileUpload } from "./FileUpload";
+export { default as PreviewPanel } from "./PreviewPanel";
