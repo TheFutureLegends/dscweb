@@ -10,7 +10,7 @@ import { theme } from "../../global-theme";
 import moment from "moment";
 
 function PreviewPanel() {
-	const { content, setContent, handleClose } = useContext(ModalContext);
+	const { content, handleClose } = useContext(ModalContext);
 
 	const handleSubmit = () => {
 		console.log(content);

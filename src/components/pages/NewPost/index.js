@@ -21,9 +21,9 @@ function NewPostPage() {
 	const handleFilesChange = (e) => {};
 
 	const handleSubmit = (e) => {
-		if (content.description.length >= 20) {
+		console.log(content);
+		if (content.description.length >= 20 && content.imageFile.length > 0) {
 			setIsSubmit(true);
-			console.log(content);
 		}
 		e.preventDefault();
 	};
@@ -54,6 +54,8 @@ function NewPostPage() {
 					title={
 						content.description.length < 20
 							? "You must write something"
+							: content.imageFile.length <= 0
+							? "You must upload an image"
 							: "Preview"
 					}
 					place="bottom"
