@@ -1,55 +1,90 @@
 import React, { useState } from "react";
-import { Typography, Button } from "@material-ui/core";
+import { InputBase, Modal, Backdrop, Fade } from "@material-ui/core";
 import { style } from "./style/newPost.style.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { FlexBox } from "../../styled-elements";
-import { Formik } from "formik";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { FlexBox, IconLinkButton } from "../../styled-elements";
+import { FileUpload, PreviewPanel } from "../../containers";
+import { ModalContext } from "../../../contexts/ModalContext";
+import { FileContext } from "../../../contexts/FileContext";
 import QuillEditor from "../../containers/editor/quillEditor";
 
 function NewPostPage() {
-	const handleEditorChange = () => {};
-	const handleFilesChange = () => {};
+	const [content, setContent] = useState({
+		title: "",
+		description: "",
+		categories: "",
+		imageFile: [],
+	});
+
+	const [isSubmit, setIsSubmit] = useState(false);
+
+	const handleFilesChange = (e) => {};
+
+	const handleSubmit = (e) => {
+		console.log(content);
+		if (content.description.length >= 20 && content.imageFile.length > 0) {
+			setIsSubmit(true);
+		}
+		e.preventDefault();
+	};
+
+	const handleClose = () => {
+		setIsSubmit(false);
+	};
 
 	return (
-		<div style={{ padding: "0px 10px" }}>
-			<Formik
-				initialValues={{ content: "" }}
-				onSubmit={(values) => {
-					//TODO dispatch post
-					console.log("Check");
-				}}
-				validateOnBlur={false}
-				validateOnChange={false}
-			>
-				{({ values, errors, handleSubmit }) => (
-					<React.Fragment>
-						<FlexBox
-							justify="space-between"
-							style={{ marginTop: "30px", padding: "0px 10px" }}
-						>
-							<Typography variant="h5" style={style.header}>
-								Create New Post
-							</Typography>
-							<Button
-								variant="contained"
-								color="primary"
-								onClick={handleSubmit}
-								style={style.button.submit}
-							>
-								Post &nbsp;
-								<FontAwesomeIcon icon={faPaperPlane} />
-							</Button>
-						</FlexBox>
-
-						<QuillEditor
-							placeholder={"Start Posting Something..."}
-							onEditorChange={handleEditorChange}
-							onFilesChange={handleFilesChange}
-						/>
-					</React.Fragment>
-				)}
-			</Formik>
+		<div style={{ padding: "30px 10px" }}>
+			<FlexBox justify="space-between" style={{ padding: "0px 15px" }}>
+				<InputBase
+					multiline
+					autoFocus
+					style={
+						content.title.length !== 0
+							? style.input.titleChange
+							: style.input.title
+					}
+					placeholder="Title"
+					inputProps={{ "aria-label": "title" }}
+					onChange={(e) => setContent({ ...content, title: e.target.value })}
+				/>
+				<FlexBox.FlexBasis width="20px" />
+				<IconLinkButton
+					icon={faBook}
+					id="post_button"
+					title={
+						content.description.length < 20
+							? "You must write something"
+							: content.imageFile.length <= 0
+							? "You must upload an image"
+							: "Preview"
+					}
+					place="bottom"
+					onClick={handleSubmit}
+				/>
+			</FlexBox>
+			<FileContext.Provider value={{ content, setContent }}>
+				<FileUpload />
+			</FileContext.Provider>
+			<QuillEditor
+				placeholder={"Start Posting Something..."}
+				onEditorChange={(e) => setContent({ ...content, description: e })}
+				onFilesChange={handleFilesChange}
+			/>
+			<ModalContext.Provider value={{ content, setContent, handleClose }}>
+				<Modal
+					open={isSubmit}
+					onClose={handleClose}
+					closeAfterTransition
+					BackdropComponent={Backdrop}
+					BackdropProps={{
+						timeout: 300,
+					}}
+				>
+					<Fade in={isSubmit}>
+						<PreviewPanel />
+					</Fade>
+				</Modal>
+			</ModalContext.Provider>
 		</div>
 	);
 }

@@ -29,5 +29,8 @@ export const theme = {
 			__interactive_normal: "#b9bbbe",
 			__header_primary: "#fff",
 		},
+		airbnb: {
+			__primary: "#FF5A5F",
+		},
 	},
 };
