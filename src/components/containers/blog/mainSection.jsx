@@ -7,9 +7,10 @@ import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import { FlexBox } from "../../styled-elements";
 import { DefaultPostSkeleton, SmallPostSkeleton } from "../skeleton";
 import * as ROUTES from "../../../constants/route";
+import * as BREAK from "../../../constants/breakpoint";
 
 function MainBlogSection__({ header, posts, ...props }) {
-	const { history, location } = useContext(UtilityContext);
+	const { history, location, breakPoint } = useContext(UtilityContext);
 
 	return (
 		<section>
@@ -25,6 +26,7 @@ function MainBlogSection__({ header, posts, ...props }) {
 					sm={6}
 					md={12}
 					lg={6}
+					style={{ padding: breakPoint <= BREAK.smartphone_md - 100 && "0" }}
 					key="default_container_1"
 				>
 					{posts[0] ? (
@@ -62,7 +64,6 @@ function MainBlogSection__({ header, posts, ...props }) {
 											date={post.createdAt}
 											src={post.image}
 											avatar={post.author.avatar}
-											style={CSS.main().post}
 											onClick={() =>
 												history.push(`${ROUTES.POST}/${post.slug}`)
 											}

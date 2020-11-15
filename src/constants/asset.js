@@ -9,6 +9,7 @@ export const LOGO_NCT = `${src}logo/nct.jpg`;
 export const NET_COM_JUMBOTRON = `${src}jumbotron/netcom.jpg`;
 export const RMIT_WALLPAPER = `${src}jumbotron/RMITwallpaper.jpg`;
 export const SPACE_WALLPAPER = `${src}jumbotron/banner.png`;
+export const PARTY_JUMBOTRON = `${src}jumbotron/party_ud.svg`;
 
 export const AVATAR = `${src}avatars/avatar.jpg`;
 export const AVATAR_2 = `${src}avatars/avatar_2.jpg`;

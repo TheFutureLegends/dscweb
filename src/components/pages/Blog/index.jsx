@@ -11,11 +11,28 @@ import {
 	getPostsWithPagination,
 } from "../../../core/redux/actions/post.action";
 import { connect } from "react-redux";
+import faker from "faker";
 
 var offset = 1000;
 var page = 1;
 function BlogPage({ ...props }) {
 	const theme = useTheme();
+	const currentHour = new Date().getHours();
+	let greeting = "";
+	switch (true) {
+		case currentHour < 4 && currentHour > 22:
+			greeting = "🌙 It's late, you should sleep.";
+			break;
+		case currentHour >= 4 && currentHour < 12:
+			greeting = "🌞 Good Morning.";
+			break;
+		case currentHour >= 12 && currentHour < 17:
+			greeting = "🌞 Good Afternoon.";
+			break;
+		default:
+			greeting = "🌛 Evening.";
+			break;
+	}
 
 	props.getMostPopularPosts(5, false);
 	props.getLatestPost(5, true);
@@ -41,7 +58,10 @@ function BlogPage({ ...props }) {
 			<MUIMediaQuery option={theme.breakpoints.up("sm")}>
 				<React.Fragment>
 					<Typography variant="h5" style={CSS.main().header}>
-						Good Evening, Tin Quan Chung
+						{greeting} &nbsp;
+						{props.user.authenticated
+							? props.user.credential.username
+							: faker.name.jobTitle()}
 					</Typography>
 					<Divider style={CSS.main().divider} />
 				</React.Fragment>
@@ -55,10 +75,14 @@ function BlogPage({ ...props }) {
 	);
 }
 
+const mapStateToProps = (state) => ({
+	user: state.user,
+});
+
 const mapDispatchToProps = {
 	getMostPopularPosts,
 	getLatestPost,
 	getPostsWithPagination,
 };
 
-export default connect(null, mapDispatchToProps)(BlogPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);

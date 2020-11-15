@@ -16,8 +16,11 @@ import {
 } from "./components/containers";
 // import RequiredRoute from "./components/helpers/RequiredRoute.jsx";
 import { theme as StyledTheme } from "./global-theme";
+import IsUserRedirected from "./components/helpers/IsUserRedirected";
+import ProtectedRoute from "./components/helpers/ProtectedRoute";
 // -- Redux --
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import store from "./core/redux/store";
 
@@ -35,6 +38,8 @@ function Router() {
 	const history = useHistory();
 	const breakPoint = useBreakPoint();
 	const theme = useTheme();
+	const user = useSelector((state) => state.user);
+
 	const style = {
 		centerDiv: {
 			marginLeft: breakPoint >= BREAK.desktop_sm ? "360px" : "0px",
@@ -71,14 +76,23 @@ function Router() {
 					{/* <Route path={ROUTES.SIGN_UP} component={PAGE.SignupPage} /> */}
 					<Route exact path={ROUTES.ABOUT} component={PAGE.AboutPage} />
 					<Route exact path={ROUTES.EVENT} component={PAGE.EventPage} />
-					<Route exact path={ROUTES.LOG_IN} component={PAGE.LoginPage} />
 					<Route exact path={ROUTES.HOME} component={PAGE.BlogPage} />
+					<IsUserRedirected
+						user={user}
+						loggedInPath={ROUTES.HOME}
+						path={ROUTES.LOG_IN}
+						exact
+					>
+						<PAGE.LoginPage />
+					</IsUserRedirected>
 					<Route
 						exact
 						path={ROUTES.SINGLE_POST}
 						component={PAGE.SinglePostPage}
 					/>
-					<Route exact path={ROUTES.NEW_POST} component={PAGE.NewPostPage} />
+					<ProtectedRoute user={user} path={ROUTES.NEW_POST} exact>
+						<PAGE.NewPostPage />
+					</ProtectedRoute>
 				</Switch>
 			</div>
 		</UtilityContext.Provider>

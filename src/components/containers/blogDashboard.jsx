@@ -5,23 +5,27 @@ import { theme } from "../../global-theme";
 import { AvatarGroup } from "@material-ui/lab";
 import { TagContainer, AuthorWithView, AccordionContainer } from "./index";
 import EventCard from "./event/card";
+import { useSelector } from "react-redux";
 import faker from "faker";
 import * as ASSETS from "../../constants/asset";
 import { style } from "../styles/sidebar.style.js";
 
 function BlogDashboard() {
+	const user = useSelector((state) => state.user);
 	return (
 		<FlexBox direction="column" style={style.main}>
-			<Paper style={style.card}>
-				<FlexBox justify="flex-start">
-					<AuthorWithView
-						src={faker.image.avatar()}
-						alt="TQC"
-						views={19273}
-						name="Tin Quan Chung"
-					/>
-				</FlexBox>
-			</Paper>
+			{user.authenticated && (
+				<Paper style={style.card}>
+					<FlexBox justify="flex-start">
+						<AuthorWithView
+							src={user.credential.avatar}
+							alt="TQC"
+							views={19273}
+							name={user.credential.username}
+						/>
+					</FlexBox>
+				</Paper>
+			)}
 			<AccordionContainer
 				style={{ ...style.accordion, backgroundColor: theme.context.dark }}
 				header={
@@ -94,22 +98,43 @@ function BlogDashboard() {
 					</Typography>
 				}
 			>
-				<Grid container spacing={2}>
-					<Grid item={true} xs={12}>
-						<EventCard
-							header={"Experience Day"}
-							date={"12-01-2001"}
-							src={ASSETS.EVENT_PICTURE_1}
-						/>
+				{user.authenticated ? (
+					<Grid container spacing={2}>
+						<Grid item={true} xs={12}>
+							<EventCard
+								header={"Experience Day"}
+								date={"12-01-2001"}
+								src={ASSETS.EVENT_PICTURE_1}
+							/>
+						</Grid>
+						<Grid item={true} xs={12}>
+							<EventCard
+								header={"AI Seminar"}
+								date={"12-01-2020"}
+								src={ASSETS.EVENT_PICTURE_2}
+							/>
+						</Grid>
 					</Grid>
-					<Grid item={true} xs={12}>
-						<EventCard
-							header={"AI Seminar"}
-							date={"12-01-2020"}
-							src={ASSETS.EVENT_PICTURE_2}
+				) : (
+					<FlexBox direction="column" style={{ width: "100%" }}>
+						<img
+							src={ASSETS.PARTY_JUMBOTRON}
+							alt="Party"
+							style={{ height: "100px" }}
 						/>
-					</Grid>
-				</Grid>
+						<Typography
+							variant="body1"
+							style={{
+								width: "150px",
+								color: theme.colors.dark.fb.__fb_secondary_text,
+								textAlign: "center",
+								margin: "20px",
+							}}
+						>
+							You must login to see this feature
+						</Typography>
+					</FlexBox>
+				)}
 			</AccordionContainer>
 		</FlexBox>
 	);

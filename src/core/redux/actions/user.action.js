@@ -14,7 +14,7 @@ export const loginUser = (userData, history) => async (dispatch) => {
 	try {
 		let res = await axios.post(`${apiDomain}/auth/signin`, userData);
 		setAuthorizationHeader(res.data.accessToken);
-		dispatch({ type: SET_USER, payload: res.data });
+		dispatch({ type: SET_USER, payload: { credential: res.data } });
 		dispatch({ type: STOP_LOADING_UI });
 		history.push("/");
 	} catch (error) {
@@ -34,7 +34,7 @@ export const getAuthUserData = (cookieToken) => async (dispatch) => {
 		if (res) dispatch({ type: SET_AUTHENTICATED });
 		dispatch({
 			type: SET_USER,
-			payload: res.data,
+			payload: { credential: res.data },
 		});
 	} catch (error) {
 		console.log(error);
