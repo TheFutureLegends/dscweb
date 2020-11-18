@@ -27,28 +27,20 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getAuthUserData = (cookieToken) => async (dispatch) => {
+export const getAuthUserData = () => async (dispatch) => {
 	dispatch({ type: LOADING_USER });
 	try {
 		let res = await axios.get(`${apiDomain}/users/profile`);
-		if (res) dispatch({ type: SET_AUTHENTICATED });
-		dispatch({
-			type: SET_USER,
-			payload: { credential: res.data },
-		});
+		if (res)
+			dispatch({
+				type: SET_USER,
+				payload: { credential: res.data },
+			});
+		dispatch({ type: SET_AUTHENTICATED });
 	} catch (error) {
 		console.log(error);
 	}
 };
-
-// export const getAuthUserData = (method) => async (dispatch) => {
-// 	try {
-// 		let authUser = await getAuthUser(method);
-// 		console.log(authUser);
-// 	} catch (error) {
-// 		dispatch({ type: SET_ERRORS, payload: { authenticate: error.message } });
-// 	}
-// };
 
 // export const signupUser = (method, userData, history) => async (dispatch) => {
 // 	dispatch({ type: LOADING_UI });

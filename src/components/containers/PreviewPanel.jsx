@@ -8,12 +8,14 @@ import ReactHTMLParser from "react-html-parser";
 import faker from "faker";
 import { theme } from "../../global-theme";
 import moment from "moment";
+import { connect } from "react-redux";
+import { postNewPost } from "../../core/redux/actions/post.action";
 
-function PreviewPanel() {
+function PreviewPanel({ ...props }) {
 	const { content, handleClose } = useContext(ModalContext);
 
 	const handleSubmit = () => {
-		console.log(content);
+		props.postNewPost(content);
 	};
 
 	return (
@@ -69,4 +71,6 @@ function PreviewPanel() {
 	);
 }
 
-export default PreviewPanel;
+const mapDispatchToProps = { postNewPost };
+
+export default connect(null, mapDispatchToProps)(PreviewPanel);

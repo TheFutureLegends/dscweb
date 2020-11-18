@@ -47,3 +47,24 @@ export const getMostPopularPosts = (limit, asc) => async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const postNewPost = ({
+	title,
+	description,
+	imageFile,
+	categories,
+}) => async () => {
+	try {
+		categories = "web-development";
+		let formData = new FormData();
+		formData.title = title;
+		formData.description = description;
+		formData.image = imageFile[0];
+		formData.category = categories;
+		console.log(formData);
+		let res = await axios.post(`${apiDomain}/posts`, formData);
+		console.log(res);
+	} catch (error) {
+		console.log(error);
+	}
+};
