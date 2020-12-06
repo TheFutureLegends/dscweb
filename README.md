@@ -66,3 +66,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Instruction workflows:
+
+**Atomic Design**
+
+1. Components -> Styled-elements -> Containers -> Pages
+
+**Routing Structure**
+
+1. Router
+
+**State Management**
+
+1. Redux, Redux Thunk
+2. React Context API
+
+**Form Handler**
+
+1. Formik (https://formik.org/)

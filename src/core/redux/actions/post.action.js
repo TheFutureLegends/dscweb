@@ -29,7 +29,7 @@ export const getPostsWithPagination = (limit, page) => async (dispatch) => {
 export const getLatestPost = (limit, asc) => async (dispatch) => {
 	try {
 		let res = await axios.get(
-			`${apiDomain}/posts/latest?sortBy=createdAt&limit=${limit}&asc=${asc}`
+			`${apiDomain}/posts?latest=true&limit=${limit}&asc=${asc}`
 		);
 		dispatch({ type: SET_LATEST_POSTS, payload: res.data.posts });
 	} catch (error) {
@@ -40,7 +40,7 @@ export const getLatestPost = (limit, asc) => async (dispatch) => {
 export const getMostPopularPosts = (limit, asc) => async (dispatch) => {
 	try {
 		let res = await axios.get(
-			`${apiDomain}/posts/latest?sortBy=visit&limit=${limit}&asc=${asc}`
+			`${apiDomain}/posts?latest={true}?sortBy=visit&limit=${limit}&asc=${asc}`
 		);
 		dispatch({ type: SET_POPULAR_POSTS, payload: res.data.posts });
 	} catch (error) {

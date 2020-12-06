@@ -14,11 +14,9 @@ function MainBlogSection__({ header, posts, ...props }) {
 
 	return (
 		<section>
-			{location.pathname !== "/" && (
-				<Typography variant="h6" style={CSS.main().title}>
-					{header}
-				</Typography>
-			)}
+			<Typography variant="h6" style={CSS.main().title}>
+				{header}
+			</Typography>
 			<Grid container spacing={2}>
 				<Grid
 					item={true}
