@@ -59,12 +59,12 @@ function AddMenuContainer({ ...restProps }) {
 				body="Create a new blog post"
 				onClick={() => handleRedirect(ROUTES.NEW_POST)}
 			/>
-			<CustomItem
+			{/* <CustomItem
 				icon={faDemocrat}
 				header="Event"
 				body="Add more new events"
 				onClick={() => handleRedirect("#")}
-			/>
+			/> */}
 		</MenuLayout>
 	);
 }

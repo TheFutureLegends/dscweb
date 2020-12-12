@@ -13,7 +13,8 @@ function NewPostPage() {
     title: "",
     description: "",
     categories: "",
-    imageFile: [],
+    // imageFile: [],
+    imageFile: "",
   });
 
   const [isSubmit, setIsSubmit] = useState(false);
@@ -36,7 +37,6 @@ function NewPostPage() {
     <div style={{ padding: "30px 10px" }}>
       <FlexBox justify="space-between" style={{ padding: "0px 15px" }}>
         <InputBase
-          multiline
           autoFocus
           style={
             content.title.length !== 0
@@ -55,16 +55,35 @@ function NewPostPage() {
             content.description.length < 20
               ? "You must write something"
               : content.imageFile.length <= 0
-              ? "You must upload an image"
+              ? "You must enter an image link"
               : "Preview"
           }
           place="bottom"
           onClick={handleSubmit}
         />
       </FlexBox>
-      <FileContext.Provider value={{ content, setContent }}>
+      {/* <FileContext.Provider value={{ content, setContent }}>
         <FileUpload />
-      </FileContext.Provider>
+      </FileContext.Provider> */}
+      <FlexBox.FlexBasis height="20px" />
+      <FlexBox
+        justify="space-between"
+        style={{ marginTop: "20px", padding: "0px 15px" }}
+      >
+        <InputBase
+          autoFocus
+          style={
+            content.title.length !== 0
+              ? style.input.titleChange
+              : style.input.title
+          }
+          placeholder="Image Link"
+          inputProps={{ "aria-label": "imageFile" }}
+          onChange={(e) =>
+            setContent({ ...content, imageFile: e.target.value })
+          }
+        />
+      </FlexBox>
       <QuillEditor
         style={{ color: "white" }}
         placeholder={"Start Posting Something..."}

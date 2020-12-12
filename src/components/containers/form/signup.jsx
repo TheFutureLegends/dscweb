@@ -1,131 +1,166 @@
 import React, { useContext } from "react";
-import axios from "axios";
 import { Form, FlexBox } from "../../styled-elements";
 import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
 import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
-import * as ROUTES from "../../../constants/route";
 import * as ASSETS from "../../../constants/asset.js";
+import { UtilityContext } from "../../../contexts/UtilityContext.js";
+import { connect } from "react-redux";
+import { signupUser } from "../../../core/redux/actions/user.action.js";
 
 const validationSchema = Yup.object({
-	email: validRuleSet.email,
-	password: validRuleSet.password,
-	confirmPassword: validRuleSet.confirmPassword,
-	name: validRuleSet.name,
+  username: validRuleSet.username,
+  email: validRuleSet.email,
+  password: validRuleSet.password,
+  confirmPassword: validRuleSet.confirmPassword,
 });
 
-const SignupContainer = () => {
-	const { breakPoint } = useContext(UtilityContext);
-	return (
-		<Formik
-			initialValues={{ email: "", password: "", confirmPassword: "", name: "" }}
-			onSubmit={async (values, { setSubmitting }) => {
-				setSubmitting = true;
-
-				try {
-					let res = await axios.post(
-						"https://club-platform-api.herokuapp.com/api/auth/login",
-						values
-					);
-					console.log(res);
-				} catch (error) {
-					console.log(error);
-				}
-
-				setSubmitting = false;
-			}}
-			validateOnBlur={false}
-			validateOnChange={false}
-			validationSchema={validationSchema}
-		>
-			{({ values, errors, handleSubmit, isSubmitting }) => (
-				<Form height="calc(100vh - 75px)" src={ASSETS.RMIT_WALLPAPER}>
-					<Form.Inner
-						width={breakPoint > BREAK.smartphone_md ? "400px" : "100vw"}
-						height={
-							breakPoint > BREAK.smartphone_md
-								? "fit-content"
-								: "calc(100vh - 75px)"
-						}
-						direction="column"
-					>
-						<Form.Header>Welcome to the club!</Form.Header>
-						<Form.Body>
-							Join our developer community by filling out the form below
-						</Form.Body>
-						<Form.Base onSubmit={handleSubmit}>
-							<FlexBox direction="column">
-								<Field
-									id="outlined-search"
-									label="Name"
-									type="input"
-									variant="outlined"
-									size="medium"
-									name="name"
-									fullWidth
-									error={errors.email ? true : false}
-									helperText={errors.email}
-									as={Form.InputField}
-								/>
-								<Field
-									id="outlined-search"
-									label="Email Address"
-									type="input"
-									variant="outlined"
-									size="medium"
-									name="email"
-									fullWidth
-									error={errors.email ? true : false}
-									helperText={errors.email}
-									as={Form.InputField}
-								/>
-								<Field
-									id="outlined-search"
-									label="Password"
-									variant="outlined"
-									size="medium"
-									name="password"
-									type="password"
-									fullWidth
-									error={errors.password ? true : false}
-									helperText={errors.password}
-									as={Form.InputField}
-								/>
-								<Field
-									id="outlined-search"
-									label="Confirm Password"
-									variant="outlined"
-									size="medium"
-									name="confirmPassword"
-									type="password"
-									fullWidth
-									error={errors.password ? true : false}
-									helperText={errors.password}
-									as={Form.InputField}
-								/>
-							</FlexBox>
-							<Form.Button
-								variant="contained"
-								fullWidth
-								disableElevation
-								size="large"
-								type="submit"
-								disabled={isSubmitting === true}
-							>
-								Sign Up
-							</Form.Button>
-							<Form.Text>
-								Already a member?
-								<Form.Link to={ROUTES.LOG_IN}>&nbsp;Register here</Form.Link>
-							</Form.Text>
-						</Form.Base>
-					</Form.Inner>
-				</Form>
-			)}
-		</Formik>
-	);
+const SignupContainer = ({ animatedElement, ...props }) => {
+  const { breakPoint, history } = useContext(UtilityContext);
+  return (
+    <Formik
+      initialValues={{
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      }}
+      onSubmit={async (values) => {
+        props.signupUser(values, history);
+      }}
+      validateOnBlur={false}
+      validateOnChange={false}
+      validationSchema={validationSchema}
+    >
+      {({ values, errors, handleSubmit }) => (
+        <Form height="calc(100vh - 75px)" src={ASSETS.RMIT_WALLPAPER}>
+          <Form.Inner
+            width={breakPoint > BREAK.smartphone_md ? "400px" : "100vw"}
+            height={breakPoint > BREAK.smartphone_md ? "fit-content" : "100vh"}
+            direction="column"
+            variants={breakPoint > BREAK.smartphone_md && animatedElement.Inner}
+            exit="exit"
+            initial="initial"
+            animate="open"
+            transition="transition"
+          >
+            <Form.Header>Welcome to the club!</Form.Header>
+            <Form.Body>Register to begin your path!</Form.Body>
+            <Form.Base onSubmit={handleSubmit}>
+              <FlexBox direction="column">
+                <Field
+                  id="outlined-search"
+                  label="Username"
+                  type="input"
+                  variant="outlined"
+                  size="medium"
+                  name="username"
+                  fullWidth
+                  error={
+                    errors.username ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    errors.username ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                  }
+                  as={Form.InputField}
+                />
+                <Field
+                  id="outlined-search"
+                  label="Email Address"
+                  type="input"
+                  variant="outlined"
+                  size="medium"
+                  name="email"
+                  fullWidth
+                  error={
+                    errors.email ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    errors.email ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                  }
+                  as={Form.InputField}
+                />
+                <Field
+                  id="outlined-search"
+                  label="Password"
+                  variant="outlined"
+                  size="medium"
+                  name="password"
+                  type="password"
+                  fullWidth
+                  error={
+                    errors.password ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                      ? true
+                      : false
+                  }
+                  helperText={errors.password}
+                  as={Form.InputField}
+                />
+                <Field
+                  id="outlined-search"
+                  label="Confirm Password"
+                  variant="outlined"
+                  size="medium"
+                  name="confirmPassword"
+                  type="password"
+                  fullWidth
+                  error={
+                    errors.confirmPassword ||
+                    (props.ui.errors !== null && props.ui.errors.login)
+                      ? true
+                      : false
+                  }
+                  helperText={errors.confirmPassword}
+                  as={Form.InputField}
+                />
+              </FlexBox>
+              <Form.Button
+                variant="contained"
+                fullWidth
+                disableElevation
+                size="large"
+                type="submit"
+                disabled={props.ui.loading}
+                style={{ marginTop: "30px" }}
+              >
+                Register
+              </Form.Button>
+              <Form.Text>
+                Already have account?&nbsp;
+                <a
+                  className="__custom_a"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    history.push("/login");
+                  }}
+                >
+                  Login here
+                </a>
+              </Form.Text>
+            </Form.Base>
+          </Form.Inner>
+        </Form>
+      )}
+    </Formik>
+  );
 };
 
-export default SignupContainer;
+const mapStateToProps = (state) => ({
+  ui: state.ui,
+});
+
+const mapDispatchToProps = {
+  signupUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);
