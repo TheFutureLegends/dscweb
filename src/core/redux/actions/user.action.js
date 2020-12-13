@@ -8,6 +8,8 @@ import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
 import axios from "axios";
 import { apiDomain } from "../../../constants/api";
 import { cookies, cookieName } from "../../../constants/cookie";
+// ES6 Modules or TypeScript
+import Swal from "sweetalert2";
 
 export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
@@ -52,11 +54,38 @@ export const signupUser = (userData, history) => async (dispatch) => {
   try {
     let res = await axios.post(`${apiDomain}/auth/signup`, userData);
 
-    dispatch({ type: STOP_LOADING_UI });
+    Swal.fire(
+      {
+        position: "center",
+        icon: "success",
+        title: "Success",
+        text: "You can now login with your registered email!",
+        showConfirmButton: false,
+        timer: 2000,
+      },
+      {
+        willClose: () => {
+          dispatch({ type: STOP_LOADING_UI });
 
-    history.push("/login");
+          history.push("/login");
+        },
+      }
+    );
+
+    // dispatch({ type: STOP_LOADING_UI });
+
+    // history.push("/login");
   } catch (error) {
     console.log(error.response.data.message);
+
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: error.response.data.title,
+      text: error.response.data.message,
+      showConfirmButton: false,
+      timer: 1500,
+    });
 
     dispatch({ type: SET_ERRORS, payload: { signup: error.message } });
   }

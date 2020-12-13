@@ -86,18 +86,19 @@ function AccountMenu({ ...props }) {
             </FlexBox>
           </MenuItem>
           <Divider style={SidebarStyle.divider} /> */}
+          <CustomItem
+              icon={faBook}
+              header="Post List"
+              body="See which post belong to you"
+              onClick={() => handleRedirect(ROUTES.NEW_POST)}
+            />
+          <Divider style={SidebarStyle.divider} />
           <MenuItem
             onClick={() => {
               handleLogOut.call(this, arguments);
               handleCloseMenu.call(this, arguments);
             }}
           >
-            <CustomItem
-              icon={faBook}
-              header="Post"
-              body="Create a new blog post"
-              onClick={() => handleRedirect(ROUTES.NEW_POST)}
-            />
             <FlexBox>
               <FontAwesomeIcon icon={faSignOutAlt} style={style.icon} />
               <Typography variant="subtitle1">Log Out</Typography>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { InputBase, Modal, Backdrop, Fade } from "@material-ui/core";
 import { style } from "./style/newPost.style.js";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexBox, IconLinkButton } from "../../styled-elements";
 import { FileUpload, PreviewPanel } from "../../containers";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -49,7 +49,7 @@ function NewPostPage() {
         />
         <FlexBox.FlexBasis width="20px" />
         <IconLinkButton
-          icon={faBook}
+          icon={faPaperPlane}
           id="post_button"
           title={
             content.description.length < 20
