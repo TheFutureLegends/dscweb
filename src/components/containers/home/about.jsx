@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import * as CSS from "../../pages/Home/styles/home.style.js";
 import * as BREAK from "../../../constants/breakpoint";
-import * as ASSETS from "../../../constants/asset";
+import * as ASSETS from "../../../constants/staticImageFile";
 import { FlexBox } from "../../styled-elements";
-import { UtilityContext } from "../../../contexts/UtilityContext";
+import { UtilityContext } from "../../../contexts/index";
 import { Typography, Grid } from "@material-ui/core";
 
 function AboutPage() {

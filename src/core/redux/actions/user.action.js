@@ -8,6 +8,7 @@ import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
 import axios from "axios";
 import { apiDomain } from "../../../constants/api";
 import { cookies, cookieName } from "../../../constants/cookie";
+import { getListOfPost } from "./post.action.js";
 // ES6 Modules or TypeScript
 import Swal from "sweetalert2";
 
@@ -15,9 +16,15 @@ export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
     let res = await axios.post(`${apiDomain}/auth/signin`, userData);
+
     setAuthorizationHeader(res.data.accessToken.token);
+
     dispatch({ type: SET_USER, payload: { credential: res.data } });
+
     dispatch({ type: STOP_LOADING_UI });
+
+    getListOfPost();
+
     history.push("/");
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: { login: "Something went wrong" } });
@@ -32,15 +39,31 @@ export const logoutUser = () => (dispatch) => {
 export const getAuthUserData = () => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
-    let res = await axios.get(`${apiDomain}/users/profile`);
-    if (res)
-      dispatch({
-        type: SET_USER,
-        payload: { credential: res.data },
+    const cookie = cookies.get(cookieName);
+
+    if (cookie) {
+      const headers = {
+        "Content-Type": "application/json",
+        "x-access-token": `${cookies.get(cookieName)}`,
+      };
+
+      let res = await axios.get(`${apiDomain}/users/profile`, {
+        headers: headers,
       });
-    dispatch({ type: SET_AUTHENTICATED });
+
+      if (res) {
+        dispatch({
+          type: SET_USER,
+          payload: { credential: res.data },
+        });
+
+        dispatch({ type: SET_AUTHENTICATED });
+      }
+    }
   } catch (error) {
-    console.log(error);
+    cookies.remove(cookieName, { path: "/" });
+
+    dispatch({ type: SET_UNAUTHENTICATED });
   }
 };
 
@@ -64,7 +87,7 @@ export const signupUser = (userData, history) => async (dispatch) => {
         timer: 2000,
       },
       {
-        willClose: () => {
+        willClose: (history) => {
           dispatch({ type: STOP_LOADING_UI });
 
           history.push("/login");
@@ -93,5 +116,8 @@ export const signupUser = (userData, history) => async (dispatch) => {
 
 const setAuthorizationHeader = (token) => {
   cookies.set(cookieName, token, { path: "/" });
+
+  axios.defaults.headers.common["x-access-token"] = token;
+
   axios.defaults.headers.common["x-access-token"] = token;
 };

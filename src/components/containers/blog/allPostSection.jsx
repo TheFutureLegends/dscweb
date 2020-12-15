@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import * as CSS from "../../pages/Blog/styles/blog.style.js";
 import DefaultBlogContainer from "./default";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
+import { UtilityContext } from "../../../contexts/index";
 import * as ROUTES from "../../../constants/route";
 import * as BREAK from "../../../constants/breakpoint";
 import { DefaultPostSkeleton } from "../skeleton";
@@ -31,7 +31,7 @@ function PaginationPostsSection({ ...props }) {
 		<section>
 			<Grid container spacing={2}>
 				{props.posts.length !== 0 ? (
-					props.posts.slice(4).map((post) => (
+					props.posts.slice(3).map((post) => (
 						<Grid item={true} xs={12} lg={6}>
 							<DefaultBlogContainer
 								key={post._id}

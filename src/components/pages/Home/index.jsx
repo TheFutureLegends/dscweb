@@ -3,7 +3,7 @@ import { Banner } from "../../styled-elements";
 import { Divider } from "@material-ui/core";
 import { theme } from "../../../global-theme.js";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
+import { UtilityContext } from "../../../contexts/index";
 import * as HOME from "../../containers/home";
 import * as BREAK from "../../../constants/breakpoint";
 import * as CSS from "./styles/home.style";

@@ -2,19 +2,19 @@ import React, { useContext } from "react";
 import { Paper } from "@material-ui/core";
 import { FlexBox, IconLinkButton } from "../../components/styled-elements";
 import DefaultBlogContainer from "./blog/default";
-import { ModalContext } from "../../contexts/ModalContext";
+import { ModalContext, UtilityContext } from "../../contexts/index";
 import { faPaperPlane, faTimes } from "@fortawesome/free-solid-svg-icons";
 import ReactHTMLParser from "react-html-parser";
-import faker from "faker";
 import { theme } from "../../global-theme";
 import moment from "moment";
 import { connect } from "react-redux";
 import { postNewPost } from "../../core/redux/actions/post.action";
-import { UtilityContext } from "../../contexts/UtilityContext.js";
 
 function PreviewPanel({ ...props }) {
   const { content, handleClose } = useContext(ModalContext);
-  const { history } = useContext(UtilityContext);
+  /**
+   * const { history } = useContext(UtilityContext);
+   */
 
   const handleSubmit = async () => {
     props.postNewPost(content);

@@ -5,7 +5,7 @@ import * as ROUTES from "./constants/route";
 import * as PAGE from "./components/pages";
 import * as BREAK from "./constants/breakpoint";
 import { NavbarContainer } from "./components/containers";
-import { UtilityContext } from "./contexts/UtilityContext";
+import { UtilityContext } from "./contexts/index";
 import { apiDomain } from "./constants/api";
 import { cookies, cookieName } from "./constants/cookie";
 import { MUIMediaQuery } from "./components/styled-elements";
@@ -101,6 +101,10 @@ function Router() {
           />
           <ProtectedRoute user={user} path={ROUTES.NEW_POST} exact>
             <PAGE.NewPostPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute user={user} path={ROUTES.POST_LIST} exact>
+            <PAGE.PostListPage />
           </ProtectedRoute>
         </Switch>
       </div>

@@ -6,3 +6,4 @@ export { default as AboutPage } from "./About";
 export { default as EventPage } from "./Event";
 export { default as SinglePostPage } from "./Post";
 export { default as NewPostPage } from "./NewPost";
+export { default as PostListPage } from "./PostList";

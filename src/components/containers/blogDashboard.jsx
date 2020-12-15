@@ -7,7 +7,7 @@ import { TagContainer, AuthorWithView, AccordionContainer } from "./index";
 import EventCard from "./event/card";
 import { useSelector } from "react-redux";
 import faker from "faker";
-import * as ASSETS from "../../constants/asset";
+import * as ASSETS from "../../constants/staticImageFile";
 import { style } from "../styles/sidebar.style.js";
 
 function BlogDashboard() {

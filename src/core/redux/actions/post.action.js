@@ -3,6 +3,7 @@ import {
   SET_POSTS,
   SET_POPULAR_POSTS,
   SET_LATEST_POSTS,
+  SET_LIST_OF_POST,
 } from "../types/post.types";
 import axios from "axios";
 import { apiDomain } from "../../../constants/api";
@@ -54,14 +55,14 @@ export const postNewPost = ({
   description,
   imageFile,
   categories,
-}) => async () => {
+}) => async (dispatch) => {
   try {
     const headers = {
       "Content-Type": "application/json",
       "x-access-token": `${cookies.get(cookieName)}`,
     };
 
-    let res = await axios.post(
+    let create = await axios.post(
       `${apiDomain}/posts/create`,
       {
         title: title,
@@ -73,6 +74,25 @@ export const postNewPost = ({
         headers: headers,
       }
     );
+
+    this.getListOfPost();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getListOfPost = () => async (dispatch) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-access-token": `${cookies.get(cookieName)}`,
+    };
+
+    let res = await axios.get(`${apiDomain}/posts/read`, {
+      headers: headers,
+    });
+
+    dispatch({ type: SET_LIST_OF_POST, payload: res.data.posts });
   } catch (error) {
     console.log(error);
   }

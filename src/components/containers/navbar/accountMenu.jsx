@@ -5,11 +5,10 @@ import {
   faSignOutAlt,
   faSignInAlt,
   faRegistered,
-  faBook
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconLinkButton, FlexBox } from "../../styled-elements";
-import { MenuContext } from "../../../contexts/MenuContext";
-import { UtilityContext } from "../../../contexts/UtilityContext";
+import { MenuContext, UtilityContext } from "../../../contexts/index.js";
 import { style as SidebarStyle } from "../../styles/sidebar.style.js";
 import MenuLayout from "./menuLayout";
 import { Link as ReactRouterLink } from "react-router-dom";
@@ -55,7 +54,7 @@ function AccountMenu({ ...props }) {
   const handleRedirect = (route) => {
     setAnchorEl({
       ...anchorEl,
-      AddMenu: null,
+      AccountMenu: null,
     });
 
     history.push(route);
@@ -87,11 +86,11 @@ function AccountMenu({ ...props }) {
           </MenuItem>
           <Divider style={SidebarStyle.divider} /> */}
           <CustomItem
-              icon={faBook}
-              header="Post List"
-              body="See which post belong to you"
-              onClick={() => handleRedirect(ROUTES.NEW_POST)}
-            />
+            icon={faBook}
+            header="Post List"
+            body="See which post belong to you"
+            onClick={() => handleRedirect(ROUTES.POST_LIST)}
+          />
           <Divider style={SidebarStyle.divider} />
           <MenuItem
             onClick={() => {

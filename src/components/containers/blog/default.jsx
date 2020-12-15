@@ -22,9 +22,16 @@ function DefaultBlogContainer({
       {/* {src && <Blog.Picture src={src} />} */}
 
       {src && <img src={src} width="100%" />}
+
+      <Blog.Header
+        variant="h1"
+        style={{ paddingLeft: "10px", marginBottom: "10px" }}
+      >
+        {title}
+      </Blog.Header>
+
       <div style={{ padding: "10px" }}>
-        <Blog.Header variant="h2">{title}</Blog.Header>
-        <Blog.SubHeader variant="subtitle1" limit={120} text={body} />
+        <Blog.SubHeader variant="subtitle1" limit={100} text={body} />
         <FlexBox justify="space-between" style={{ marginTop: "30px" }}>
           <Blog.Text>Publish Date: {date}</Blog.Text>
         </FlexBox>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Drawer, List } from "@material-ui/core";
 import { theme } from "../../../global-theme";
-import { DrawerContext } from "../../../contexts/DrawerContext.js";
+import { DrawerContext } from "../../../contexts/index.js";
 import Dashboard from "../MyDashboard";
 
 const drawerStyle = {

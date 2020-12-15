@@ -4,8 +4,7 @@ import { style } from "./style/newPost.style.js";
 import { faBook, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FlexBox, IconLinkButton } from "../../styled-elements";
 import { FileUpload, PreviewPanel } from "../../containers";
-import { ModalContext } from "../../../contexts/ModalContext";
-import { FileContext } from "../../../contexts/FileContext";
+import { ModalContext, FileContext } from "../../../contexts/index";
 import QuillEditor from "../../containers/editor/quillEditor";
 
 function NewPostPage() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Sidebar } from "../styled-elements";
-import { listOfGames } from "../../constants/games";
-import { listOfPartners } from "../../constants/partner";
+import { listOfGames } from "../../constants/mockData";
+import { listOfPartners } from "../../constants/mockData";
 import { listOfRoutes } from "../../constants/route";
 import { Link as ReactRouterLink } from "react-router-dom";
 

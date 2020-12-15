@@ -1,8 +1,7 @@
 import React, { useState, Fragment, useContext } from "react";
 import { Avatar, Typography } from "@material-ui/core";
-import { UtilityContext } from "../../../contexts/UtilityContext";
-import { DrawerContext } from "../../../contexts/DrawerContext.js";
-import { MenuContext } from "../../../contexts/MenuContext.js";
+import { UtilityContext } from "../../../contexts/index";
+import { DrawerContext, MenuContext } from "../../../contexts/index.js";
 import { connect } from "react-redux";
 // Components
 import {
@@ -21,7 +20,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 // Constants
-import * as ASSETS from "../../../constants/asset";
+import * as ASSETS from "../../../constants/staticImageFile";
 import * as BREAK from "../../../constants/breakpoint";
 
 function NavbarContainer({ ...props }) {

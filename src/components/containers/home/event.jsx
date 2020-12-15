@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UtilityContext } from "../../../contexts/UtilityContext";
+import { UtilityContext } from "../../../contexts/index";
 import { Grid, Typography } from "@material-ui/core";
 import { FlexBox } from "../../styled-elements";
 import EventCard from "../event/card";

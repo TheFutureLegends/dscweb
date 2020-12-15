@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { UtilityContext } from "../../contexts/UtilityContext";
+import { UtilityContext } from "../../contexts/index";
 
 export const useFetch = (url) => {
 	const [response, setResponse] = React.useState(null);

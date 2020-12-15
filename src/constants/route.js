@@ -1,9 +1,9 @@
 import {
-	faHome,
-	faCalendarAlt,
-	// faCodeBranch,
+  faHome,
+  faCalendarAlt,
+  // faCodeBranch,
 } from "@fortawesome/free-solid-svg-icons";
-import * as ASSETS from "./asset";
+import * as ASSETS from "./staticImageFile";
 
 export const HOME = "/";
 
@@ -19,11 +19,12 @@ export const FORUM = "/forum";
 
 export const POST = "/posts";
 export const SINGLE_POST = `/posts/:slug`;
+export const POST_LIST = `/post-list`;
 export const NEW_POST = `/new-post`;
 
 export const listOfRoutes = [
-	{ route: HOME, icon: faHome, svg: ASSETS.HOME_ICON, text: "Home" },
-	{ route: EVENT, icon: faCalendarAlt, svg: ASSETS.EVENT_ICON, text: "Event" },
-	{ route: FORUM, icon: null, svg: ASSETS.FORUM_ICON, text: "Forum" },
-	// { route: ABOUT, icon: faUsers, text: "About" },
+  { route: HOME, icon: faHome, svg: ASSETS.HOME_ICON, text: "Home" },
+  { route: EVENT, icon: faCalendarAlt, svg: ASSETS.EVENT_ICON, text: "Event" },
+  { route: FORUM, icon: null, svg: ASSETS.FORUM_ICON, text: "Forum" },
+  // { route: ABOUT, icon: faUsers, text: "About" },
 ];

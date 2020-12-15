@@ -4,8 +4,8 @@ import { Formik, Field } from "formik";
 import { validRuleSet } from "../../../core/validation";
 import * as Yup from "yup";
 import * as BREAK from "../../../constants/breakpoint";
-import * as ASSETS from "../../../constants/asset.js";
-import { UtilityContext } from "../../../contexts/UtilityContext.js";
+import * as ASSETS from "../../../constants/staticImageFile.js";
+import { UtilityContext } from "../../../contexts/index.js";
 import { connect } from "react-redux";
 import { signupUser } from "../../../core/redux/actions/user.action.js";
 
