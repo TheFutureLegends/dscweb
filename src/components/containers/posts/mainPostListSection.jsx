@@ -1,20 +1,27 @@
 import React from "react";
-import MainTableSection from "../../containers/table/mainTableSection";
+import MaterialTableLayout from "../../containers/table/materialTableLayout";
 import { connect } from "react-redux";
+import { deletePost } from "../../../core/redux/actions/post.action";
 
 function MainPostListSection({ ...props }) {
   return (
-    <MainTableSection
+    <MaterialTableLayout
       title="List of your post"
       data={props.postList}
-      tableHeader={["Title", "Description", "Action"]}
+      tableHeader={["Title", "Description"]}
+      module="post"
       {...props}
     />
   );
 }
 
+const mapDispatchToProps = { deletePost };
+
 const mapStateToProps = (state) => ({
   postList: state.post.postList,
 });
 
-export default connect(mapStateToProps, null)(MainPostListSection);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPostListSection);

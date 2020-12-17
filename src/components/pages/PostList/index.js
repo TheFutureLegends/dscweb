@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { getListOfPost } from "../../../core/redux/actions/post.action";
+import { getListOfPost, deletePost } from "../../../core/redux/actions/post.action";
 import MainPostListSection from "../../containers/posts/mainPostListSection";
 
 function PostList({ ...props }) {
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getListOfPost,
+  deletePost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

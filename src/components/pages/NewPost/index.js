@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { InputBase, Modal, Backdrop, Fade } from "@material-ui/core";
 import { style } from "./style/newPost.style.js";
-import { faBook, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+// import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FlexBox, IconLinkButton } from "../../styled-elements";
-import { FileUpload, PreviewPanel } from "../../containers";
-import { ModalContext, FileContext } from "../../../contexts/index";
+import { PreviewPanel } from "../../containers";
+// import { FileUpload } from "../../containers";
+import { ModalContext } from "../../../contexts/index";
+// import { FileContext } from "../../../contexts/index";
 import QuillEditor from "../../containers/editor/quillEditor";
 
 function NewPostPage() {
   const [content, setContent] = useState({
     title: "",
     description: "",
-    categories: "",
+    category: "",
     // imageFile: [],
     imageFile: "",
   });
@@ -21,11 +24,11 @@ function NewPostPage() {
   const handleFilesChange = (e) => {};
 
   const handleSubmit = (e) => {
-    console.log(content);
+    e.preventDefault();
+    // console.log(content);
     if (content.description.length >= 20 && content.imageFile.length > 0) {
       setIsSubmit(true);
     }
-    e.preventDefault();
   };
 
   const handleClose = () => {
@@ -58,7 +61,7 @@ function NewPostPage() {
               : "Preview"
           }
           place="bottom"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
         />
       </FlexBox>
       {/* <FileContext.Provider value={{ content, setContent }}>

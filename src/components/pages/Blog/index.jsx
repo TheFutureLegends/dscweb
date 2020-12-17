@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import * as CSS from "./styles/blog.style.js";
-import { Typography, Divider, useTheme } from "@material-ui/core";
+import { Divider, useTheme } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 import MostPopularSection from "../../containers/blog/mostPopularSection";
 import LatestUpdateSection from "../../containers/blog/latestUpdateSection";
 import AllPostSection from "../../containers/blog/allPostSection";
-import { MUIMediaQuery } from "../../styled-elements";
+// import { MUIMediaQuery } from "../../styled-elements";
 import {
   getMostPopularPosts,
   getLatestPost,

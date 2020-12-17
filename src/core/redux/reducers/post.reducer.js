@@ -4,6 +4,7 @@ import {
   SET_POST,
   SET_POSTS,
   SET_LIST_OF_POST,
+  DELETE_POST,
 } from "../types/post.types";
 
 const initialState = {
@@ -41,6 +42,8 @@ export function PostReducer(state = initialState, action) {
         ...state,
         postList: action.payload,
       };
+    case DELETE_POST:
+      return;
     default:
       return state;
   }

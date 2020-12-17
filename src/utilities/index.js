@@ -15,3 +15,7 @@ export const getSubString = (string, begin = 0, end = 10) => {
 
   return result;
 };
+
+export const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};

@@ -340,7 +340,6 @@ class QuillEditor extends React.Component {
       e.currentTarget.files.length > 0
     ) {
       const file = e.currentTarget.files[0];
-      console.log(file);
 
       let formData = new FormData();
       const config = {

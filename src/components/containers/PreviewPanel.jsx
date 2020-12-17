@@ -16,8 +16,10 @@ function PreviewPanel({ ...props }) {
    * const { history } = useContext(UtilityContext);
    */
 
+  const { history } = useContext(UtilityContext);
+
   const handleSubmit = async () => {
-    props.postNewPost(content);
+    props.postNewPost(content, history);
   };
 
   return (
@@ -51,7 +53,7 @@ function PreviewPanel({ ...props }) {
                   onClick={handleSubmit}
                   bgColor={theme.colors.secondary}
                   id="post"
-                  title="Post"
+                  title="Create new post"
                 />
                 <FlexBox.FlexBasis width="10px" />
               </FlexBox>

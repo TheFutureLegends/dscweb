@@ -21,14 +21,12 @@ import ProtectedRoute from "./components/helpers/ProtectedRoute";
 // -- Redux --
 import { logoutUser, getAuthUserData } from "./core/redux/actions/user.action";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import store from "./core/redux/store";
 
 const cookie = cookies.get(cookieName);
 
 if (cookie) {
-  axios.defaults.headers["x-access-token"] = cookie.token;
-  store.dispatch(getAuthUserData(cookie.token));
+  store.dispatch(getAuthUserData(cookie));
 } else {
   store.dispatch(logoutUser());
 }

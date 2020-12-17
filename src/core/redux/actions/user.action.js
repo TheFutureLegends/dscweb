@@ -6,7 +6,7 @@ import {
 } from "../types/user.types";
 import { LOADING_UI, SET_ERRORS, STOP_LOADING_UI } from "../types/ui.types";
 import axios from "axios";
-import { apiDomain } from "../../../constants/api";
+import { getAuthorizationHeaders } from "../../../constants/api";
 import { cookies, cookieName } from "../../../constants/cookie";
 import { getListOfPost } from "./post.action.js";
 // ES6 Modules or TypeScript
@@ -15,15 +15,15 @@ import Swal from "sweetalert2";
 export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
-    let res = await axios.post(`${apiDomain}/auth/signin`, userData);
+    let res = await axios.post(`/auth/signin`, userData);
 
     setAuthorizationHeader(res.data.accessToken.token);
+
+    getListOfPost();
 
     dispatch({ type: SET_USER, payload: { credential: res.data } });
 
     dispatch({ type: STOP_LOADING_UI });
-
-    getListOfPost();
 
     history.push("/");
   } catch (error) {
@@ -33,32 +33,22 @@ export const loginUser = (userData, history) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
   cookies.remove(cookieName, { path: "/" });
+
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
 export const getAuthUserData = () => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
-    const cookie = cookies.get(cookieName);
+    let res = await axios.get(`/users/profile`, getAuthorizationHeaders());
 
-    if (cookie) {
-      const headers = {
-        "Content-Type": "application/json",
-        "x-access-token": `${cookies.get(cookieName)}`,
-      };
-
-      let res = await axios.get(`${apiDomain}/users/profile`, {
-        headers: headers,
+    if (res) {
+      dispatch({
+        type: SET_USER,
+        payload: { credential: res.data },
       });
 
-      if (res) {
-        dispatch({
-          type: SET_USER,
-          payload: { credential: res.data },
-        });
-
-        dispatch({ type: SET_AUTHENTICATED });
-      }
+      dispatch({ type: SET_AUTHENTICATED });
     }
   } catch (error) {
     cookies.remove(cookieName, { path: "/" });
@@ -75,29 +65,20 @@ export const signupUser = (userData, history) => async (dispatch) => {
   delete userData[keys[keys.length - 1]];
 
   try {
-    let res = await axios.post(`${apiDomain}/auth/signup`, userData);
+    await axios.post(`/auth/signup`, userData);
 
-    Swal.fire(
-      {
-        position: "center",
-        icon: "success",
-        title: "Success",
-        text: "You can now login with your registered email!",
-        showConfirmButton: false,
-        timer: 2000,
-      },
-      {
-        willClose: (history) => {
-          dispatch({ type: STOP_LOADING_UI });
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Success",
+      text: "You can now login with your registered email!",
+      showConfirmButton: false,
+      timer: 2000,
+    });
 
-          history.push("/login");
-        },
-      }
-    );
+    dispatch({ type: STOP_LOADING_UI });
 
-    // dispatch({ type: STOP_LOADING_UI });
-
-    // history.push("/login");
+    history.push("/login");
   } catch (error) {
     console.log(error.response.data.message);
 
@@ -116,8 +97,4 @@ export const signupUser = (userData, history) => async (dispatch) => {
 
 const setAuthorizationHeader = (token) => {
   cookies.set(cookieName, token, { path: "/" });
-
-  axios.defaults.headers.common["x-access-token"] = token;
-
-  axios.defaults.headers.common["x-access-token"] = token;
 };
